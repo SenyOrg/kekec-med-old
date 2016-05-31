@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/kekec-med":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/kekec-med","hostpath":"/home/senycorp/Development/kekec-med","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/senycorp/Development/kekec-med","disabled":false,"__vagrantfile":true}}}
