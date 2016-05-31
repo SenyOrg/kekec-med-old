@@ -5,6 +5,14 @@ namespace App\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+/**
+ * Class EventServiceProvider
+ * -----------------------------
+ *
+ * -----------------------------
+ * @package App\Providers
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ */
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -13,8 +21,20 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'Illuminate\Auth\Events\Attempting' => [
+            'App\Listeners\AuthAttemptEvent',
+        ],
+
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\AuthLoginEvent',
+        ],
+
+        'Illuminate\Auth\Events\Logout' => [
+            'App\Listeners\AuthLogoutEvent',
+        ],
+
+        'Illuminate\Auth\Events\Lockout' => [
+            'App\Listeners\AuthLockoutEvent',
         ],
     ];
 
