@@ -250,6 +250,9 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i></a>
+                </li>
                 <!-- Control Sidebar Toggle Button -->
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>

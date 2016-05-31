@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @include('layouts.head')
+    @include('layouts.app.head')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-    @include('layouts.header')
+    @include('layouts.app.header')
     <!-- Left side column. contains the logo and sidebar -->
-    @include('layouts.sidebar')
+    @include('layouts.app.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    @include('layouts.contentwrapper')
+    @include('layouts.app.contentwrapper')
     <!-- /.content-wrapper -->
-    @include('layouts.footer')
+    @include('layouts.app.footer')
 
     <!-- Control Sidebar -->
-    @include('layouts.controlsidebar')
+    @include('layouts.app.controlsidebar')
 
 </div>
 <!-- ./wrapper -->
 
-@include('layouts.scripts')
+@include('layouts.app.scripts')
 </body>
 </html>
