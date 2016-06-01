@@ -28,6 +28,14 @@ class DevelopmentSeeder extends Seeder
      */
     public function run()
     {
+
+        $filename = 'public/'.md5(time().'admin').'.jpg';
+
+        Storage::put(
+            $filename,
+            file_get_contents('https://robohash.org/'.$filename)
+        );
+
         /**
          * Create some users
          */
@@ -35,12 +43,21 @@ class DevelopmentSeeder extends Seeder
             'firstname' => 'Admin',
             'email' => 'admin@kekecmed.com',
             'password' => bcrypt('admin'),
+            'image' => str_replace('public/', '', $filename)
         ]);
+
+        $filename = 'public/'.md5(time().'doctor').'.jpg';
+
+        Storage::put(
+            $filename,
+            file_get_contents('https://robohash.org/'.$filename)
+        );
 
         DB::table('users')->insert([
             'firstname' => 'Doctor',
             'email' => 'doctor@kekecmed.com',
             'password' => bcrypt('doctor'),
+            'image' => str_replace('public/', '', $filename)
         ]);
 
 
