@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0cdd5efeb135b027be88543a33818439",
-    "content-hash": "b4c370aa4b208ca17c7d4bd4e9ed0cd0",
+    "hash": "3a25c8bd1e441ae4bea4209e3fa8964c",
+    "content-hash": "5dc44ebcb6e8e1921b01f7a5856f469c",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1986,6 +1986,46 @@
                 "environment"
             ],
             "time": "2016-04-15 10:48:49"
+        },
+        {
+            "name": "yangqi/htmldom",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yangqi/Htmldom.git",
+                "reference": "eee67c01f0a82c6c5e6252880d382e586e331da7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yangqi/Htmldom/zipball/eee67c01f0a82c6c5e6252880d382e586e331da7",
+                "reference": "eee67c01f0a82c6c5e6252880d382e586e331da7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Yangqi\\Htmldom": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "yangqi",
+                    "email": "i@yangqi.me"
+                }
+            ],
+            "description": "Simple Html Dom Parser for Laravel 4",
+            "keywords": [
+                "HTML Parser",
+                "laravel"
+            ],
+            "time": "2015-09-10 13:45:37"
         }
     ],
     "packages-dev": [
@@ -3261,7 +3301,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "yangqi/htmldom": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

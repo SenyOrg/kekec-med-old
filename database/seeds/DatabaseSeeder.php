@@ -2,6 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
+/**
+ * Class DatabaseSeeder
+ * -----------------------------
+ *
+ * -----------------------------
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +18,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        /**
+         * General Seeders
+         */
+        $this->call(InsuranceSeeder::class);
+
         /**
          * DevelopmentSeeder
          */

@@ -160,6 +160,7 @@ return [
          * Custom Providers
          */
         Intervention\Image\ImageServiceProvider::class,
+        Yangqi\Htmldom\HtmldomServiceProvider::class    ,
 
     ],
 
@@ -211,7 +212,8 @@ return [
         /*
          * Custom Aliases
          */
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Htmldom' => Yangqi\Htmldom\Htmldom::class,
     ],
 
 ];
