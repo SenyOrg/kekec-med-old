@@ -156,6 +156,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Custom Providers
+         */
+        Intervention\Image\ImageServiceProvider::class,
+
     ],
 
     /*
@@ -202,6 +207,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+
+        /*
+         * Custom Aliases
+         */
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];
