@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname', 'lastname', 'email', 'password', 'image', 'online'
     ];
 
     /**
@@ -23,4 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getImageUrl() {
+        return \Storage::url($this->image);
+    }
+
+    public function getFullName() {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }

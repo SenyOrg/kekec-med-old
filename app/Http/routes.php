@@ -11,6 +11,9 @@
 |
 */
 
+/**
+ * Default route
+ */
 Route::get('/', function () {
     if (Auth::check()) {
         return view('welcome');
@@ -22,3 +25,16 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::resource('profile', 'ProfileController');
+
+    /**Route::group(['prefix' => 'user'], function () {
+        Route::get('profile', 'UserController@showProfile')->name('user.profile');
+    });
+
+    Route::get('user/profile', function () {
+        // Uses Auth Middleware
+    });**/
+});
