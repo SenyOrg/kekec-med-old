@@ -160,7 +160,9 @@ return [
          * Custom Providers
          */
         Intervention\Image\ImageServiceProvider::class,
-        Yangqi\Htmldom\HtmldomServiceProvider::class    ,
+        Yangqi\Htmldom\HtmldomServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
 
     ],
 

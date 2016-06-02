@@ -9,7 +9,9 @@
         "laravel/framework": "5.2.*",
         "almasaeed2010/adminlte": "~2.0",
         "intervention/image": "^2.3",
-        "yangqi/htmldom": "dev-master"
+        "yangqi/htmldom": "dev-master",
+        "yajra/laravel-datatables-oracle": "~6.0",
+        "barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
