@@ -3,7 +3,7 @@
 <head>
     @include('layouts.app.head')
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini fixed">
 <div class="wrapper">
 
     @include('layouts.app.header')
