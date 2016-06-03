@@ -11,9 +11,10 @@
         "intervention/image": "^2.3",
         "yangqi/htmldom": "dev-master",
         "yajra/laravel-datatables-oracle": "~6.0",
-        "barryvdh/laravel-ide-helper": "^2.1"
+        "kris/laravel-form-builder": "1.6.*"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.1",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",

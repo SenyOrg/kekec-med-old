@@ -162,7 +162,9 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Yangqi\Htmldom\HtmldomServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+
 
     ],
 
@@ -216,6 +218,7 @@ return [
          */
         'Image' => Intervention\Image\Facades\Image::class,
         'Htmldom' => Yangqi\Htmldom\Htmldom::class,
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
     ],
 
 ];
