@@ -15,6 +15,9 @@
  * @todo: Implement factory methods
  */
 
+/**
+ * User-Factory
+ */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'firstname' => $faker->firstName,
@@ -26,6 +29,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+/**
+ * Patient-Factory
+ */
 $factory->define(App\Patient::class, function (Faker\Generator $faker) {
     return [
         'firstname' => $faker->firstName,
@@ -41,5 +47,20 @@ $factory->define(App\Patient::class, function (Faker\Generator $faker) {
         'insurance_type' => $faker->randomElement(['gkv', 'private']),
         'insurance_id' => $faker->numberBetween(1, 40),
         'insurance_no' => $faker->uuid
+    ];
+});
+
+/**
+ * Task-Factory
+ */
+$factory->define(App\Task::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->realText(),
+        'description' => $faker->realText(400),
+        'deadline' => $faker->dateTimeBetween('-2 days', '+30 days'),
+        'done' => $faker->boolean(),
+        'creator_id' => $faker->numberBetween(1,10),
+        'assignee_id' => $faker->numberBetween(1,10),
+        'object_id' => $faker->numberBetween(1,10),
     ];
 });

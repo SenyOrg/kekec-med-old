@@ -54,4 +54,30 @@ class Patient extends Model
     {
         return $this->belongsTo('App\Insurance');
     }
+
+    /**
+     * Get Insurance object.
+     */
+    public function tasks()
+    {
+        return $this->hasMany('App\Task', 'object_id');
+    }
+
+    /**
+     * Get Image Url
+     * 
+     * @return mixed
+     */
+    public function getImageUrl() {
+        return \Storage::url($this->image);
+    }
+
+    /**
+     * Get Fullname
+     * 
+     * @return string
+     */
+    public function getFullName() {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }

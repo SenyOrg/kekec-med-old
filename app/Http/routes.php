@@ -29,6 +29,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('profile', 'ProfileController');
+    Route::resource('patient', 'PatientController');
 
     /**Route::group(['prefix' => 'user'], function () {
         Route::get('profile', 'UserController@showProfile')->name('user.profile');

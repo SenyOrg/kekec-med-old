@@ -64,7 +64,7 @@ class DevelopmentSeeder extends Seeder
         /**
          * Create dummy users
          */
-        factory(App\User::class, $this->count)->create()->each(function($u) {
+        factory(App\User::class, 10)->create()->each(function($u) {
             $filename = 'public/'.md5(time().$u->password).'.jpg';
 
             Storage::put(
@@ -78,10 +78,7 @@ class DevelopmentSeeder extends Seeder
         /**
          * Create some patients
          */
-        /**
-         * Create dummy users
-         */
-        factory(App\Patient::class, $this->count)->create()->each(function($u) {
+        factory(App\Patient::class, 100)->create()->each(function($u) {
             $filename = 'public/'.md5(time().$u->password).'.jpg';
 
             Storage::put(
@@ -90,6 +87,19 @@ class DevelopmentSeeder extends Seeder
             );
 
             $u->update(['image' => str_replace('public/', '', $filename)]);
+        });
+
+        $faker = new Faker\Generator();
+
+        /**
+         * Create Tasks
+         */
+        factory(App\Task::class, 200)->create()->each(function($u) use($faker) {
+            $u->update([
+                'creator_id' => $faker->numberBetween(1, 12),
+                'assignee_id' => $faker->numberBetween(1, 12),
+                'object_id' => $faker->numberBetween(1, 100),
+            ]);
         });
     }
 }

@@ -31,4 +31,33 @@ class User extends Authenticatable
     public function getFullName() {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    /**
+     * Get created tasks
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function createdTasks()
+    {
+        return $this->hasMany('App\Task', 'creator_id');
+    }
+
+    /**
+     * Get assigned tasks
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assignedTasks()
+    {
+        return $this->hasMany('App\Task', 'assignee_id');
+    }
+
+    /**
+     * Get assigned tasks
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks() {
+        return $this->assignedTasks();
+    }
 }
