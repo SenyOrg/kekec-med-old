@@ -3,12 +3,10 @@
 @section('content')
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href=""><i class="fa fa-heartbeat text-red fa-lg" aria-hidden="true"></i> <b>Kekec</b>MED</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
@@ -41,7 +39,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-default btn-block btn-flat">LogIn <i class="fa fa-sign-in"></i></button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -52,4 +50,29 @@
         <!-- /.login-box-body -->
     </div>
     <!-- /.login-box -->
+    
+    <style type="text/css">
+        body.login-page {
+            background-image: url('{{asset('dist/img/background.jpg')}}') !important;
+            background-color: transparent !important;
+        }
+
+        div.login-box-body {
+            background-color: transparent;
+        }
+
+        input.form-control {
+            padding-top: 20px;
+            padding-bottom:20px;
+        }
+
+        .form-control-feedback {
+            line-height: 40px !important;
+        }
+
+        /* Change the white to any color ;) */
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+        }
+    </style>
 @endsection
