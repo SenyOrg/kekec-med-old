@@ -1,0 +1,15 @@
+{
+	"name": "kekecmed/core",
+	"description": "",
+	"authors": [
+		{
+			"name": "KekecMed by senycorp",
+			"email": "kekecmed@senycorp.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"KekecMed\\Core\\": ""
+		}
+	}
+}

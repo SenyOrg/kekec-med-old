@@ -1,0 +1,15 @@
+{
+    "name": "Authentication",
+    "alias": "authentication",
+    "description": "Authentication module for KekecMed",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "KekecMed\\Authentication\\Providers\\AuthenticationServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

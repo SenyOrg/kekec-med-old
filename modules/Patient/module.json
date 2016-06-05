@@ -1,0 +1,15 @@
+{
+    "name": "Patient",
+    "alias": "patient",
+    "description": "Patient module for KekecMed",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "KekecMed\\Patient\\Providers\\PatientServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}
