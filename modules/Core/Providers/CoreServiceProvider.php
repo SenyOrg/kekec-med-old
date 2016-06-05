@@ -21,6 +21,14 @@ class CoreServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
+
+		/**
+		 * Development Mode
+		 */
+		if (env('APP_DEBUG')) {
+			app()->register(\Barryvdh\Debugbar\ServiceProvider::class);
+			app()->register(\Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
+		}
 	}
 
 	/**
