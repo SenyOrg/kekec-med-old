@@ -1,6 +1,9 @@
 <?php namespace KekecMed\Theme\Providers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Theme\Component\ViewComponent;
+use Pingpong\Modules\Module;
 
 class ThemeServiceProvider extends ServiceProvider {
 
@@ -21,6 +24,21 @@ class ThemeServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
+
+
+		/**
+		 * Register ViewComponent
+		 */
+		$this->app->singleton('ViewComponent', function ($app) {
+			return ViewComponent::getInstance();
+		});
+
+		view()->share('vc', app()['ViewComponent']);
+
+		/**
+		 * Create Navigation
+		 */
+		\Menu::create('navigation', function($menu){});
 	}
 
 	/**
