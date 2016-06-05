@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a6d4d17216fc04484f25501e19169122",
-    "content-hash": "377f8032b2c5436091d63155b5195f7f",
+    "hash": "c763753b6b171948a50ce3ead80cae86",
+    "content-hash": "956f38e9260814cb86bffcf12d4700ed",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -606,60 +606,6 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
-        },
-        {
-            "name": "kris/laravel-form-builder",
-            "version": "1.6.50",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kristijanhusak/laravel-form-builder.git",
-                "reference": "627c5e40b8c5e29fb8e68d142bcd3379cd850611"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kristijanhusak/laravel-form-builder/zipball/627c5e40b8c5e29fb8e68d142bcd3379cd850611",
-                "reference": "627c5e40b8c5e29fb8e68d142bcd3379cd850611",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "5.*@dev",
-                "illuminate/validation": "5.*@dev",
-                "laravelcollective/html": "5.*",
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.6.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Kris\\LaravelFormBuilder": "src/"
-                },
-                "classmap": [
-                    "tests/FormBuilderTestCase.php"
-                ],
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kristijan Husak",
-                    "email": "husakkristijan@gmail.com"
-                }
-            ],
-            "description": "Laravel form builder - symfony like",
-            "time": "2016-01-22 12:48:35"
         },
         {
             "name": "laravel/framework",
@@ -1636,6 +1582,52 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "rap2hpoutre/laravel-log-viewer",
+            "version": "v0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
+                "reference": "bef8c316b382fa9f6445190ea0251ec5bc7d13dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/bef8c316b382fa9f6445190ea0251ec5bc7d13dd",
+                "reference": "bef8c316b382fa9f6445190ea0251ec5bc7d13dd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*|5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/controllers"
+                ],
+                "psr-0": {
+                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rap2hpoutre",
+                    "email": "raphaelht@gmail.com"
+                }
+            ],
+            "description": "A Laravel log reader",
+            "keywords": [
+                "log",
+                "log-reader",
+                "log-viewer",
+                "logging"
+            ],
+            "time": "2016-05-03 20:10:40"
         },
         {
             "name": "swiftmailer/swiftmailer",

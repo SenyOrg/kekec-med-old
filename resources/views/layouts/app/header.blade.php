@@ -16,6 +16,9 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                {{-- @todo Breadcrumb --}}
+                <li><a href="#" class="text-bold bg-light-blue"><i class="fa fa-dashboard"></i> KekecMED &raquo; Dashboard</a></li>
+                <li><a href="{{route('logViewer')}}" class="text-bold text-red">Logs</a></li>
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -31,14 +31,50 @@
 <script src="{{asset('plugins/fastclick/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/app.min.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- DataTables -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
 <script src="{{asset('/vendor/datatables/buttons.server-side.js')}}"></script>
+
+<!-- InputMask -->
+<script src="{{asset('plugins/input-mask/jquery.inputmask.js')}}"></script>
+<script src="{{asset('plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+<script src="{{asset('plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
+
+<script type="text/javascript">
+    /**
+     * Delete Modal
+     *
+     * This modal is used for displaying a confirmation
+     * modal before delete procedure.
+     */
+    $(document).ready(function() {
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            /**
+             * Element
+             * @type {*|jQuery|HTMLElement}
+             */
+            var button = $(event.relatedTarget)
+
+            /**
+             * Set title and body of delete modal
+             * @type {*|jQuery|HTMLElement}
+             */
+            var modal = $(this)
+            modal.find('.modal-title').text(button.data('title'))
+            modal.find('.modal-body').text(button.data('body'))
+
+            /**
+             * Execute callback
+             */
+            modal.find('#deleteButtonOK').click(function() {
+                button.data('deleteAction').apply();
+            });
+        })
+    })
+</script>
 
 @yield('script')

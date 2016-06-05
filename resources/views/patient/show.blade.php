@@ -1,4 +1,12 @@
 @extends('layouts.app.app')
+
+@section('header-buttons')
+    <li>
+    <a href="#" class="btn  btn-danger" id="deletePatient" data-toggle="modal" data-target="#deleteModal" data-title="Are you sure?" data-body="Do yo want to delete the patient?"><i class="fa fa-trash"></i> Delete</a>
+    <a href="{{route('patient.edit', ['id' => $model->id])}}" class="btn  btn-primary"><i class="fa fa-pencil"></i> Edit</a>
+    </li>
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -179,8 +187,18 @@
 
 @section('script')
     <script type="text/javascript">
-        $('#task-body').slimScroll({
-            height: '250px'
-        });
+        $(document).ready(function() {
+            $('#task-body').slimScroll({
+                height: '250px'
+            });
+
+            $('#deletePatient').data('deleteAction', function() {
+                        var form = $('#generalForm');
+                        var method = $('#generalFormMethod');
+                        form.attr('action', '{{route('patient.destroy', ['id' => $model->id])}}');
+                        method.val('DELETE');
+                        form.submit();
+            });
+        })
     </script>
 @endsection

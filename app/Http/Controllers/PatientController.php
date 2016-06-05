@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\DataTables\PatientTable;
 use App\Forms\PatientForm;
+use App\Insurance;
 use App\Patient;
+use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Kris\LaravelFormBuilder\FormBuilderTrait;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Class PatientController
@@ -20,8 +22,6 @@ use Kris\LaravelFormBuilder\FormBuilderTrait;
  */
 class PatientController extends Controller
 {
-
-    use FormBuilderTrait;
 
     /**
      * Display a listing of the resource.
@@ -40,7 +40,9 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Patient();
+        $model->insurance = new Insurance();
+        return view('patient.edit', ['create' => true, 'model' => $model]);
     }
 
     /**
@@ -51,7 +53,27 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, $this->getValidationData());
+        $data = $request->toArray()['formData'];
+        if (Input::file('formData.image')) {
+            /* Get image and resize it */
+            $image = Input::file('formData.image');
+            \Image::make($image->getRealPath())
+                ->resize(160, 160)
+                ->save($image->getRealPath());
+
+            \Storage::put(
+                'public/' . $image->hashName(),
+                file_get_contents($image->getRealPath())
+            );
+
+            $data['image'] = $image->hashName();
+        }else {
+            unset($data['image']);
+        }
+        $model = Patient::create($data);
+
+        return redirect()->route('patient.show', $model->id);
     }
 
     /**
@@ -73,14 +95,9 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        // Note the trait used. FormBuilder class can be injected if wanted.
-        $patients = $this->form('App\Forms\PatientForm', [
-            'method' => 'PUT',
-            'url' => route('patient.update', ['id' => $id]),
-            'model' => Patient::findOrFail($id)
-        ], []);
+        $model = Patient::findOrFail($id);
 
-        return view('patient.edit', compact('patients'));
+        return view('patient.edit', ['model' => $model]);
     }
 
     /**
@@ -92,16 +109,28 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $form = $this->form(PatientForm::class);
+        $this->validate($request, $this->getValidationData());
+        $data = $request->toArray()['formData'];
 
-        // It will automatically use current request, get the rules, and do the validation
-        if (!$form->isValid()) {
-            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        if (Input::file('formData.image')) {
+            /* Get image and resize it */
+            $image = Input::file('formData.image');
+            \Image::make($image->getRealPath())
+                ->resize(160, 160)
+                ->save($image->getRealPath());
+
+            \Storage::put(
+                'public/' . $image->hashName(),
+                file_get_contents($image->getRealPath())
+            );
+
+            $data['image'] = $image->hashName();
+        } else {
+            unset($data['image']);
         }
+        Patient::findOrFail($id)->update($data);
 
-        Patient::findOrFail($id)->update($request->toArray()['patients']);
-
-        return redirect()->route('patient.index');
+        return redirect()->route('patient.show', $id);
     }
 
     /**
@@ -112,6 +141,33 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Patient::destroy($id);
+        return redirect()->route('patient.index');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function getValidationData()
+    {
+        return [
+            'formData.firstname' => 'required|max:255',
+            'formData.lastname' => 'required|max:255',
+            'formData.gender' => 'required',
+            'formData.birthdate' => 'required',
+            'formData.insurance_type' => 'required',
+            'formData.insurance_id' => 'required',
+            'formData.insurance_no' => 'required',
+            'formData.phone' => 'required',
+            'formData.mobile' => 'required',
+            'formData.street' => 'required',
+            'formData.no' => 'required',
+            'formData.zipcode' => 'required',
+            'formData.email' => 'required|email|max:255',
+
+        ];
     }
 }
