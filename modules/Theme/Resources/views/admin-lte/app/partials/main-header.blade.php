@@ -4,7 +4,9 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg">
+            <i class="fa fa-heartbeat text-red" aria-hidden="true"></i> <b>Kekec</b>MED</span>
+        </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -15,6 +17,12 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <!-- Breadcrump -->
+                <li><a href="#" class="text-bold bg-light-blue"><i class="fa fa-dashboard"></i> KekecMED » Dashboard</a></li>
+                <!-- Logs -->
+                @if (env('APP_DEBUG'))
+                    <li><a href="http://kekecmed.app/logs" class="text-bold text-red">Logs</a></li>
+                @endif
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -249,6 +257,11 @@
                             </div>
                         </li>
                     </ul>
+                </li>
+
+                <!-- Log out -->
+                <li>
+                    <a href="http://kekecmed.app/logout"><i class="fa fa-btn fa-sign-out"></i></a>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
                 <li>
