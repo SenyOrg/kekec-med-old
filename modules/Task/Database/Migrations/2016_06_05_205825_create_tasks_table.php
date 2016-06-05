@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * Class CreateTasksTable
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
@@ -47,6 +48,7 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('tasks');
     }
 }

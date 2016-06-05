@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Insurance\Database\Seeders\InsuranceDatabaseSeeder;
 
 class CoreDatabaseSeeder extends Seeder {
 
@@ -13,8 +14,18 @@ class CoreDatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-		
-		// $this->call("OthersTableSeeder");
+
+		/**
+		 * General Seeders
+		 */
+		$this->call(InsuranceDatabaseSeeder::class);
+
+		/**
+		 * DevelopmentSeeder
+		 */
+		if (env('APP_DEBUG')) {
+			$this->call(DevelopmentDatabaseSeeder::class);
+		}
 	}
 
 }

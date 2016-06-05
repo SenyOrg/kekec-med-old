@@ -12,6 +12,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('password_resets', function (Blueprint $table) {
             $table->string('email')->index();
             $table->string('token')->index();
@@ -26,6 +27,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('password_resets');
     }
 }

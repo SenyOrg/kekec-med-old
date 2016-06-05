@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * Class CreateInsurancesTable
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
@@ -19,6 +19,7 @@ class CreateInsurancesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('insurances', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
@@ -37,6 +38,7 @@ class CreateInsurancesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('insurances');
     }
 }

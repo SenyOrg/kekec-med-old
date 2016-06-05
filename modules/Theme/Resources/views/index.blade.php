@@ -1,4 +1,4 @@
-@extends('theme::layouts.master')
+@extends('theme::admin-lte.app.main')
 
 @section('content')
 	

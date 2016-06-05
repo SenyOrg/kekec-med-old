@@ -3,6 +3,13 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateUsersTable
+ * -----------------------------
+ * 
+ * -----------------------------
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ */
 class CreateUsersTable extends Migration
 {
     /**
@@ -12,6 +19,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -29,6 +37,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('users');
     }
 }

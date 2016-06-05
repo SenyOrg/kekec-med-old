@@ -19,8 +19,9 @@ class CreatePatientsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('patients');
-        
+
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
@@ -57,6 +58,7 @@ class CreatePatientsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('patients');
     }
 }

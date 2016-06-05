@@ -50,6 +50,7 @@ class AddProfileColumnsToUsersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('users', function (Blueprint $table) {
             if (Schema::hasColumn('users', 'firstname')) {
                 $table->dropColumn('firstname');

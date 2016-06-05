@@ -1,0 +1,15 @@
+{
+    "name": "Task",
+    "alias": "task",
+    "description": "Task module for KekecMed",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "KekecMed\\Task\\Providers\\TaskServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}
