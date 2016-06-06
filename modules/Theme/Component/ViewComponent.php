@@ -25,4 +25,12 @@ class ViewComponent {
 
         return self::$instance;
     }
+
+    public function getTheme(){
+        return 'theme::admin-lte.app.main';
+    }
+
+    public function getAuthTheme(){
+        return 'theme::admin-lte.auth.main';
+    }
 }

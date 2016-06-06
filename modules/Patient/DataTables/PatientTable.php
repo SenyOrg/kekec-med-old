@@ -1,9 +1,8 @@
 <?php
 
-namespace App\DataTables;
+namespace KekecMed\Patient\DataTables;
 
-use App\Patient;
-use App\User;
+use KekecMed\Patient\Entities\Patient;
 use Yajra\Datatables\Services\DataTable;
 
 /**

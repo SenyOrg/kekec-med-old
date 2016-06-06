@@ -1,6 +1,6 @@
-@extends('layouts.app.app')
+@extends($vc->getTheme())
 
-@section('header-buttons')
+@section('head-buttons')
     @if (isset($create))
         <li>
             <button class="btn btn-default" type="submit"><i class="fa fa-plus"></i> Create</button>

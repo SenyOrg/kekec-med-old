@@ -4,5 +4,7 @@
         Dashboard
         <small>Control panel</small>
     </h1>
-    <ol class="breadcrumb" style="top: 5px;"></ol>
+    <ol class="head-buttons" style="top: 5px;">
+        @yield('head-buttons')
+    </ol>
 </section>

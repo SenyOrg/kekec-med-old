@@ -36,4 +36,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('modules/theme/admin-lte/dist/js/demo.js')}}"></script>
 
+<!-- DataTables -->
+<script type="text/javascript" src="{{asset('modules/theme/admin-lte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('modules/theme/admin-lte/plugins/datatables/dataTables.bootstrap.js')}}"></script>
+<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+<script src="/vendor/datatables/buttons.server-side.js"></script>
+
 @stack('scripts')

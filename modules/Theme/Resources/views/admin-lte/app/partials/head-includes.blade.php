@@ -35,6 +35,10 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<!-- DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="{{asset('modules/theme/admin-lte/plugins/datatables/dataTables.bootstrap.css')}}">
+
 @stack('head-includes')
 
 {{--

@@ -1,4 +1,4 @@
-@extends($vc->getTheme())
+@extends('theme::app')
 
 @section('content')
 	

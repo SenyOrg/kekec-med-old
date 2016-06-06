@@ -1,13 +1,14 @@
-@extends('layouts.app.app')
+@extends($vc->getTheme())
 
-@section('header-buttons')
+@section('head-buttons')
     <li>
-    <a href="#" class="btn  btn-danger" id="deletePatient" data-toggle="modal" data-target="#deleteModal" data-title="Are you sure?" data-body="Do yo want to delete the patient?"><i class="fa fa-trash"></i> Delete</a>
+    <a href="#" class="btn btn-danger" id="deletePatient" data-toggle="modal" data-target="#deleteModal" data-title="Are you sure?" data-body="Do yo want to delete the patient?"><i class="fa fa-trash"></i> Delete</a>
     <a href="{{route('patient.edit', ['id' => $model->id])}}" class="btn  btn-primary"><i class="fa fa-pencil"></i> Edit</a>
     </li>
 @endsection
 
 @section('content')
+    @boxstart_asd()
     <div class="row">
         <div class="col-md-12">
             <div class="box box-widget widget-user">

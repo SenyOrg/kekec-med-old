@@ -1,8 +1,8 @@
-<?php namespace KekecMed\Patient\Providers;
+<?php namespace KekecMed\Profile\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class PatientServiceProvider extends ServiceProvider {
+class ProfileServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -21,19 +21,6 @@ class PatientServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
-
-		\Menu::modify('navigation', function($menu)
-		{
-			$menu->route(
-				'patient.index', // route name
-				'Patients', // title
-				[], // route parameters
-				[
-					'target' => 'blank',
-					'icon' => 'fa fa-wheelchair'
-				] // attributes
-			);
-		});
 	}
 
 	/**
@@ -54,10 +41,10 @@ class PatientServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../Config/config.php' => config_path('patient.php'),
+		    __DIR__.'/../Config/config.php' => config_path('profile.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../Config/config.php', 'patient'
+		    __DIR__.'/../Config/config.php', 'profile'
 		);
 	}
 
@@ -68,7 +55,7 @@ class PatientServiceProvider extends ServiceProvider {
 	 */
 	public function registerViews()
 	{
-		$viewPath = base_path('resources/views/modules/patient');
+		$viewPath = base_path('resources/views/modules/profile');
 
 		$sourcePath = __DIR__.'/../Resources/views';
 
@@ -77,8 +64,8 @@ class PatientServiceProvider extends ServiceProvider {
 		]);
 
 		$this->loadViewsFrom(array_merge(array_map(function ($path) {
-			return $path . '/modules/patient';
-		}, \Config::get('view.paths')), [$sourcePath]), 'patient');
+			return $path . '/modules/profile';
+		}, \Config::get('view.paths')), [$sourcePath]), 'profile');
 	}
 
 	/**
@@ -88,12 +75,12 @@ class PatientServiceProvider extends ServiceProvider {
 	 */
 	public function registerTranslations()
 	{
-		$langPath = base_path('resources/lang/modules/patient');
+		$langPath = base_path('resources/lang/modules/profile');
 
 		if (is_dir($langPath)) {
-			$this->loadTranslationsFrom($langPath, 'patient');
+			$this->loadTranslationsFrom($langPath, 'profile');
 		} else {
-			$this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'patient');
+			$this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'profile');
 		}
 	}
 

@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>K</b>M</span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
             <i class="fa fa-heartbeat text-red" aria-hidden="true"></i> <b>Kekec</b>MED</span>
@@ -250,7 +250,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{route('profile.index')}}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                                 <a href="#" class="btn btn-default btn-flat">Sign out</a>
