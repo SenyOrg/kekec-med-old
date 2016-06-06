@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.master')
+@extends($vc->getTheme())
 
 @section('content')
 	

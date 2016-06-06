@@ -21,6 +21,19 @@ class DashboardServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
+
+		\Menu::modify('navigation', function($menu)
+		{
+			$menu->route(
+				'dashboard.index', // route name
+				'Dashboard', // title
+				[], // route parameters
+				[
+					'target' => 'blank',
+					'icon' => 'fa fa-dashboard'
+				] // attributes
+			);
+		});
 	}
 
 	/**
