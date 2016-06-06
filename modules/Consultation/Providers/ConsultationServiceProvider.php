@@ -21,6 +21,19 @@ class ConsultationServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
+
+		\Menu::modify('navigation', function($menu)
+		{
+			$menu->route(
+				'consultation.index', // route name
+				'Consultations', // title
+				[], // route parameters
+				[
+					'target' => 'blank',
+					'icon' => 'fa fa-comments'
+				] // attributes
+			);
+		});
 	}
 
 	/**

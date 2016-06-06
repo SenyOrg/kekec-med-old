@@ -21,6 +21,19 @@ class CalendarServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
+
+		\Menu::modify('navigation', function($menu)
+		{
+			$menu->route(
+				'calendar.index', // route name
+				'Calendar', // title
+				[], // route parameters
+				[
+					'target' => 'blank',
+					'icon' => 'fa fa-calendar'
+				] // attributes
+			);
+		});
 	}
 
 	/**

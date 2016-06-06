@@ -21,6 +21,19 @@ class InsuranceServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
+
+		\Menu::modify('navigation', function($menu)
+		{
+			$menu->route(
+				'insurance.index', // route name
+				'Insurance', // title
+				[], // route parameters
+				[
+					'target' => 'blank',
+					'icon' => 'fa fa-life-ring'
+				] // attributes
+			);
+		});
 	}
 
 	/**

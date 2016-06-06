@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'task', 'namespace' => 'KekecMed\Task\Http\Controllers'], function()
+Route::group(['middleware' => 'web', 'prefix' => '', 'namespace' => 'KekecMed\Task\Http\Controllers'], function()
 {
-	Route::get('/', 'TaskController@index');
+	Route::resource('task', 'TaskController');
 });

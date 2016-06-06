@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'insurance', 'namespace' => 'KekecMed\Insurance\Http\Controllers'], function()
+Route::group(['middleware' => 'web', 'prefix' => '', 'namespace' => 'KekecMed\Insurance\Http\Controllers'], function()
 {
-	Route::get('/', 'InsuranceController@index');
+	Route::resource('insurance', 'InsuranceController');
 });
