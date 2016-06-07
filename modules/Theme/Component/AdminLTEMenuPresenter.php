@@ -41,7 +41,7 @@ class AdminLTEMenuPresenter extends Presenter implements \Pingpong\Menus\Present
      */
     public function getActiveState($item)
     {
-        return \Request::is($item->getRequest()) ? ' class="active"' : null;
+        return \Request::is($item->getRequest()) || \Request::is($item->getRequest() . '/*') ? ' class="active"' : null;
     }
 
     /**
