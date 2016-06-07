@@ -40,7 +40,7 @@
 					</div>
 					<!-- /.col -->
 					<div class="col-xs-4">
-						<button type="submit" class="btn btn-default btn-block btn-flat">LogIn <i class="fa fa-sign-in"></i></button>
+						<button type="submit" class="btn btn-block btn-primary">LogIn <i class="fa fa-sign-in"></i></button>
 					</div>
 					<!-- /.col -->
 				</div>
@@ -54,7 +54,7 @@
 
 	<style type="text/css">
 		body.login-page {
-			background-image: url('{{asset('dist/img/background.jpg')}}') !important;
+			background-image: url('{{asset('modules/theme/admin-lte/dist/img/background.jpg')}}') !important;
 			background-color: transparent !important;
 		}
 
