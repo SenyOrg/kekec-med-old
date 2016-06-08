@@ -1,6 +1,5 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'core', 'namespace' => 'KekecMed\Core\Http\Controllers'], function()
-{
-	Route::get('/', 'CoreController@index');
-});
+/**
+ * The core module does not need any routes
+ */
