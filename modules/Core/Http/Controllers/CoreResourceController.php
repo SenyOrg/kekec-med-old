@@ -6,6 +6,7 @@ namespace KekecMed\Core\Http\Controllers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use KekecMed\Theme\Component\ViewComponent;
 
 /**
  * Class CoreResourceController
@@ -55,9 +56,12 @@ abstract class CoreResourceController extends AbstractCoreResourceController
         $this->beforeIndex();
 
         // DataTable routine
-        if ($this instanceof CoreDataTableController)
+        if ($this instanceof CoreDataTableController) {
+            // Set dataTable instance in ViewComponent
+            ViewComponent::getInstance()->dataTable($this->getDataTable());
+            
             return $this->getDataTable()->render($this->getDataTableTemplatePath());
-        else
+        } else
             return $this->getIndexView();
     }
 

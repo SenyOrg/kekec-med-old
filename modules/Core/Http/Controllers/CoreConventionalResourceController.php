@@ -53,6 +53,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
     protected function beforeIndex()
     {
         // Implement this in sub class
+        throw new \Exception(__METHOD__);
     }
 
     /**
@@ -75,6 +76,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
     protected function beforeCreate(Model $model, View $view)
     {
         // Implement this in sub class
+        throw new \Exception(__METHOD__);
     }
 
     /**
@@ -85,6 +87,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
     protected function afterCreate()
     {
         // Implement this in sub class
+        throw new \Exception(__METHOD__);
     }
 
     /**
@@ -106,6 +109,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
     protected function beforeStore(array $data)
     {
         // Implement this in sub class
+        throw new \Exception(__METHOD__);
     }
 
     /**
@@ -117,6 +121,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
     protected function afterStore(Model $model)
     {
         // Implement this in sub class 
+        throw new \Exception(__METHOD__);
     }
 
     /**

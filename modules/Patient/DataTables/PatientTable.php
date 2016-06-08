@@ -41,7 +41,7 @@ class PatientTable extends AbstractCoreDataTable
      *
      * @return string
      */
-    protected function getTableID()
+    public function getTableID()
     {
         return 'patientTable';
     }
@@ -53,6 +53,7 @@ class PatientTable extends AbstractCoreDataTable
      */
     protected function getBuildParameter()
     {
+        // Set default ordering column to `id`
         $parameter = $this->getDefaultBuildParameters();
         $parameter['order'][0][0] = 1;
 
@@ -108,6 +109,7 @@ class PatientTable extends AbstractCoreDataTable
      */
     protected function processAjax($eloq)
     {
+        // Add image column callback
         $eloq->addColumn('image', function($model) {
             return '<img src="'.$model->getImageUrl().'" width="50" height="50"/>';
         });

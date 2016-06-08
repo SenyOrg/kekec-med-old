@@ -38,6 +38,9 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('modules/theme/admin-lte/dist/js/demo.js')}}"></script>
 
+<!-- BootBox -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
 <!-- InputMask -->
 <script src="{{asset('modules/theme/admin-lte/plugins/input-mask/jquery.inputmask.js')}}"></script>
 <script src="{{asset('modules/theme/admin-lte/plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>

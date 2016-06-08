@@ -26,3 +26,11 @@
 div.has-warning span.select2-selection {
     border-color: #f39c12 !important;
 }
+
+.box-body.data-table-wrapper > table td {
+    vertical-align: middle;
+}
+
+.box.data-table-wrapper {
+    margin-top: -15px;
+}

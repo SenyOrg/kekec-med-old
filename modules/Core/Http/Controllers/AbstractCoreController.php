@@ -1,5 +1,6 @@
 <?php namespace KekecMed\Core\Http\Controllers;
 
+use KekecMed\Theme\Component\ViewComponent;
 use Pingpong\Modules\Routing\Controller;
 
 /**
@@ -14,6 +15,7 @@ abstract class AbstractCoreController extends Controller
 {
     public function __construct()
     {
-        view()->share('controller', $this);
+        // Set controller in ViewComponent
+        ViewComponent::getInstance()->controller($this);
     }
 }

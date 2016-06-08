@@ -1,11 +1,4 @@
-@extends($vc->getTheme())
-
-@section('head-buttons')
-    <li>
-    <a href="#" class="btn btn-danger" id="deletePatient" data-toggle="modal" data-target="#deleteModal" data-title="Are you sure?" data-body="Do yo want to delete the patient?"><i class="fa fa-trash"></i> Delete</a>
-    <a href="{{route('patient.edit', ['id' => $model->id])}}" class="btn  btn-primary"><i class="fa fa-pencil"></i> Edit</a>
-    </li>
-@endsection
+@extends('core::resourcefull.show')
 
 @section('content')
     <div class="row">

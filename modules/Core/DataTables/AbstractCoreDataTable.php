@@ -15,8 +15,6 @@ use Yajra\Datatables\Services\DataTable;
  */
 abstract class AbstractCoreDataTable extends DataTable
 {
-    // protected $printPreview  = 'path.to.print.preview.view';
-
     /**
      * Display ajax response.
      *
@@ -131,7 +129,7 @@ abstract class AbstractCoreDataTable extends DataTable
                     $("#patientTable_filter").detach();
                 $(\'#' . $tableID . '_processing\').attr(\'class\', \'alert alert-info text-bold\').html("<i class=\"fa fa-cog\"></i> Loading").attr("style", "display: block; position: absolute; left: 50%;");
             }',
-            'dom' => "<'box'<'box-header with-border'lr<'box-tools'<'input-group input-group-sm'f>>><'box-body no-padding't><'box-footer clearfix'p>>'",
+            'dom' => "<'box data-table-wrapper'<'box-header with-border'lr<'box-tools'<'input-group input-group-sm'f>>><'box-body no-padding data-table-wrapper't><'box-footer clearfix'p>>'",
             'language' => [
                 'paginate' => [
                     'next' => '&raquo;',
@@ -146,7 +144,12 @@ abstract class AbstractCoreDataTable extends DataTable
         ];
     }
 
-    abstract protected function getTableID();
+    /**
+     * Get table ID
+     *
+     * @return string
+     */
+    abstract public function getTableID();
 
     /**
      * Get filename for export.
