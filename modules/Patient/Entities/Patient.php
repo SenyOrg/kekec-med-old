@@ -1,6 +1,8 @@
 <?php namespace KekecMed\Patient\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Insurance\Entities\Insurance;
+use KekecMed\Task\Entities\Task;
 
 /**
  * Class Patient
@@ -50,7 +52,7 @@ class Patient extends Model
      */
     public function insurance()
     {
-        return $this->belongsTo('App\Insurance');
+        return $this->belongsTo(Insurance::class);
     }
 
     /**
@@ -58,7 +60,7 @@ class Patient extends Model
      */
     public function tasks()
     {
-        return $this->hasMany('App\Task', 'object_id');
+        return $this->hasMany(Task::class, 'object_id');
     }
 
     /**

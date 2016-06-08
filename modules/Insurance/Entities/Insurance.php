@@ -35,6 +35,6 @@ class Insurance extends Model
      */
     public function patients()
     {
-        return $this->hasMany('App\Patient');
+        return $this->hasMany(\KekecMed\Patient\Entities\Patient::class);
     }
 }

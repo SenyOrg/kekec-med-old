@@ -1,6 +1,8 @@
 <?php namespace KekecMed\Task\Entities;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Patient\Entities\Patient;
 
 /**
  * Class Task
@@ -42,7 +44,7 @@ class Task extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function creator() {
-        return $this->belongsTo('\App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     /**
@@ -51,7 +53,7 @@ class Task extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function assignee() {
-        return $this->belongsTo('\App\User', 'assignee_id');
+        return $this->belongsTo(User::class, 'assignee_id');
     }
 
     /**
@@ -60,7 +62,7 @@ class Task extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function object() {
-        return $this->belongsTo('\App\Patient', 'object_id');
+        return $this->belongsTo(Patient::class, 'object_id');
     }
 
 }
