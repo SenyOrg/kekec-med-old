@@ -23,7 +23,6 @@
 
 
 @section('content')
-
     @if (!isset($create))
         <div class="row">
             <div class="col-md-12">
@@ -77,11 +76,11 @@
                     <h3 class="box-title">General Data</h3>
                 </div>
                 <div class="box-body">
-                    {{Form::bsText('firstname', 'Firstname')}}
-                    {{Form::bsText('lastname', 'Lastname')}}
-                    {{Form::bsText('gender', 'Gender')}}
-                    {{Form::bsDate('birthdate', 'Birthdate')}}
-                    {{Form::bsFile('image', 'Image')}}
+                    {{Form::itext('Firstname', 'firstname') }}
+                    {{Form::itext('Lastname', 'lastname')}}
+                    {{Form::iselectbox('Gender', 'gender', ['m' => 'Männlich', 'w' => 'Weiblich'], true, ['class' => 'form-control'])}}
+                    {{Form::idate('Birthdate', 'birthdate')}}
+                    {{Form::ifile('Image', 'image')}}
                 </div>
             </div>
         </div>
@@ -98,9 +97,9 @@
                     <h5 class="widget-user-desc">&nbsp;</h5>
                 </div>
                 <div class="box-footer">
-                    {{Form::bsText('insurance_id', 'Insurance', 'formData', $model->insurance_id)}}
-                    {{Form::bsText('insurance_no', 'Insurance UUID', 'formData', $model->insurance_no)}}
-                    {{Form::bsText('insurance_type', 'Insurance type', 'formData', $model->insurance_type)}}
+                    {{Form::iselect2('Insurance', 'insurance_id', \KekecMed\Insurance\Entities\Insurance::class, $model->insurance_id)}}
+                    {{Form::itext('Insurance UUID', 'insurance_no',  $model->insurance_no)}}
+                    {{Form::itext('Insurance type', 'insurance_type', $model->insurance_type)}}
                 </div>
             </div>
         </div>
@@ -112,13 +111,13 @@
                     <h3 class="box-title">Contact Information</h3>
                 </div>
                 <div class="box-body">
-                    {{Form::bsText('street', 'Stree')}}
-                    {{Form::bsText('no', 'No')}}
-                    {{Form::bsText('zipcode', 'Zipcode')}}
-                    {{Form::bsText('city', 'City')}}
-                    {{Form::bsText('phone', 'Phone')}}
-                    {{Form::bsText('mobile', 'Mobile')}}
-                    {{Form::bsText('email', 'E-Mail')}}
+                    {{Form::itext('Street', 'street')}}
+                    {{Form::itext('No', 'no')}}
+                    {{Form::itext('Zipcode', 'zipcode')}}
+                    {{Form::itext('City', 'city')}}
+                    {{Form::iphone('Phone', 'phone')}}
+                    {{Form::imobile('Mobile', 'mobile')}}
+                    {{Form::iemail('E-mail', 'email')}}
                 </div>
             </div>
         </div>
@@ -170,20 +169,8 @@
     {{Form::close()}}
 @endsection
 
-@section('script')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#task-body').slimScroll({
-                height: '250px'
-            });
-
-            $('#deletePatient').data('deleteAction', function () {
-                var form = $('#generalForm');
-                var method = $('#generalFormMethod');
-                form.attr('action', '{{route('patient.destroy', ['id' => $model->id])}}');
-                method.val('DELETE');
-                form.submit();
-            });
-        })
-    </script>
-@endsection
+@push('document-ready-stack')
+    $('#task-body').slimScroll({
+        height: '250px'
+    });
+@endpush

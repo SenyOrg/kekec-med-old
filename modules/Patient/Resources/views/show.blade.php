@@ -8,7 +8,6 @@
 @endsection
 
 @section('content')
-    @boxstart_asd()
     <div class="row">
         <div class="col-md-12">
             <div class="box box-widget widget-user">
