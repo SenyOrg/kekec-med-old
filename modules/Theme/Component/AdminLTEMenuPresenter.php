@@ -17,7 +17,7 @@ class AdminLTEMenuPresenter extends Presenter implements \Pingpong\Menus\Present
      */
     public function getOpenTagWrapper()
     {
-        return PHP_EOL . '<ul class="sidebar-menu">' . PHP_EOL;
+        return PHP_EOL . '<ul class="sidebar-menu"><li class="header">MAIN NAVIGATION</li>' . PHP_EOL;
     }
 
     /**

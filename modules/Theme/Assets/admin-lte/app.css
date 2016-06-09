@@ -38,3 +38,10 @@ div.has-warning span.select2-selection {
 .box.data-table-wrapper {
     margin-top: -15px;
 }
+
+.td-wrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100px;
+}
