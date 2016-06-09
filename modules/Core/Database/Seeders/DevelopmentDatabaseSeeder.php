@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Patient\Entities\Patient;
+use KekecMed\Task\Entities\Task;
 
 /**
  * Class DevelopmentSeeder
@@ -28,6 +30,8 @@ class DevelopmentDatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		// Remove old image data
+		\Storage::delete(\Storage::files('public'));
 
 		$filename = 'public/'.md5(time().'admin').'.jpg';
 
@@ -78,7 +82,7 @@ class DevelopmentDatabaseSeeder extends Seeder {
 		/**
 		 * Create some patients
 		 */
-		factory(\App\Patient::class, 100)->create()->each(function($u) {
+		factory(Patient::class, 100)->create()->each(function($u) {
 			$filename = 'public/'.md5(time().$u->password).'.jpg';
 
 			\Storage::put(
@@ -94,7 +98,7 @@ class DevelopmentDatabaseSeeder extends Seeder {
 		/**
 		 * Create Tasks
 		 */
-		factory(\App\Task::class, 200)->create()->each(function($u) use($faker) {
+		factory(Task::class, 200)->create()->each(function($u) use($faker) {
 			$u->update([
 				'creator_id' => $faker->numberBetween(1, 12),
 				'assignee_id' => $faker->numberBetween(1, 12),
