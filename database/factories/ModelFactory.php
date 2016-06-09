@@ -64,3 +64,42 @@ $factory->define(\KekecMed\Task\Entities\Task::class, function (Faker\Generator 
         'object_id' => $faker->numberBetween(1, 10),
     ];
 });
+
+/**
+ * Calendar-Factory
+ */
+$factory->define(\KekecMed\Calendar\Entities\Calendar::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->text(10),
+        'color' => $faker->hexColor,
+        'creator_id' => $faker->numberBetween(1, 10),
+        'shared' => $faker->boolean(50),
+        'description' => $faker->text(30),
+        'scopes' => '[]'
+    ];
+});
+
+/**
+ * Event-Factory
+ */
+$factory->define(\KekecMed\Calendar\Entities\Event::class, function (Faker\Generator $faker) {
+    $start = $faker->dateTimeBetween('-5 days', '+5 days');
+    $end = \Carbon\Carbon::instance($start)->addHour(1);
+
+    return [
+        'event_type_id' => $faker->numberBetween(1, 4),
+        'creator_id' => $faker->numberBetween(1,2),
+        'event_status_id' => $faker->numberBetween(1, 5),
+        'title' => $faker->text(30),
+        'start' => $start,
+        'end' => $end,
+        'description' => $faker->text(30),
+    ];
+});
+
+/**
+ * EventParticipant-Factory
+ */
+$factory->define(\KekecMed\Calendar\Entities\EventParticipant::class, function (Faker\Generator $faker) {
+    return [];
+});

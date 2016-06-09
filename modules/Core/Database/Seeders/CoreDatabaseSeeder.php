@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Calendar\Database\Seeders\CalendarDatabaseSeeder;
 use KekecMed\Insurance\Database\Seeders\InsuranceDatabaseSeeder;
 
 class CoreDatabaseSeeder extends Seeder {
@@ -19,6 +20,7 @@ class CoreDatabaseSeeder extends Seeder {
 		 * General Seeders
 		 */
 		$this->call(InsuranceDatabaseSeeder::class);
+		$this->call(CalendarDatabaseSeeder::class);
 
 		/**
 		 * DevelopmentSeeder

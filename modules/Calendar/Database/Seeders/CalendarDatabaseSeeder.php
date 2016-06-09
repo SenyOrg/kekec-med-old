@@ -2,7 +2,17 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Calendar\Entities\EventStatus;
+use KekecMed\Calendar\Entities\EventType;
 
+/**
+ * Class CalendarDatabaseSeeder
+ * -----------------------------
+ * 
+ * -----------------------------
+ * @package KekecMed\Calendar\Database\Seeders
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ */
 class CalendarDatabaseSeeder extends Seeder {
 
 	/**
@@ -13,8 +23,58 @@ class CalendarDatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-		
-		// $this->call("OthersTableSeeder");
+
+		/** @var \Faker\Generator $faker */
+		$faker = app('Faker\Generator');
+
+		EventType::create([
+			'title' => 'Sprechstunde',
+			'color' => $faker->hexColor,
+			'description' => 'Sprechstunde',
+		]);
+
+		EventType::create([
+			'title' => 'Blutabnahme',
+			'color' => $faker->hexColor,
+			'description' => 'Blutabnahme',
+		]);
+
+		EventType::create([
+			'title' => 'Impfung',
+			'color' => $faker->hexColor,
+			'description' => 'Impfung',
+		]);
+
+		EventType::create([
+			'title' => 'Überweisung',
+			'color' => $faker->hexColor,
+			'description' => 'Überweisung',
+		]);
+
+		EventStatus::create([
+			'title' => 'Geplant',
+			'color' => $faker->hexColor,
+		]);
+
+		EventStatus::create([
+			'title' => 'Ausführend',
+			'color' => $faker->hexColor,
+		]);
+
+		EventStatus::create([
+			'title' => 'Verschoben',
+			'color' => $faker->hexColor,
+		]);
+
+		EventStatus::create([
+			'title' => 'Verworfen',
+			'color' => $faker->hexColor,
+		]);
+
+		EventStatus::create([
+			'title' => 'Beendet',
+			'color' => $faker->hexColor,
+		]);
 	}
 
 }

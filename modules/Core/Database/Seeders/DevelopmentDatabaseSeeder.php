@@ -1,7 +1,12 @@
 <?php namespace KekecMed\Core\Database\Seeders;
 
+use Carbon\Carbon;
+use Faker\Generator;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Calendar\Entities\Calendar;
+use KekecMed\Calendar\Entities\Event;
+use KekecMed\Calendar\Entities\EventParticipant;
 use KekecMed\Patient\Entities\Patient;
 use KekecMed\Task\Entities\Task;
 
@@ -18,11 +23,17 @@ use KekecMed\Task\Entities\Task;
 class DevelopmentDatabaseSeeder extends Seeder {
 
 	/**
-	 * Count of records
-	 *
-	 * @var int
+	 * Some configuration constants
+	 * which are not needed to be described
 	 */
-	private $count = 10;
+	const USERS_COUNT = 10;
+	const PATIENTS_COUNT = 10;
+	const TASKS_COUNT = 100;
+	const CALENDARS_COUNT = 5;
+    const EVENTS_COUNT = 200;
+    const EVENT_PARTICIPANTS_COUNT = 500;
+	const DOWNLOAD_IMAGES = true;
+
 	/**
 	 * Run the database seeds.
 	 *
@@ -33,13 +44,6 @@ class DevelopmentDatabaseSeeder extends Seeder {
 		// Remove old image data
 		\Storage::delete(\Storage::files('public'));
 
-		$filename = 'public/'.md5(time().'admin').'.jpg';
-
-		\Storage::put(
-			$filename,
-			file_get_contents('https://robohash.org/'.$filename)
-		);
-
 		/**
 		 * Create some users
 		 */
@@ -47,64 +51,116 @@ class DevelopmentDatabaseSeeder extends Seeder {
 			'firstname' => 'Admin',
 			'email' => 'admin@kekecmed.com',
 			'password' => bcrypt('admin'),
-			'image' => str_replace('public/', '', $filename)
+			'image' => $this->generateImage()
 		]);
-
-		$filename = 'public/'.md5(time().'doctor').'.jpg';
-
-		\Storage::put(
-			$filename,
-			file_get_contents('https://robohash.org/'.$filename)
-		);
 
 		\DB::table('users')->insert([
 			'firstname' => 'Doctor',
 			'email' => 'doctor@kekecmed.com',
 			'password' => bcrypt('doctor'),
-			'image' => str_replace('public/', '', $filename)
+			'image' => $this->generateImage()
 		]);
 
 
 		/**
 		 * Create dummy users
 		 */
-		factory(\App\User::class, 10)->create()->each(function($u) {
-			$filename = 'public/'.md5(time().$u->password).'.jpg';
-
-			\Storage::put(
-				$filename,
-				file_get_contents('https://robohash.org/'.$filename)
-			);
-
-			$u->update(['password' => bcrypt('password'), 'image' => str_replace('public/', '', $filename)]);
+		factory(\App\User::class, self::USERS_COUNT)->create()->each(function($u) {
+			$u->update(['password' => bcrypt('password'), 'image' => $this->generateImage()]);
 		});
 
 		/**
 		 * Create some patients
 		 */
-		factory(Patient::class, 100)->create()->each(function($u) {
-			$filename = 'public/'.md5(time().$u->password).'.jpg';
+		factory(Patient::class, self::PATIENTS_COUNT)->create()->each(function($u) {
+			$u->update(['image' => $this->generateImage()]);
+		});
+
+        /** @var \Faker\Generator $faker */
+		$faker = app('Faker\Generator');
+
+		/**
+		 * Create Tasks
+		 */
+		factory(Task::class, self::TASKS_COUNT)->create()->each(function($u) use($faker) {
+			$u->update([
+                'object_id' =>   $faker->numberBetween(1, self::PATIENTS_COUNT),
+				'creator_id' =>  $faker->numberBetween(1, self::USERS_COUNT+2),
+				'assignee_id' => $faker->numberBetween(1, self::USERS_COUNT+2),
+            ]);
+		});
+
+		/**
+		 * Create Calendars
+		 */
+		factory(Calendar::class, self::CALENDARS_COUNT)->create()->each(function($u) use($faker) {
+			$u->update([
+				'creator_id' => $faker->numberBetween(1, self::USERS_COUNT+2),
+                'scopes' => json_encode([
+                    Carbon::MONDAY => [
+                        'start' => $faker->time(),
+                        'end' => $faker->time()
+                    ],
+                    Carbon::TUESDAY => [
+                        'start' => $faker->time(),
+                        'end' => $faker->time()
+                    ],
+                    Carbon::WEDNESDAY => [
+                        'start' => $faker->time(),
+                        'end' => $faker->time()
+                    ],
+                    Carbon::THURSDAY => [
+                        'start' => $faker->time(),
+                        'end' => $faker->time()
+                    ],
+                    Carbon::FRIDAY => [
+                        'start' => $faker->time(),
+                        'end' => $faker->time()
+                    ]
+                ]),
+			]);
+		});
+
+        /**
+         * Create Events
+         */
+        factory(Event::class, self::EVENTS_COUNT)->create()->each(function($u) use($faker) {
+            $u->update([
+                'creator_id' => $faker->numberBetween(1, self::USERS_COUNT+2),
+                'calendar_id' => $faker->numberBetween(1, self::CALENDARS_COUNT),
+                'patient_id' => $faker->numberBetween(1, self::PATIENTS_COUNT),
+            ]);
+        });
+
+        /**
+         * Create Participants for events
+         */
+        factory(EventParticipant::class, self::EVENT_PARTICIPANTS_COUNT)->create()->each(function($u) use($faker) {
+            $u->update([
+                'event_id' => $faker->numberBetween(1, self::EVENTS_COUNT),
+                'participant_id' => $faker->numberBetween(1, self::USERS_COUNT+2),
+            ]);
+        });
+	}
+
+	/**
+	 * Generate image
+	 *
+	 * @return string
+	 */
+	protected function generateImage() {
+		if (self::DOWNLOAD_IMAGES) {
+			$filename = 'public/'.md5(microtime()).'.jpg';
 
 			\Storage::put(
 				$filename,
 				file_get_contents('https://robohash.org/'.$filename)
 			);
 
-			$u->update(['image' => str_replace('public/', '', $filename)]);
-		});
-
-		$faker = new \Faker\Generator();
-
-		/**
-		 * Create Tasks
-		 */
-		factory(Task::class, 200)->create()->each(function($u) use($faker) {
-			$u->update([
-				'creator_id' => $faker->numberBetween(1, 12),
-				'assignee_id' => $faker->numberBetween(1, 12),
-				'object_id' => $faker->numberBetween(1, 100),
-			]);
-		});
+			return str_replace('public/', '', $filename);
+		} else {
+			return 'placeholder.jpg';
+        }
 	}
 
 }
