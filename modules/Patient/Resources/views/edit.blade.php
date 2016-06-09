@@ -4,8 +4,7 @@
     @if (isset($create))
         {{ Form::model($model, array('route' => array('patient.store'), 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true)) }}
     @else
-        {{ Form::model($model, array('route' => array('patient.update', $model->id), 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true)) }}
-        {{method_field('PUT')}}
+        {{ Form::model($model, array('route' => array('patient.update', $model->id), 'method' => 'PUT', 'class' => 'form-horizontal', 'files' => true)) }}
     @endif
 @endsection
 

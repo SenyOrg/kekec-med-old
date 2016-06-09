@@ -42,9 +42,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 <!-- InputMask -->
-<script src="{{asset('modules/theme/admin-lte/plugins/input-mask/jquery.inputmask.js')}}"></script>
-<script src="{{asset('modules/theme/admin-lte/plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
-<script src="{{asset('modules/theme/admin-lte/plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+<script src="{{asset('modules/theme/admin-lte/plugins/input-mask/jquery.inputmask.bundle.js')}}"></script>
+
 
 <!-- DataTables -->
 <script type="text/javascript" src="{{asset('modules/theme/admin-lte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
