@@ -40,7 +40,7 @@ abstract class CoreConventionalResourceViewController extends CoreConventionalRe
      */
     public function getDeleteButtonRoute()
     {
-        return [$this->getDeleteButtonRouteName(), request()->id];
+        return [$this->getDeleteButtonRouteName(), \Route::getCurrentRoute()->getParameter($this->getIdentifier())];
     }
 
     /**
@@ -74,5 +74,20 @@ abstract class CoreConventionalResourceViewController extends CoreConventionalRe
         return $this->getRouteName('create');
     }
 
+    public function getStoreButtonRouteName() {
+        return $this->getRouteName('store');
+    }
+
+    public function getStoreButtonRoute() {
+        return $this->getStoreButtonRouteName();
+    }
+
+    public function getUpdateButtonRouteName() {
+        return $this->getRouteName('update');
+    }
+
+    public function getUpdateButtonRoute() {
+        return $this->getUpdateButtonRouteName();
+    }
 
 }
