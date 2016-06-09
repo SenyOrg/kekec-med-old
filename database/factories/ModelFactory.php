@@ -32,7 +32,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 /**
  * Patient-Factory
  */
-$factory->define(App\Patient::class, function (Faker\Generator $faker) {
+$factory->define(\KekecMed\Patient\Entities\Patient::class, function (Faker\Generator $faker) {
     return [
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
@@ -40,7 +40,7 @@ $factory->define(App\Patient::class, function (Faker\Generator $faker) {
         'phone' => $faker->phoneNumber,
         'mobile' => $faker->phoneNumber,
         'email' => $faker->safeEmail,
-       'street' => $faker->streetName,
+        'street' => $faker->streetName,
         'no' => $faker->numberBetween(1, 9999),
         'zipcode' => $faker->postcode,
         'birthdate' => $faker->dateTimeBetween('-40 years', '-20 years'),
@@ -53,14 +53,14 @@ $factory->define(App\Patient::class, function (Faker\Generator $faker) {
 /**
  * Task-Factory
  */
-$factory->define(App\Task::class, function (Faker\Generator $faker) {
+$factory->define(\KekecMed\Task\Entities\Task::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->realText(),
         'description' => $faker->realText(400),
         'deadline' => $faker->dateTimeBetween('-2 days', '+30 days'),
         'done' => $faker->boolean(),
-        'creator_id' => $faker->numberBetween(1,10),
-        'assignee_id' => $faker->numberBetween(1,10),
-        'object_id' => $faker->numberBetween(1,10),
+        'creator_id' => $faker->numberBetween(1, 10),
+        'assignee_id' => $faker->numberBetween(1, 10),
+        'object_id' => $faker->numberBetween(1, 10),
     ];
 });
