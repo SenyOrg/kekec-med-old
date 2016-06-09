@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Insurance\Entities\Insurance;
 
 /**
  * Class InsuranceSeeder
@@ -42,7 +43,7 @@ class InsuranceDatabaseSeeder extends Seeder {
 				$location = trim($rows[$i]->find('td')[0]->innertext);
 				$rate = floatval(str_replace(',', '.', trim($rows[$i]->find('td')[1]->innertext)));
 
-				\App\Insurance::create([
+				Insurance::create([
 					'title' => $title,
 					'homepage' => $webPage,
 					'region' => $location,
