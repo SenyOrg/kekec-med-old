@@ -8,7 +8,6 @@
            data-track-changes="{{$app['form']->getValueAttribute($name, $value)}}"
            name="{{$name}}"
            id="{{$name}}_id"
-           placeholder="{{$attributes['placeholder']}}"
            value="{{Form::getValueAttribute($name, $value)}}"
     />
 </div>
@@ -16,7 +15,6 @@
 
 @push('scripts')
 <script type="text/javascript">
-    //Datemask dd/mm/yyyy
-    $("#{{$name}}_id").inputmask('email');
+    $("#{{$name}}_id").inputmask("email", { "clearIncomplete": true });
 </script>
 @endpush

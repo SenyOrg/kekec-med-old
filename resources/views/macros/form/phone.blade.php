@@ -8,9 +8,7 @@
            data-track-changes="{{$app['form']->getValueAttribute($name, $value)}}"
            name="{{$name}}"
            id="{{$name}}_id"
-           placeholder="{{$attributes['placeholder']}}"
            value="{{Form::getValueAttribute($name, $value)}}"
-           data-inputmask='"mask": "(9999) 999-9999"'
     />
 </div>
 @include('macros.form.base-foot')
@@ -18,6 +16,9 @@
 @push('scripts')
 <script type="text/javascript">
     //Datemask dd/mm/yyyy
-    $("#{{$name}}_id").inputmask();
+    $("#{{$name}}_id").inputmask("phone", {
+        url: '{{asset('modules/theme/admin-lte/plugins/input-mask/phone-codes/phone-codes.json')}}',
+        countrycode: 'DE'
+    });
 </script>
 @endpush

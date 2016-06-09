@@ -17,6 +17,6 @@
 @push('scripts')
 <script type="text/javascript">
     //Datemask dd/mm/yyyy
-    $("#{{$name}}_id").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    $("#{{$name}}_id").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
 </script>
 @endpush
