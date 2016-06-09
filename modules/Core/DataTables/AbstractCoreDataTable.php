@@ -126,7 +126,7 @@ abstract class AbstractCoreDataTable extends DataTable
             "initComplete" => 'function(settings, json) {
                 $("#' . $tableID . '_filter input").detach().appendTo($("#' . $tableID . '_filter").parent()).
                     parent().append(\'<div class="input-group-btn"><button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button></div>\');
-                    $("#patientTable_filter").detach();
+                    $("#' . $tableID . '_filter").detach();
                 $(\'#' . $tableID . '_processing\').attr(\'class\', \'alert alert-info text-bold\').html("<i class=\"fa fa-cog\"></i> Loading").attr("style", "display: block; position: absolute; left: 50%;");
             }',
             'dom' => "<'box data-table-wrapper'<'box-header with-border'lr<'box-tools'<'input-group input-group-sm'f>>><'box-body no-padding data-table-wrapper't><'box-footer clearfix'p>>'",

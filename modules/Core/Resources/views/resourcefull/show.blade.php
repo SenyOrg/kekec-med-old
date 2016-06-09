@@ -6,13 +6,13 @@
 
 @section('head-buttons')
     <li>
-        {{Form::open(['route' => $vc->controller()->getDeleteButtonRoute(), 'method' => 'destroy', 'class' => 'form-inline'])}}
+        {{Form::open(['route' => $vc->controller()->getDeleteButtonRoute(), 'method' => 'DELETE', 'class' => 'form-inline'])}}
         <a href="#"
            class="btn btn-danger"
            id="deletePatient"
            data-confirmation-callback="function (element) { $(element).closest('form').submit(); }"
-           onClick="showDeleteDialog('Are you sure?', 'After removing the patient you are not able to restore related data', this)"
-           data-body="Do yo want to delete the patient?">
+           onClick="showDeleteDialog('Are you sure?', 'After removing this resource you are not able to restore related data', this)"
+           data-body="Do yo want to delete the resource?">
             <i class="fa fa-trash"></i> Delete
         </a>
         <a
