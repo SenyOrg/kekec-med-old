@@ -1,11 +1,10 @@
-@extends('task::layouts.master')
+@extends('core::resourcefull.index')
 
-@section('content')
-	
-	<h1>Hello World</h1>
-	
-	<p>
-		This view is loaded from module: {!! config('task.name') !!}
-	</p>
-
-@stop
+<style type="text/css">
+	.td-wrap {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		max-width: 100px;
+	}
+</style>

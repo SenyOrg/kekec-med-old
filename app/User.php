@@ -24,6 +24,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Get ImageUrl
+     *
+     * @return mixed
+     */
     public function getImageUrl() {
         return \Storage::url($this->image);
     }
@@ -59,5 +64,20 @@ class User extends Authenticatable
      */
     public function tasks() {
         return $this->assignedTasks();
+    }
+
+    /**
+     * Get data for dialog
+     *
+     * @return array
+     */
+    public static function toDialog() {
+        $arr = [];
+
+        self::all(['firstname', 'lastname', 'id'])->each(function($u) use(&$arr) {
+           $arr[$u->id] = $u->getFullName();
+        });
+
+        return $arr;
     }
 }

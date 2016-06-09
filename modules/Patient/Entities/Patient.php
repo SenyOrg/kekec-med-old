@@ -80,4 +80,14 @@ class Patient extends Model
     public function getFullName() {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    public static function toDialog() {
+        $arr = [];
+
+        self::all(['firstname', 'lastname', 'id'])->each(function($u) use(&$arr) {
+            $arr[$u->id] = $u->getFullName();
+        });
+
+        return $arr;
+    }
 }
