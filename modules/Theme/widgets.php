@@ -61,42 +61,5 @@ use \Illuminate\Support\HtmlString as HtmlString;
 });
 
 
-class TagCreator {
-
-    public function create($tag, $contents, $attributes = array())
-    {
-        $attributes = HTML::attributes($attributes);
-
-        return "<{$tag}{$attributes}>{$contents}</{$tag}>";
-    }
-
-}
-
-class HTMLWidget {
-
-    protected $tag;
-
-    public function __construct(TagCreator $tag)
-    {
-        $this->tag = $tag;
-    }
-
-    public function p($contents, $attributes = array())
-    {
-        return $this->tag->create('p', $contents, $attributes);
-    }
-
-    public function div($contents, $attributes = array())
-    {
-        return $this->tag->create('div', $contents, $attributes);
-    }
-}
-
-class BootstrapWidget {
-    
-}
 
 
-Widget::register('p', 'HTMLWidget@p');
-
-Widget::register('div', 'HTMLWidget@div');

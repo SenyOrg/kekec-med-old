@@ -262,6 +262,11 @@
 
                 <!-- Log out -->
                 <li>
+                    <a href="#" id="lock-button"><i class="fa fa-btn fa-lock"></i></a>
+                </li>
+
+                <!-- Log out -->
+                <li>
                     <a href="http://kekecmed.app/logout"><i class="fa fa-btn fa-sign-out"></i></a>
                 </li>
                 <!-- Control Sidebar Toggle Button -->

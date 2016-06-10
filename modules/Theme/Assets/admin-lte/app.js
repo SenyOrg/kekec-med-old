@@ -18,6 +18,8 @@ $(document).ready(function() {
     });
 });
 
+$(document).ajaxStart(function() { Pace.restart(); });
+
 function showDeleteDialog(title, body, element) {
     var config = {
         /**
