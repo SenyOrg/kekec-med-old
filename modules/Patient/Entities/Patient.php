@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Patient\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Entities\ImageableModel;
 use KekecMed\Insurance\Entities\Insurance;
 use KekecMed\Task\Entities\Task;
 
@@ -14,6 +15,7 @@ use KekecMed\Task\Entities\Task;
  */
 class Patient extends Model
 {
+    use ImageableModel;
 
     /**
      * The attributes that are mass assignable.

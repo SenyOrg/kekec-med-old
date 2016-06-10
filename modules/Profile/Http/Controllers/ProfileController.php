@@ -91,23 +91,6 @@ class ProfileController extends Controller {
 			\Auth::user()->update(['password' => bcrypt($request['password'])]);
 		} else {
 			$data = $request->toArray();
-			if (Input::file('image')) {
-				/* Get image and resize it */
-				$image = Input::file('image');
-				\Image::make($image->getRealPath())
-					->resize(160, 160)
-					->save($image->getRealPath());
-				$data['image'] = 'data:image/' . $image->extension() . ';base64,' . base64_encode(file_get_contents($image->getRealPath()));
-
-				$destination = 'public/' . $image->hashName();
-				\Storage::put(
-					'public/' . $image->hashName(),
-					file_get_contents($image->getRealPath())
-				);
-
-				$data['image'] = $image->hashName();
-			}
-
 
 			\Auth::user()->update($data);
 		}

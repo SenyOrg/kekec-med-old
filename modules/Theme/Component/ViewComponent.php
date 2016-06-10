@@ -43,7 +43,7 @@ class ViewComponent {
      * @return string
      */
     public function getTitle() {
-        return "&#10084; KekecMED";
+        return "KekecMED";
     }
 
     /**

@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use KekecMed\Core\Entities\ImageableModel;
 
 class User extends Authenticatable
 {
+    use ImageableModel;
+    
     /**
      * The attributes that are mass assignable.
      *
