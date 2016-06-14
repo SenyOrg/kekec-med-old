@@ -5,8 +5,8 @@ use Faker\Generator;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use KekecMed\Calendar\Entities\Calendar;
-use KekecMed\Calendar\Entities\Event;
-use KekecMed\Calendar\Entities\EventParticipant;
+use KekecMed\Event\Entities\Event;
+use KekecMed\Event\Entities\EventParticipant;
 use KekecMed\Patient\Entities\Patient;
 use KekecMed\Task\Entities\Task;
 

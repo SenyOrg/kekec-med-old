@@ -48,7 +48,7 @@ class CreateEventsTable extends Migration {
 
             $table->unsignedInteger('event_status_id');
             $table->foreign('event_status_id')
-                ->references('id')->on('event_status')
+                ->references('id')->on('event_statuses')
                 ->onDelete('cascade');
 
             $table->string('description');

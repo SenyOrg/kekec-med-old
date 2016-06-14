@@ -82,7 +82,7 @@ $factory->define(\KekecMed\Calendar\Entities\Calendar::class, function (Faker\Ge
 /**
  * Event-Factory
  */
-$factory->define(\KekecMed\Calendar\Entities\Event::class, function (Faker\Generator $faker) {
+$factory->define(\KekecMed\Event\Entities\Event::class, function (Faker\Generator $faker) {
     $start = $faker->dateTimeBetween('-5 days', '+5 days');
     $end = \Carbon\Carbon::instance($start)->addHour(1);
 
@@ -100,6 +100,6 @@ $factory->define(\KekecMed\Calendar\Entities\Event::class, function (Faker\Gener
 /**
  * EventParticipant-Factory
  */
-$factory->define(\KekecMed\Calendar\Entities\EventParticipant::class, function (Faker\Generator $faker) {
+$factory->define(\KekecMed\Event\Entities\EventParticipant::class, function (Faker\Generator $faker) {
     return [];
 });

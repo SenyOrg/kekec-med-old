@@ -17,12 +17,6 @@ class CoreDatabaseSeeder extends Seeder {
 		Model::unguard();
 
 		/**
-		 * General Seeders
-		 */
-		$this->call(InsuranceDatabaseSeeder::class);
-		$this->call(CalendarDatabaseSeeder::class);
-
-		/**
 		 * DevelopmentSeeder
 		 */
 		if (env('APP_DEBUG')) {

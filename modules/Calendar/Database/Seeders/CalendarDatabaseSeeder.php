@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use KekecMed\Calendar\Entities\EventStatus;
-use KekecMed\Calendar\Entities\EventType;
+use KekecMed\Event\Entities\EventStatus;
+use KekecMed\Event\Entities\EventType;
 
 /**
  * Class CalendarDatabaseSeeder
