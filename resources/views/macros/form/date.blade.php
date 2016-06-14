@@ -17,6 +17,11 @@
 @push('scripts')
 <script type="text/javascript">
     //Datemask dd/mm/yyyy
-    $("#{{$name}}_id").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
+    $("#{{$name}}_id").inputmask("{{$vc->getDateFormat()}}", {"placeholder": "{{$vc->getDateFormat()}}"});
+    $('#{{$name}}_id').datepicker({
+        autoclose: true,
+        format: '{{$vc->getDateFormat()}}',
+        language: 'de-DE'
+    });
 </script>
 @endpush

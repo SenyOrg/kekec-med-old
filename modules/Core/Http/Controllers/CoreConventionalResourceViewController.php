@@ -1,6 +1,8 @@
 <?php
 
 namespace KekecMed\Core\Http\Controllers;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\View\View;
 
 /**
  * Class CoreConventionalResourceViewController
@@ -88,6 +90,61 @@ abstract class CoreConventionalResourceViewController extends CoreConventionalRe
 
     public function getUpdateButtonRoute() {
         return $this->getUpdateButtonRouteName();
+    }
+
+    /**
+     * Execute before store()
+     *
+     * @param array $data
+     * @return mixed
+     */
+    protected function beforeStore(array $data)
+    {
+        // TODO
+    }
+
+    /**
+     * Execute after store()
+     *
+     * @param Model $model
+     * @return mixed
+     */
+    protected function afterStore(Model $model)
+    {
+        //TODO
+    }
+
+    /**
+     * Executed before index
+     *
+     * @return mixed
+     */
+    protected function beforeIndex()
+    {
+        // Implement this in sub class
+        //throw new \Exception(__METHOD__);
+    }
+
+    /**
+     * Execute before create()
+     *
+     * @param Model $model
+     * @param View $view
+     * @return mixed
+     */
+    protected function beforeCreate(Model $model, View $view)
+    {
+        // Implement this in sub class
+    }
+
+    /**
+     * Execute after create()
+     *
+     * @return mixed
+     */
+    protected function afterCreate()
+    {
+        // Implement this in sub class
     }
 
 }

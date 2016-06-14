@@ -45,3 +45,11 @@ div.has-warning span.select2-selection {
     overflow: hidden;
     max-width: 100px;
 }
+
+.cal-event-list {
+    background-image: url('/modules/theme/admin-lte/img/dark_wood.png') !important;
+}
+
+body, .content-wrapper {
+    overflow: hidden !important;
+}

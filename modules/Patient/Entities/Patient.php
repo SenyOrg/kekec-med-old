@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Patient\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Core\Entities\ImageableModel;
 use KekecMed\Insurance\Entities\Insurance;
 use KekecMed\Task\Entities\Task;
@@ -13,7 +14,7 @@ use KekecMed\Task\Entities\Task;
  * @package App
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class Patient extends Model
+class Patient extends Model implements Dialogable
 {
     use ImageableModel;
 
@@ -83,10 +84,16 @@ class Patient extends Model
         return $this->firstname . ' ' . $this->lastname;
     }
 
-    public static function toDialog() {
+    /**
+     * Returns data for dialog view
+     *
+     * @return array
+     */
+    public function getDialogData()
+    {
         $arr = [];
 
-        self::all(['firstname', 'lastname', 'id'])->each(function($u) use(&$arr) {
+        self::select(['firstname', 'lastname', 'id'])->orderBy('firstname')->each(function($u) use(&$arr) {
             $arr[$u->id] = $u->getFullName();
         });
 

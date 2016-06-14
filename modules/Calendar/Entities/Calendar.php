@@ -1,6 +1,8 @@
 <?php namespace KekecMed\Calendar\Entities;
    
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Entities\Dialogable;
+use KekecMed\Event\Entities\Event;
 
 /**
  * Class Calendar
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package KekecMed\Calendar\Entities
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class Calendar extends Model {
+class Calendar extends Model implements Dialogable{
 
     /**
      * Fillable attributes
@@ -27,7 +29,7 @@ class Calendar extends Model {
     ];
 
     /**
-     * Check if
+     * Check if calendar is shared
      * 
      * @return bool
      */
@@ -53,4 +55,19 @@ class Calendar extends Model {
         return $this->hasMany(Event::class);
     }
 
+    /**
+     * Returns data for dialog view
+     *
+     * @return array
+     */
+    public function getDialogData()
+    {
+        $arr = [];
+
+        self::select(['id', 'title'])->orderBy('title')->each(function($u) use(&$arr) {
+            $arr[$u->id] = $u->title;
+        });
+
+        return $arr;
+    }
 }

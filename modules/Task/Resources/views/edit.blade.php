@@ -21,9 +21,9 @@
                     {{Form::itext('Description', 'description')}}
                     {{Form::idate('Deadline', 'deadline')}}
                     {{Form::itext('Done', 'done')}}
-                    {{Form::iselect2('Creator', 'creator_id', \App\User::toDialog(), $model->creator_id)}}
-                    {{Form::iselect2('Assignee', 'assignee_id', \App\User::toDialog(), $model->assignee_id)}}
-                    {{Form::iselect2('Patient', 'object_id', \KekecMed\Patient\Entities\Patient::toDialog(), $model->object_id)}}
+                    {{Form::iselect2('Creator', 'creator_id', \App\User::class, $model->creator_id)}}
+                    {{Form::iselect2('Assignee', 'assignee_id', \App\User::class, $model->assignee_id)}}
+                    {{Form::iselect2('Patient', 'object_id', \KekecMed\Patient\Entities\Patient::class, $model->object_id)}}
                 </div>
             </div>
         </div>

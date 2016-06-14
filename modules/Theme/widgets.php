@@ -17,6 +17,17 @@ use \Illuminate\Support\HtmlString as HtmlString;
 });
 
 /**
+ * IRadios
+ */
+\Form::macro('iradio', function($label = '', $name,  $values=[], $value= null, $attributes = ['placeholder' => '']) {
+    if (!is_array($values)) {
+        $values = $values::lists('title', 'id')->toArray();
+    }
+
+    return new \Illuminate\Support\HtmlString(view('macros.form.radio', compact('name', 'label', 'values', 'value', 'attributes'))->render());
+});
+
+/**
  * IText
  */
 \Form::macro('iphone', function($label = '', $name,  $value= null, $attributes = ['placeholder' => '']) {
@@ -40,24 +51,55 @@ use \Illuminate\Support\HtmlString as HtmlString;
 /**
  * IFile
  */
-\Form::macro('ifile', function($label = '', $name, $value= null, $attributes = ['placeholder' => '']) {
+\Form::macro('ifile', function($label = '', $name, $values= null, $value = null, $attributes = ['placeholder' => '']) {
     return new \Illuminate\Support\HtmlString(view('macros.form.file', compact('name', 'label', 'value', 'attributes'))->render());
 });
 
 /**
  * ISelectbox
  */
-\Form::macro('iselectbox', function($label = '', $name, $values=[], $attributes = ['placeholder' => '']) {
+\Form::macro('iselectbox', function($label = '', $name, $values=[], $value = null, $attributes = ['placeholder' => '']) {
+    if (!is_array($values)) {
+        if (( $instance = new $values()) instanceof \KekecMed\Core\Entities\Dialogable) {
+            $values = $instance->getDialogData();
+        } else {
+            $values = $values::lists('title', 'id')->toArray();
+        }
+    }
+
     $values = array_prepend($values, '', -1);
-    return new \Illuminate\Support\HtmlString(view('macros.form.selectbox', compact('name', 'label', 'values', 'attributes'))->render());
+
+    return new \Illuminate\Support\HtmlString(view('macros.form.selectbox', compact('name', 'label', 'values', 'value', 'attributes'))->render());
 });
 
-\Form::macro('iselect2', function($label = '', $name, $values=[], $attributes = ['placeholder' => '']) {
+\Form::macro('iselect2', function($label = '', $name, $values=[], $value= null, $attributes = ['placeholder' => '']) {
     if (!is_array($values)) {
-        $values = $values::lists('title', 'id')->toArray();
+        if (( $instance = new $values()) instanceof \KekecMed\Core\Entities\Dialogable) {
+            $values = $instance->getDialogData();
+        } else {
+            $values = $values::lists('title', 'id')->toArray();
+        }
     }
+
     $values = array_prepend($values, '', -1);
-    return new \Illuminate\Support\HtmlString(view('macros.form.select2', compact('name', 'label', 'values', 'attributes'))->render());
+    return new \Illuminate\Support\HtmlString(view('macros.form.select2', compact('name', 'label', 'values', 'value', 'attributes'))->render());
+});
+
+\Form::macro('imultiselect', function($label = '', $name, $values=[], $value=[], $attributes = ['placeholder' => '']) {
+    $instance = new $values();
+
+    if (!is_array($values)) {
+        if ($instance instanceof \KekecMed\Core\Entities\Dialogable) {
+            $values = $instance->getDialogData();
+        } else {
+            $values = $values::lists('title', 'id')->toArray();
+        }
+    }
+
+    $attributes['multiple'] = 'multiple';
+
+    $values = array_prepend($values, '', -1);
+    return new \Illuminate\Support\HtmlString(view('macros.form.multiselect', compact('name', 'label', 'values', 'value', 'attributes'))->render());
 });
 
 

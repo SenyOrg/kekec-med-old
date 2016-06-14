@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Core\Entities\ImageableModel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Dialogable
 {
     use ImageableModel;
     
@@ -70,15 +71,16 @@ class User extends Authenticatable
     }
 
     /**
-     * Get data for dialog
+     * Returns data for dialog view
      *
      * @return array
      */
-    public static function toDialog() {
+    public function getDialogData()
+    {
         $arr = [];
 
-        self::all(['firstname', 'lastname', 'id'])->each(function($u) use(&$arr) {
-           $arr[$u->id] = $u->getFullName();
+        self::select(['firstname', 'lastname', 'id'])->orderBy('firstname')->each(function($u) use(&$arr) {
+            $arr[$u->id] = $u->getFullName();
         });
 
         return $arr;

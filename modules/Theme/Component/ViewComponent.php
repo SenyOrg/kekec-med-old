@@ -101,4 +101,8 @@ class ViewComponent {
 
         return $this->controller;
     }
+
+    public function getDateFormat() {
+        return 'yyyy-mm-dd';
+    }
 }

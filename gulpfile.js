@@ -15,9 +15,10 @@ elixir(function(mix) {
     mix.styles([
         '../../../modules/Theme/Resources/views/admin-lte/assets/bootstrap/css/bootstrap.min.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/select2/select2.min.css',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/fullcalendar/fullcalendar.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/dist/css/AdminLTE.min.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/dist/css/skins/_all-skins.min.css',
-        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/iCheck/flat/blue.css',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/iCheck/all.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/morris/morris.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/datepicker/datepicker3.css',
@@ -25,7 +26,7 @@ elixir(function(mix) {
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/datatables/dataTables.bootstrap.css',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/pace/pace.min.css',
-        '../../../modules/Theme/Resources/views/admin-lte/assets/app.css',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/bootstrap-calendar-master/css/calendar.min.css',
     ], 'public/assets/styles.min.css');
 
     mix.scripts([
@@ -37,16 +38,27 @@ elixir(function(mix) {
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/knob/jquery.knob.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/daterangepicker/daterangepicker.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/datepicker/bootstrap-datepicker.js',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/datepicker/locales/bootstrap-datepicker.de.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/select2/select2.full.min.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/slimScroll/jquery.slimscroll.min.js',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/iCheck/icheck.min.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/fastclick/fastclick.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/datatables/jquery.dataTables.min.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/datatables/dataTables.bootstrap.min.js',
+
+
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/bootstrap-calendar-master/components/underscore/underscore-min.js',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/bootstrap-calendar-master/components/jstimezonedetect/jstz.min.js',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/bootstrap-calendar-master/js/calendar.js',
+        '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/bootstrap-calendar-master/js/language/de-DE.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/pace/pace.min.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/dist/js/app.min.js',
         //'../../../modules/Theme/Resources/views/admin-lte/assets/dist/js/pages/dashboard.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/dist/js/demo.js',
         '../../../modules/Theme/Resources/views/admin-lte/assets/plugins/input-mask/jquery.inputmask.bundle.js',
     ], 'public/assets/libs.min.js');
+
+    mix.copy('modules/Theme/Resources/views/admin-lte/assets/bootstrap/fonts', 'public/fonts')
+    mix.copy('modules/Theme/Resources/views/admin-lte/assets/plugins/iCheck/flat', 'public/flat')
 });

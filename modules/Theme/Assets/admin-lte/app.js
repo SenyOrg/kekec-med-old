@@ -16,6 +16,10 @@ $(document).ready(function() {
             $(this).next('span.form-control-feedback').addClass('hidden');
         }
     });
+
+    $('section.content').slimScroll({
+        height: '810px'
+    })
 });
 
 $(document).ajaxStart(function() { Pace.restart(); });
@@ -89,7 +93,9 @@ function showDeleteDialog(title, body, element) {
             "Danger!": {
                 className: "btn-outline",
                 callback: function() {
-                    eval('var func = ' + $(element).attr('data-confirmation-callback'));
+                    if (!typeof v === "function") {
+                        eval('var func = ' + $(element).attr('data-confirmation-callback'));
+                    }
 
                     func(element);
                 }
