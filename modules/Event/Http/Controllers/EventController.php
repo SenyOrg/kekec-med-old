@@ -3,11 +3,14 @@
 use Illuminate\Database\Eloquent\Model;
 use KekecMed\Core\Http\Controllers\CoreConventionalResourceController;
 use KekecMed\Core\Http\Controllers\CoreConventionalResourceViewController;
+use KekecMed\Core\Http\Controllers\CoreDataTableController;
+use KekecMed\Core\Http\Controllers\DataTable;
+use KekecMed\Event\DataTables\EventTable;
 use KekecMed\Event\Entities\Event;
 use KekecMed\Event\Entities\EventParticipant;
 use Pingpong\Modules\Routing\Controller;
 
-class EventController extends CoreConventionalResourceViewController {
+class EventController extends CoreConventionalResourceViewController implements CoreDataTableController{
 	
 	/**
 	 * Get Module identifier
@@ -67,5 +70,27 @@ class EventController extends CoreConventionalResourceViewController {
 				EventParticipant::create(['participant_id' => $userID, 'event_id' => $id]);
 			}
 		}
+	}
+
+	/**
+	 * Get DataTable
+	 *
+	 * @return DataTable
+	 */
+	public function getDataTable()
+	{
+		return app('KekecMed\Event\DataTables\EventTable');
+	}
+
+	/**
+	 * Get DataTable index template
+	 *
+	 * 'module::index'
+	 *
+	 * @return string
+	 */
+	public function getDataTableTemplatePath()
+	{
+		return 'event::index';
 	}
 }

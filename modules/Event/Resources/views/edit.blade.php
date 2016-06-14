@@ -16,7 +16,7 @@
         <div class="box-body">
             {{Form::iselectbox('Calendar', 'calendar_id', \KekecMed\Calendar\Entities\Calendar::class)}}
             {{Form::itext('Title', 'title')}}
-            {{Form::itext('Description', 'title')}}
+            {{Form::itext('Description', 'description')}}
             {{Form::idate('Start', 'start')}}
             {{Form::idate('End', 'end')}}
             {{Form::iselect2('Status', 'event_status_id', \KekecMed\Event\Entities\EventStatus::class)}}

@@ -1,5 +1,11 @@
 @extends($vc->getTheme())
 
+@section('head-buttons')
+    <li>
+        <a href="{{route('event.create')}}" class="btn btn-default"><i class="fa fa-plus"></i> Create event</a>
+    </li>
+@endsection
+
 @section('content')
     <div class="content-header" style="position:absolute; top:100px; left:0;z-index:1000">
         <div class="btn btn-danger" id="event-trash"><i class="fa fa-trash fa-lg"></i></div>

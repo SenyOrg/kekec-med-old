@@ -21,6 +21,19 @@ class EventServiceProvider extends ServiceProvider {
 		$this->registerTranslations();
 		$this->registerConfig();
 		$this->registerViews();
+
+		\Menu::modify('navigation', function($menu)
+		{
+			$menu->route(
+				'event.index', // route name
+				'Events', // title
+				[], // route parameters
+				[
+					'target' => 'blank',
+					'icon' => 'fa fa-list'
+				] // attributes
+			);
+		});
 	}
 
 	/**
