@@ -1,6 +1,5 @@
-<script type="text/javascript" src="{{asset('assets/libs.min.js')}}"></script>
-<!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script type="text/javascript" src="{{asset('assets/libs.min.js')}}"></script>
 <!-- BootBox -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 

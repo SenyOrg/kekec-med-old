@@ -105,4 +105,20 @@ class ViewComponent {
     public function getDateFormat() {
         return 'yyyy-mm-dd';
     }
+
+    /**
+     * Get DateTimeFormat
+     * 
+     * @return string
+     */
+    public function getDateTimeFormat($placeholder = false) {
+        if (!$placeholder)
+            return 'y-m-d h:s';
+        
+        return 'yyyy-mm-dd hh:mm';
+    }
+
+    public function getDataTimeFormatAsMomentJS() {
+        return 'YYYY-MM-DD HH:mm';
+    }
 }

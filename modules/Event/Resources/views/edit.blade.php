@@ -17,8 +17,8 @@
             {{Form::iselectbox('Calendar', 'calendar_id', \KekecMed\Calendar\Entities\Calendar::class)}}
             {{Form::itext('Title', 'title')}}
             {{Form::itext('Description', 'description')}}
-            {{Form::idate('Start', 'start')}}
-            {{Form::idate('End', 'end')}}
+            {{Form::idatetime('Start', 'start')}}
+            {{Form::idatetime('End', 'end', null, ['linked' => 'start'])}}
             {{Form::iselect2('Status', 'event_status_id', \KekecMed\Event\Entities\EventStatus::class)}}
             {{Form::iradio('Type', 'event_type_id', \KekecMed\Event\Entities\EventType::class)}}
             {{Form::iselect2('Patient', 'patient_id', \KekecMed\Patient\Entities\Patient::class)}}

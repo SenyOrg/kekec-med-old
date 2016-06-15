@@ -10,10 +10,20 @@ use \Illuminate\Support\HtmlString as HtmlString;
 });
 
 /**
- * IText
+ * IDate
  */
 \Form::macro('idate', function($label = '', $name,  $value= null, $attributes = ['placeholder' => '']) {
     return new \Illuminate\Support\HtmlString(view('macros.form.date', compact('name', 'label', 'value', 'attributes'))->render());
+});
+
+/**
+ * IDateTime
+ *
+ * Set $attributes['linked'] for linking to datetime fields together. Create the
+ * first one and give the second one $attributes['linked'] = $nameOfFirstOne
+ */
+\Form::macro('idatetime', function($label = '', $name,  $value= null, $attributes = ['placeholder' => '']) {
+    return new \Illuminate\Support\HtmlString(view('macros.form.datetime', compact('name', 'label', 'value', 'attributes'))->render());
 });
 
 /**
