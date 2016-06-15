@@ -19,7 +19,7 @@
     $('#{{$name}}_id').datetimepicker({
         format: '{{$vc->getDataTimeFormatAsMomentJS()}}',
         @if (isset($attributes['linked']))
-        usCurrent: false
+        useCurrent: false
         @endif
     });
 

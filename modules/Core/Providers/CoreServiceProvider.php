@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Console\ICDImporterCommand;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->registerCommands();
 
         /**
          * Development Mode
@@ -30,6 +32,10 @@ class CoreServiceProvider extends ServiceProvider
             //app()->register(\Barryvdh\Debugbar\ServiceProvider::class);
             app()->register(\Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
         }
+    }
+
+    public function registerCommands() {
+        $this->commands(ICDImporterCommand::class);
     }
 
     /**
