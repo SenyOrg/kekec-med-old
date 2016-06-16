@@ -2,11 +2,12 @@
 
 use Pingpong\Modules\Routing\Controller;
 
-class DashboardController extends Controller {
-	
-	public function index()
-	{
-		return view('dashboard::index');
-	}
-	
+class DashboardController extends Controller
+{
+
+    public function index()
+    {
+        return view('dashboard::index');
+    }
+
 }

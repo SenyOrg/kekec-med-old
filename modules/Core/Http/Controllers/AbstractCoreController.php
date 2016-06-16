@@ -9,7 +9,7 @@ use Pingpong\Modules\Routing\Controller;
  *
  * -----------------------------
  * @package KekecMed\Core\Http\Controllers
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 abstract class AbstractCoreController extends Controller
 {

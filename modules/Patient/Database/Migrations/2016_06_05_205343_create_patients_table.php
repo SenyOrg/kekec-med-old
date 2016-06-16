@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 /**
  * Class CreatePatientsTable
@@ -42,8 +42,8 @@ class CreatePatientsTable extends Migration
             $table->integer('insurance_id')->unsigned();
 
             $table->foreign('insurance_id')
-                ->references('id')->on('insurances')
-                ->onDelete('cascade');
+                  ->references('id')->on('insurances')
+                  ->onDelete('cascade');
 
             $table->string('insurance_no')->index();
 

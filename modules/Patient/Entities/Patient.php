@@ -12,7 +12,7 @@ use KekecMed\Task\Entities\Task;
  *
  * -----------------------------
  * @package App
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class Patient extends Model implements Dialogable
 {
@@ -71,7 +71,8 @@ class Patient extends Model implements Dialogable
      *
      * @return mixed
      */
-    public function getImageUrl() {
+    public function getImageUrl()
+    {
         return \Storage::url($this->image);
     }
 
@@ -80,7 +81,8 @@ class Patient extends Model implements Dialogable
      *
      * @return string
      */
-    public function getFullName() {
+    public function getFullName()
+    {
         return $this->firstname . ' ' . $this->lastname;
     }
 
@@ -93,7 +95,7 @@ class Patient extends Model implements Dialogable
     {
         $arr = [];
 
-        self::select(['firstname', 'lastname', 'id'])->orderBy('firstname')->each(function($u) use(&$arr) {
+        self::select(['firstname', 'lastname', 'id'])->orderBy('firstname')->each(function ($u) use (&$arr) {
             $arr[$u->id] = $u->getFullName();
         });
 

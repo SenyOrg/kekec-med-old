@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * -----------------------------
  * @package App
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class Insurance extends Model
 {
@@ -18,7 +18,10 @@ class Insurance extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'homepage', 'region', 'rate'
+        'title',
+        'homepage',
+        'region',
+        'rate'
     ];
 
     /**

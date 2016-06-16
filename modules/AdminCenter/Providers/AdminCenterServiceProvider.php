@@ -2,96 +2,97 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class AdminCenterServiceProvider extends ServiceProvider {
+class AdminCenterServiceProvider extends ServiceProvider
+{
 
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
-	/**
-	 * Boot the application events.
-	 * 
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->registerTranslations();
-		$this->registerConfig();
-		$this->registerViews();
-	}
+    /**
+     * Boot the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerTranslations();
+        $this->registerConfig();
+        $this->registerViews();
+    }
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{		
-		//
-	}
+    /**
+     * Register translations.
+     *
+     * @return void
+     */
+    public function registerTranslations()
+    {
+        $langPath = base_path('resources/lang/modules/admincenter');
 
-	/**
-	 * Register config.
-	 * 
-	 * @return void
-	 */
-	protected function registerConfig()
-	{
-		$this->publishes([
-		    __DIR__.'/../Config/config.php' => config_path('admincenter.php'),
-		]);
-		$this->mergeConfigFrom(
-		    __DIR__.'/../Config/config.php', 'admincenter'
-		);
-	}
+        if (is_dir($langPath)) {
+            $this->loadTranslationsFrom($langPath, 'admincenter');
+        } else {
+            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'admincenter');
+        }
+    }
 
-	/**
-	 * Register views.
-	 * 
-	 * @return void
-	 */
-	public function registerViews()
-	{
-		$viewPath = base_path('resources/views/modules/admincenter');
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $this->publishes([
+            __DIR__ . '/../Config/config.php' => config_path('admincenter.php'),
+        ]);
+        $this->mergeConfigFrom(
+            __DIR__ . '/../Config/config.php', 'admincenter'
+        );
+    }
 
-		$sourcePath = __DIR__.'/../Resources/views';
+    /**
+     * Register views.
+     *
+     * @return void
+     */
+    public function registerViews()
+    {
+        $viewPath = base_path('resources/views/modules/admincenter');
 
-		$this->publishes([
-			$sourcePath => $viewPath
-		]);
+        $sourcePath = __DIR__ . '/../Resources/views';
 
-		$this->loadViewsFrom(array_merge(array_map(function ($path) {
-			return $path . '/modules/admincenter';
-		}, \Config::get('view.paths')), [$sourcePath]), 'admincenter');
-	}
+        $this->publishes([
+            $sourcePath => $viewPath
+        ]);
 
-	/**
-	 * Register translations.
-	 * 
-	 * @return void
-	 */
-	public function registerTranslations()
-	{
-		$langPath = base_path('resources/lang/modules/admincenter');
+        $this->loadViewsFrom(array_merge(array_map(function ($path) {
+            return $path . '/modules/admincenter';
+        }, \Config::get('view.paths')), [$sourcePath]), 'admincenter');
+    }
 
-		if (is_dir($langPath)) {
-			$this->loadTranslationsFrom($langPath, 'admincenter');
-		} else {
-			$this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'admincenter');
-		}
-	}
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array();
-	}
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [];
+    }
 
 }

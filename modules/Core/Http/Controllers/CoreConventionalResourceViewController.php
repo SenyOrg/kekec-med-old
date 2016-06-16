@@ -1,6 +1,7 @@
 <?php
 
 namespace KekecMed\Core\Http\Controllers;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
 
@@ -10,7 +11,7 @@ use Illuminate\View\View;
  *
  * -----------------------------
  * @package KekecMed\Core\Http\Controllers
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 abstract class CoreConventionalResourceViewController extends CoreConventionalResourceController
     implements CoreResourceViewController
@@ -76,19 +77,23 @@ abstract class CoreConventionalResourceViewController extends CoreConventionalRe
         return $this->getRouteName('create');
     }
 
-    public function getStoreButtonRouteName() {
+    public function getStoreButtonRouteName()
+    {
         return $this->getRouteName('store');
     }
 
-    public function getStoreButtonRoute() {
+    public function getStoreButtonRoute()
+    {
         return $this->getStoreButtonRouteName();
     }
 
-    public function getUpdateButtonRouteName() {
+    public function getUpdateButtonRouteName()
+    {
         return $this->getRouteName('update');
     }
 
-    public function getUpdateButtonRoute() {
+    public function getUpdateButtonRoute()
+    {
         return $this->getUpdateButtonRouteName();
     }
 
@@ -96,6 +101,7 @@ abstract class CoreConventionalResourceViewController extends CoreConventionalRe
      * Execute before store()
      *
      * @param array $data
+     *
      * @return mixed
      */
     protected function beforeStore(array $data)
@@ -107,6 +113,7 @@ abstract class CoreConventionalResourceViewController extends CoreConventionalRe
      * Execute after store()
      *
      * @param Model $model
+     *
      * @return mixed
      */
     protected function afterStore(Model $model)
@@ -129,7 +136,8 @@ abstract class CoreConventionalResourceViewController extends CoreConventionalRe
      * Execute before create()
      *
      * @param Model $model
-     * @param View $view
+     * @param View  $view
+     *
      * @return mixed
      */
     protected function beforeCreate(Model $model, View $view)

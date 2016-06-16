@@ -3,7 +3,6 @@
 namespace KekecMed\Core\Entities;
 
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Input;
 
 /**
  * Trait AbstractImageFullModel
@@ -11,9 +10,9 @@ use Illuminate\Support\Facades\Input;
  *
  * -----------------------------
  * @package KekecMed\Core\Entities
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
-trait ImageableModel 
+trait ImageableModel
 {
     /**
      * Array of attribute identifiers
@@ -36,20 +35,20 @@ trait ImageableModel
         parent::__construct($attributes);
 
         // Callback
-        $callback = function($u) {
+        $callback = function ($u) {
             if (!is_array($u->images)) {
                 $u->images = [$u->images];
             }
 
             foreach ($u->images as $image) {
                 if ($u->getAttribute($image) instanceof UploadedFile && $u->getAttribute($image) != $u->getOriginal($image)) {
-                    \Storage::delete('public/'.$u->getOriginal($image));
+                    \Storage::delete('public/' . $u->getOriginal($image));
 
                     /* Get image and resize it */
                     $imageObj = $u->getAttribute($image);
                     \Image::make($imageObj->getRealPath())
-                        ->resize(160, 160)
-                        ->save($imageObj->getRealPath());
+                          ->resize(160, 160)
+                          ->save($imageObj->getRealPath());
 
                     \Storage::put(
                         'public/' . $imageObj->hashName(),
@@ -70,7 +69,7 @@ trait ImageableModel
             }
 
             foreach ($this->images as $image) {
-                \Storage::delete('public/'.$u->getAttribute($image));
+                \Storage::delete('public/' . $u->getAttribute($image));
             }
         });
     }
@@ -80,7 +79,8 @@ trait ImageableModel
      *
      * @param int $key
      */
-    public function getImageUrl($key = null) {
+    public function getImageUrl($key = null)
+    {
         if (isset($key)) {
             return \Storage::url($this->image);
         }

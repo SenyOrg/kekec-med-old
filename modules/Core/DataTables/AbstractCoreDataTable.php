@@ -11,7 +11,7 @@ use Yajra\Datatables\Services\DataTable;
  *
  * -----------------------------
  * @package KekecMed\Core\DataTables
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 abstract class AbstractCoreDataTable extends DataTable
 {
@@ -27,7 +27,8 @@ abstract class AbstractCoreDataTable extends DataTable
 
         // Add action column
         $eloq->addColumn('action', function ($model) {
-            return '<a href="' . route($this->getShowRoute(), ['id' => $model->id]) . '" class="btn btn-default"><i class="fa fa-link"></i> Show</a>';
+            return '<a href="' . route($this->getShowRoute(),
+                ['id' => $model->id]) . '" class="btn btn-default"><i class="fa fa-link"></i> Show</a>';
         });
 
         // Process ajax
@@ -64,6 +65,7 @@ abstract class AbstractCoreDataTable extends DataTable
      * Ajax processor
      *
      * @param $eloq
+     *
      * @return mixed
      */
     abstract protected function processAjax($eloq);
@@ -76,9 +78,9 @@ abstract class AbstractCoreDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->columns($this->getColumns())
-            ->addAction(['width' => '80px'])
-            ->parameters($this->getBuilderParameters());
+                    ->columns($this->getColumns())
+                    ->addAction(['width' => '80px'])
+                    ->parameters($this->getBuilderParameters());
     }
 
     /**
@@ -115,8 +117,8 @@ abstract class AbstractCoreDataTable extends DataTable
         $tableID = $this->getTableID();
 
         return [
-            'order' => [[0, 'asc']],
-            'buttons' => [
+            'order'        => [[0, 'asc']],
+            'buttons'      => [
                 'create',
                 'export',
                 'print',
@@ -129,16 +131,16 @@ abstract class AbstractCoreDataTable extends DataTable
                     $("#' . $tableID . '_filter").detach();
                 $(\'#' . $tableID . '_processing\').attr(\'class\', \'alert alert-info text-bold\').html("<i class=\"fa fa-cog\"></i> Loading").attr("style", "display: block; position: absolute; left: 50%;");
             }',
-            'dom' => "<'box data-table-wrapper'<'box-header with-border'lr<'box-tools'<'input-group input-group-sm'f>>><'box-body no-padding data-table-wrapper't><'box-footer clearfix'p>>'",
-            'language' => [
-                'paginate' => [
-                    'next' => '&raquo;',
+            'dom'          => "<'box data-table-wrapper'<'box-header with-border'lr<'box-tools'<'input-group input-group-sm'f>>><'box-body no-padding data-table-wrapper't><'box-footer clearfix'p>>'",
+            'language'     => [
+                'paginate'     => [
+                    'next'     => '&raquo;',
                     'previous' => '&laquo;'
                 ],
-                "lengthMenu" => "<div class=''>_MENU_ entries</div>",
-                "zeroRecords" => "<span class='label label-danger'><i class='fa fa-times'></i> No records found...</span>",
-                "info" => "Showing page _PAGE_ of _PAGES_",
-                "infoEmpty" => "<span class='label label-danger'><i class='fa fa-times'></i> No records available...</span>",
+                "lengthMenu"   => "<div class=''>_MENU_ entries</div>",
+                "zeroRecords"  => "<span class='label label-danger'><i class='fa fa-times'></i> No records found...</span>",
+                "info"         => "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty"    => "<span class='label label-danger'><i class='fa fa-times'></i> No records available...</span>",
                 "infoFiltered" => "(filtered from _MAX_ total records)"
             ]
         ];

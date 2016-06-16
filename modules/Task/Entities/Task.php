@@ -10,7 +10,7 @@ use KekecMed\Patient\Entities\Patient;
  *
  * -----------------------------
  * @package App
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class Task extends Model
 {
@@ -43,7 +43,8 @@ class Task extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(User::class, 'creator_id');
     }
 
@@ -52,7 +53,8 @@ class Task extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function assignee() {
+    public function assignee()
+    {
         return $this->belongsTo(User::class, 'assignee_id');
     }
 
@@ -61,7 +63,8 @@ class Task extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function object() {
+    public function object()
+    {
         return $this->belongsTo(Patient::class, 'object_id');
     }
 

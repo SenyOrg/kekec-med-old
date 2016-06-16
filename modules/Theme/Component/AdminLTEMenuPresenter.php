@@ -5,10 +5,10 @@ use Pingpong\Menus\Presenters\Presenter;
 /**
  * Class AdminLTEMenuPresenter
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package KekecMed\Theme\Component
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class AdminLTEMenuPresenter extends Presenter implements \Pingpong\Menus\Presenters\PresenterInterface
 {
@@ -33,7 +33,7 @@ class AdminLTEMenuPresenter extends Presenter implements \Pingpong\Menus\Present
      */
     public function getMenuWithoutDropdownWrapper($item)
     {
-        return '<li' . $this->getActiveState($item) . '><a href="' . $item->getUrl() . '">'. $item->getIcon() . ' <span>' . $item->title . '</span></a></li>';
+        return '<li' . $this->getActiveState($item) . '><a href="' . $item->getUrl() . '">' . $item->getIcon() . ' <span>' . $item->title . '</span></a></li>';
     }
 
     /**

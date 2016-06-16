@@ -4,6 +4,7 @@ namespace KekecMed\Core\Http\Controllers;
 
 /**
  * Interface CoreValidationController
+ *
  * @package KekecMed\Core\Http\Controllers
  */
 interface CoreValidationController

@@ -2,109 +2,109 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class CalendarServiceProvider extends ServiceProvider {
+class CalendarServiceProvider extends ServiceProvider
+{
 
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
-	/**
-	 * Boot the application events.
-	 * 
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->registerTranslations();
-		$this->registerConfig();
-		$this->registerViews();
+    /**
+     * Boot the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerTranslations();
+        $this->registerConfig();
+        $this->registerViews();
 
-		\Menu::modify('navigation', function($menu)
-		{
-			$menu->route(
-				'calendar.index', // route name
-				'Calendar', // title
-				[], // route parameters
-				[
-					'target' => 'blank',
-					'icon' => 'fa fa-calendar'
-				] // attributes
-			);
-		});
-	}
+        \Menu::modify('navigation', function ($menu) {
+            $menu->route(
+                'calendar.index', // route name
+                'Calendar', // title
+                [], // route parameters
+                [
+                    'target' => 'blank',
+                    'icon'   => 'fa fa-calendar'
+                ] // attributes
+            );
+        });
+    }
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{		
-		//
-	}
+    /**
+     * Register translations.
+     *
+     * @return void
+     */
+    public function registerTranslations()
+    {
+        $langPath = base_path('resources/lang/modules/calendar');
 
-	/**
-	 * Register config.
-	 * 
-	 * @return void
-	 */
-	protected function registerConfig()
-	{
-		$this->publishes([
-		    __DIR__.'/../Config/config.php' => config_path('calendar.php'),
-		]);
-		$this->mergeConfigFrom(
-		    __DIR__.'/../Config/config.php', 'calendar'
-		);
-	}
+        if (is_dir($langPath)) {
+            $this->loadTranslationsFrom($langPath, 'calendar');
+        } else {
+            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'calendar');
+        }
+    }
 
-	/**
-	 * Register views.
-	 * 
-	 * @return void
-	 */
-	public function registerViews()
-	{
-		$viewPath = base_path('resources/views/modules/calendar');
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $this->publishes([
+            __DIR__ . '/../Config/config.php' => config_path('calendar.php'),
+        ]);
+        $this->mergeConfigFrom(
+            __DIR__ . '/../Config/config.php', 'calendar'
+        );
+    }
 
-		$sourcePath = __DIR__.'/../Resources/views';
+    /**
+     * Register views.
+     *
+     * @return void
+     */
+    public function registerViews()
+    {
+        $viewPath = base_path('resources/views/modules/calendar');
 
-		$this->publishes([
-			$sourcePath => $viewPath
-		]);
+        $sourcePath = __DIR__ . '/../Resources/views';
 
-		$this->loadViewsFrom(array_merge(array_map(function ($path) {
-			return $path . '/modules/calendar';
-		}, \Config::get('view.paths')), [$sourcePath]), 'calendar');
-	}
+        $this->publishes([
+            $sourcePath => $viewPath
+        ]);
 
-	/**
-	 * Register translations.
-	 * 
-	 * @return void
-	 */
-	public function registerTranslations()
-	{
-		$langPath = base_path('resources/lang/modules/calendar');
+        $this->loadViewsFrom(array_merge(array_map(function ($path) {
+            return $path . '/modules/calendar';
+        }, \Config::get('view.paths')), [$sourcePath]), 'calendar');
+    }
 
-		if (is_dir($langPath)) {
-			$this->loadTranslationsFrom($langPath, 'calendar');
-		} else {
-			$this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'calendar');
-		}
-	}
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array();
-	}
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [];
+    }
 
 }

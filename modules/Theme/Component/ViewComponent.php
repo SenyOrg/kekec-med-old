@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use KekecMed\Core\Http\Controllers\AbstractCoreController;
 use Yajra\Datatables\Services\DataTable;
 
-class ViewComponent {
+class ViewComponent
+{
 
     private static $instance = null;
 
@@ -17,7 +18,7 @@ class ViewComponent {
 
     /**
      * DataTable instance
-     * 
+     *
      * @var null
      */
     private $dataTable = null;
@@ -26,14 +27,17 @@ class ViewComponent {
     /**
      * ViewComponent constructor.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Get currently logged in user
      *
      * @return Model
      */
-    public function getUser() {
+    public function getUser()
+    {
         return Auth::user();
     }
 
@@ -42,7 +46,8 @@ class ViewComponent {
      *
      * @return string
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return "KekecMED";
     }
 
@@ -51,7 +56,8 @@ class ViewComponent {
      *
      * @return ViewComponent|null
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (!self::$instance) {
             self::$instance = new self();
         }
@@ -64,7 +70,8 @@ class ViewComponent {
      *
      * @return string
      */
-    public function getTheme(){
+    public function getTheme()
+    {
         return 'theme::admin-lte.app.main';
     }
 
@@ -73,7 +80,8 @@ class ViewComponent {
      *
      * @return string
      */
-    public function getAuthTheme(){
+    public function getAuthTheme()
+    {
         return 'theme::admin-lte.auth.main';
     }
 
@@ -82,9 +90,11 @@ class ViewComponent {
      *
      * @param DataTable $dataTable
      */
-    public function dataTable(DataTable $dataTable = null) {
-        if ($dataTable)
+    public function dataTable(DataTable $dataTable = null)
+    {
+        if ($dataTable) {
             $this->dataTable = $dataTable;
+        }
 
         return $this->dataTable;
     }
@@ -93,32 +103,39 @@ class ViewComponent {
      * Get / Set controller
      *
      * @param AbstractCoreController|null $controller
+     *
      * @return AbstractCoreController|null
      */
-    public function controller(AbstractCoreController $controller = null) {
-        if ($controller)
+    public function controller(AbstractCoreController $controller = null)
+    {
+        if ($controller) {
             $this->controller = $controller;
+        }
 
         return $this->controller;
     }
 
-    public function getDateFormat() {
+    public function getDateFormat()
+    {
         return 'yyyy-mm-dd';
     }
 
     /**
      * Get DateTimeFormat
-     * 
+     *
      * @return string
      */
-    public function getDateTimeFormat($placeholder = false) {
-        if (!$placeholder)
+    public function getDateTimeFormat($placeholder = false)
+    {
+        if (!$placeholder) {
             return 'y-m-d h:s';
-        
+        }
+
         return 'yyyy-mm-dd hh:mm';
     }
 
-    public function getDataTimeFormatAsMomentJS() {
+    public function getDataTimeFormatAsMomentJS()
+    {
         return 'YYYY-MM-DD HH:mm';
     }
 }

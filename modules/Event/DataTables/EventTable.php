@@ -9,10 +9,10 @@ use KekecMed\Event\Entities\Event;
 /**
  * Class EventTable
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package App\DataTables
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class EventTable extends AbstractCoreDataTable
 {
@@ -86,6 +86,7 @@ class EventTable extends AbstractCoreDataTable
      * Ajax processor
      *
      * @param $eloq
+     *
      * @return mixed
      */
     protected function processAjax($eloq)

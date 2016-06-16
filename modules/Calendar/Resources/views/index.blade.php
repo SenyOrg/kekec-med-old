@@ -89,12 +89,12 @@
                 $(element).tooltip({
                     'title': $('<table class="table table-condensed">' +
                             '<tr>' +
-                                '<td>' +
-                                    'Start' +
-                                '</td>' +
-                                '<td>' +
-                                    '<span class="label label-default">End</span>' +
-                                '</td>' +
+                            '<td>' +
+                            'Start' +
+                            '</td>' +
+                            '<td>' +
+                            '<span class="label label-default">End</span>' +
+                            '</td>' +
                             '</tr>' +
                             '<tr>' +
                             '<td>' +
@@ -120,7 +120,7 @@
                             '<span class="label label-default">Patient</span>' +
                             '</td>' +
                             '</tr>' +
-                        '</table>'),
+                            '</table>'),
                     'html': true,
                     'container': 'body'
                 });
@@ -141,10 +141,10 @@
             eventMouseout: function (event, jsEvent, view) {
 
             },
-            eventDragStart: function(event, jsEvent, ui, view) {
+            eventDragStart: function (event, jsEvent, ui, view) {
 
             },
-            eventDragStop: function( event, jsEvent, ui, view ) {
+            eventDragStop: function (event, jsEvent, ui, view) {
                 jsEvent.preventDefault();
                 jsEvent.stopPropagation();
                 var trashEl = jQuery('#event-trash');
@@ -154,9 +154,9 @@
                 var y1 = ofs.top;
                 var y2 = ofs.top + trashEl.outerHeight(true);
 
-                if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 &&
-                        jsEvent.pageY>= y1 && jsEvent.pageY <= y2) {
-                    showDeleteDialog('Are you sure', 'Do you want to delete this event', function() {
+                if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
+                        jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
+                    showDeleteDialog('Are you sure', 'Do you want to delete this event', function () {
 
                         $.ajax({
                             url: '{{url('event/delete')}}/' + event.id,
@@ -184,8 +184,8 @@
                 var y1 = ofs.top;
                 var y2 = ofs.top + trashEl.outerHeight(true);
 
-                if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 &&
-                        jsEvent.pageY>= y1 && jsEvent.pageY <= y2) {
+                if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
+                        jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
                     window.location.href = '{{url('event')}}/' + event.id + '/edit'
                 }
             },
@@ -230,33 +230,33 @@
             dayRender: function (date, cell) {
 
             },
-            dayClick: function(date, jsEvent, view) {
+            dayClick: function (date, jsEvent, view) {
 
                 /*alert('Clicked on: ' + date.format());
 
-                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                 alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
 
-                alert('Current view: ' + view.name);
+                 alert('Current view: ' + view.name);
 
-                // change the day's background color just for fun
-                $(this).css('background-color', 'red');*/
+                 // change the day's background color just for fun
+                 $(this).css('background-color', 'red');*/
 
             },
             slotDuration: '00:05:00',
             selectable: true,
             selectHelper: true,
-            select: function(start, end, event, ui) {
+            select: function (start, end, event, ui) {
                 $(event.target).prev();
 
                 var eventData;
                 /*if (title) {
-                    eventData = {
-                        title: title,
-                        start: start,
-                        end: end
-                    };
-                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-                }*/
+                 eventData = {
+                 title: title,
+                 start: start,
+                 end: end
+                 };
+                 $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                 }*/
                 //$('#calendar').fullCalendar('unselect');
             },
             editable: true
@@ -267,7 +267,7 @@
         })
 
         $('#delete-event').droppable({
-            drop: function( event, ui ) {
+            drop: function (event, ui) {
                 alert("ddd");
             }
         });

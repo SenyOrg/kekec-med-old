@@ -10,7 +10,7 @@
 @stack('scripts')
 
 <script type="text/javascript">
-    $(document).ready(function() {
-       @stack('document-ready-stack')
+    $(document).ready(function () {
+        @stack('document-ready-stack')
     });
 </script>

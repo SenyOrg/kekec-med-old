@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 /**
  * Class AddProfileColumnsToUsersTable
@@ -9,6 +9,7 @@ use Illuminate\Database\Migrations\Migration;
  * This migration adds profile related fields
  * to the users table
  * -----------------------------
+ *
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
 class AddProfileColumnsToUsersTable extends Migration

@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * Class ICDImporterCommand
  *
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Console
  */
 class ICDImporterCommand extends Command
@@ -88,7 +88,7 @@ class ICDImporterCommand extends Command
             $this->info('Loading ICD file. This will take a while...');
             $xmlDOM = simplexml_load_string(\Storage::disk('local')->get($xmlFile));
             $this->info('ICD file loaded successfully...');
-            $this->info(count($xmlDOM->Class) .' code sections to proceed...');
+            $this->info(count($xmlDOM->Class) . ' code sections to proceed...');
 
             // Retrieve base nodes: Chapters
             $chapterNodes = $xmlDOM->xpath('/ClaML/Class[@kind="chapter"]');
@@ -152,7 +152,7 @@ class ICDImporterCommand extends Command
                 foreach ($rubricNode->Label->Fragment as $fragmentNode) {
                     // Retrieve fragment data
                     $rubricData['label'][] = [
-                        'type' => (string)$fragmentNode['type'],
+                        'type'  => (string)$fragmentNode['type'],
                         'label' => (string)$fragmentNode
                     ];
                 }

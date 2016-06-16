@@ -1,17 +1,17 @@
 <?php namespace KekecMed\Event\Entities;
-   
+
 use Illuminate\Database\Eloquent\Model;
-use KekecMed\Event\Entities\Event;
 
 /**
  * Class EventType
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package KekecMed\Calendar\Entities
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
-class EventType extends Model {
+class EventType extends Model
+{
 
     protected $fillable = [
         'title',
@@ -24,7 +24,8 @@ class EventType extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function events() {
+    public function events()
+    {
         return $this->hasMany(Event::class);
     }
 }

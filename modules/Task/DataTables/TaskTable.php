@@ -9,10 +9,10 @@ use KekecMed\Task\Entities\Task;
 /**
  * Class TaskTable
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package App\DataTables
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class TaskTable extends AbstractCoreDataTable
 {
@@ -67,9 +67,9 @@ class TaskTable extends AbstractCoreDataTable
         return [
             'id',
             [
-                'title'          => 'Title',
-                'name' => 'title',
-                'data' => 'title',
+                'title' => 'Title',
+                'name'  => 'title',
+                'data'  => 'title',
                 'width' => '40%',
                 'class' => 'td-wrap',
             ],
@@ -95,22 +95,23 @@ class TaskTable extends AbstractCoreDataTable
      * Ajax processor
      *
      * @param $eloq
+     *
      * @return mixed
      */
     protected function processAjax($eloq)
     {
         // Add image column callback
-        $eloq->addColumn('creator_id', function($model) {
+        $eloq->addColumn('creator_id', function ($model) {
             return $model->creator()->first()->getFullName();
         });
 
         // Add image column callback
-        $eloq->addColumn('assignee_id', function($model) {
+        $eloq->addColumn('assignee_id', function ($model) {
             return $model->assignee()->first()->getFullName();
         });
 
         // Add image column callback
-        $eloq->addColumn('object_id', function($model) {
+        $eloq->addColumn('object_id', function ($model) {
             return $model->object()->first()->getFullName();
         });
     }

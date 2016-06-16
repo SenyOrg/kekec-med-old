@@ -14,7 +14,7 @@ use KekecMed\Theme\Component\ViewComponent;
  *
  * -----------------------------
  * @package KekecMed\Core\Http\Controllers
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 abstract class CoreResourceController extends AbstractCoreResourceController
 {
@@ -35,6 +35,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
     {
 
         $class = $this->getModelClass();
+
         return new $class();
     }
 
@@ -59,10 +60,11 @@ abstract class CoreResourceController extends AbstractCoreResourceController
         if ($this instanceof CoreDataTableController) {
             // Set dataTable instance in ViewComponent
             ViewComponent::getInstance()->dataTable($this->getDataTable());
-            
+
             return $this->getDataTable()->render($this->getDataTableTemplatePath());
-        } else
+        } else {
             return $this->getIndexView();
+        }
     }
 
     /**
@@ -81,7 +83,8 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Execute before create()
      *
      * @param Model $model
-     * @param View $view
+     * @param View  $view
+     *
      * @return mixed
      */
     abstract protected function beforeCreate(Model $model, View $view);
@@ -104,6 +107,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Returns View for create()
      *
      * @param array $data
+     *
      * @return View
      */
     protected function getCreateView(array $data)
@@ -145,6 +149,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * to create a new model
      *
      * @param Request $request
+     *
      * @return array
      */
     protected function getDataStore(Request $request)
@@ -156,6 +161,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Creates a new model
      *
      * @param $data
+     *
      * @return static
      */
     protected function createModel($data)
@@ -171,6 +177,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Execute before store()
      *
      * @param array $data
+     *
      * @return mixed
      */
     abstract protected function beforeStore(array $data);
@@ -179,6 +186,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Execute after store()
      *
      * @param Model $model
+     *
      * @return mixed
      */
     abstract protected function afterStore(Model $model);
@@ -194,6 +202,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Redirects after store() procedure()
      *
      * @param Model $model
+     *
      * @return mixed
      */
     protected function redirectAfterStore(Model $model)
@@ -205,6 +214,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -241,6 +251,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Get View for show()
      *
      * @param Model $model
+     *
      * @return View
      */
     public function getShowView(Model $model)
@@ -252,6 +263,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Display the specified resource.
      *
      * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -274,6 +286,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Show the form for editing the specified resource.
      *
      * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -290,7 +303,8 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -312,6 +326,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      *
      * @param $id
      * @param $data
+     *
      * @return mixed
      */
     abstract protected function beforeUpdate($id, $data);
@@ -327,6 +342,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Redirection after update()
      *
      * @param $id
+     *
      * @return mixed
      */
     protected function redirectAfterUpdate($id)
@@ -337,7 +353,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
     /**
      * Updates a given model
      *
-     * @param $id
+     * @param       $id
      * @param array $data
      */
     protected function updateModel($id, array $data)
@@ -351,11 +367,13 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Remove the specified resource from storage.
      *
      * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $this->destroyModel($id);
+
         return $this->redirectAfterDestroy($id);
     }
 
@@ -363,6 +381,7 @@ abstract class CoreResourceController extends AbstractCoreResourceController
      * Redirect after destroy()
      *
      * @param $id
+     *
      * @return mixed
      */
     protected function redirectAfterDestroy($id)

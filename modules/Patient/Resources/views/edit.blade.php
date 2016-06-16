@@ -157,7 +157,7 @@
 @endsection
 
 @push('document-ready-stack')
-    $('#task-body').slimScroll({
-        height: '250px'
-    });
+$('#task-body').slimScroll({
+height: '250px'
+});
 @endpush

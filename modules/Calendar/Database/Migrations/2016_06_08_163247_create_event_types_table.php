@@ -1,16 +1,17 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 /**
  * Class CreateEventTypesTable
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class CreateEventTypesTable extends Migration {
+class CreateEventTypesTable extends Migration
+{
 
     /**
      * Run the migrations.
@@ -19,8 +20,7 @@ class CreateEventTypesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('event_types', function(Blueprint $table)
-        {
+        Schema::create('event_types', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('title');

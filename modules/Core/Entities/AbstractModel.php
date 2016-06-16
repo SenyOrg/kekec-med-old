@@ -1,6 +1,7 @@
 <?php
 
 namespace KekecMed\Core\Entities;
+
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,5 +13,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 abstract class AbstractModel extends Model
 {
-    
+
 }

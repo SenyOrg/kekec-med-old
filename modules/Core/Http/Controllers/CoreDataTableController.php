@@ -4,6 +4,7 @@ namespace KekecMed\Core\Http\Controllers;
 
 /**
  * Interface CoreDataTableController
+ *
  * @package KekecMed\Core\Http\Controllers
  */
 interface CoreDataTableController

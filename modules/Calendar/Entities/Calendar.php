@@ -1,5 +1,5 @@
 <?php namespace KekecMed\Calendar\Entities;
-   
+
 use Illuminate\Database\Eloquent\Model;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Event\Entities\Event;
@@ -10,13 +10,14 @@ use KekecMed\Event\Entities\Event;
  *
  * -----------------------------
  * @package KekecMed\Calendar\Entities
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
-class Calendar extends Model implements Dialogable{
+class Calendar extends Model implements Dialogable
+{
 
     /**
      * Fillable attributes
-     * 
+     *
      * @var array
      */
     protected $fillable = [
@@ -30,28 +31,31 @@ class Calendar extends Model implements Dialogable{
 
     /**
      * Check if calendar is shared
-     * 
+     *
      * @return bool
      */
-    public function isShared() {
+    public function isShared()
+    {
         return (bool)$this->shared;
     }
 
     /**
      * Get creator / owner of calendar
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(\App\User::class, 'creator_id');
     }
 
     /**
      * Get events of calendar
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function events() {
+    public function events()
+    {
         return $this->hasMany(Event::class);
     }
 
@@ -64,7 +68,7 @@ class Calendar extends Model implements Dialogable{
     {
         $arr = [];
 
-        self::select(['id', 'title'])->orderBy('title')->each(function($u) use(&$arr) {
+        self::select(['id', 'title'])->orderBy('title')->each(function ($u) use (&$arr) {
             $arr[$u->id] = $u->title;
         });
 

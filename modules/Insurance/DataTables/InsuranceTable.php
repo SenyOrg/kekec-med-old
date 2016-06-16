@@ -9,10 +9,10 @@ use KekecMed\Insurance\Entities\Insurance;
 /**
  * Class InsuranceTable
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package App\DataTables
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class InsuranceTable extends AbstractCoreDataTable
 {
@@ -91,17 +91,18 @@ class InsuranceTable extends AbstractCoreDataTable
      * Ajax processor
      *
      * @param $eloq
+     *
      * @return mixed
      */
     protected function processAjax($eloq)
     {
         // Add image column callback
-        $eloq->addColumn('homepage', function($model) {
-            return '<a href="'.$model->homepage.'"><i class="fa fa-globe"></i> Visit</a>';
+        $eloq->addColumn('homepage', function ($model) {
+            return '<a href="' . $model->homepage . '"><i class="fa fa-globe"></i> Visit</a>';
         });
 
         // Add image column callback
-        $eloq->addColumn('members', function($model) {
+        $eloq->addColumn('members', function ($model) {
             return $model->patients->count();
         });
     }

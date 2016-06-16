@@ -95,6 +95,7 @@ class PatientController extends CoreConventionalResourceViewController
      * Execute before store()
      *
      * @param array $data
+     *
      * @return mixed
      */
     protected function beforeStore(array $data)
@@ -106,6 +107,7 @@ class PatientController extends CoreConventionalResourceViewController
      * Execute after store()
      *
      * @param Model $model
+     *
      * @return mixed
      */
     protected function afterStore(Model $model)
@@ -118,6 +120,7 @@ class PatientController extends CoreConventionalResourceViewController
      *
      * @param $id
      * @param $data
+     *
      * @return mixed
      */
     protected function beforeUpdate($id, $data)

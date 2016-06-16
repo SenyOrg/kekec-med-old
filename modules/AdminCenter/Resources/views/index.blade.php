@@ -1,11 +1,11 @@
 @extends('admincenter::layouts.master')
 
 @section('content')
-	
-	<h1>Hello World</h1>
-	
-	<p>
-		This view is loaded from module: {!! config('admincenter.name') !!}
-	</p>
+
+    <h1>Hello World</h1>
+
+    <p>
+        This view is loaded from module: {!! config('admincenter.name') !!}
+    </p>
 
 @stop

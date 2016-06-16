@@ -1,7 +1,6 @@
 <?php namespace KekecMed\Event\Entities;
-   
+
 use App\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use KekecMed\Calendar\Entities\Calendar;
 use KekecMed\Patient\Entities\Patient;
@@ -9,12 +8,13 @@ use KekecMed\Patient\Entities\Patient;
 /**
  * Class Event
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package KekecMed\Calendar\Entities
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
-class Event extends Model {
+class Event extends Model
+{
 
     /**
      * Fillable attributes
@@ -38,7 +38,8 @@ class Event extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function calendar() {
+    public function calendar()
+    {
         return $this->belongsTo(Calendar::class);
     }
 
@@ -47,7 +48,8 @@ class Event extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function type() {
+    public function type()
+    {
         return $this->belongsTo(EventType::class, 'event_type_id');
     }
 
@@ -56,7 +58,8 @@ class Event extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -65,7 +68,8 @@ class Event extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function patient() {
+    public function patient()
+    {
         return $this->belongsTo(Patient::class);
     }
 
@@ -74,16 +78,18 @@ class Event extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function status() {
+    public function status()
+    {
         return $this->belongsTo(EventStatus::class, 'event_status_id');
     }
 
     /**
      * Get participants of event
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function participants() {
+    public function participants()
+    {
         return $this->hasMany(EventParticipant::class);
     }
 }

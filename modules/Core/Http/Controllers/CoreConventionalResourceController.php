@@ -11,7 +11,7 @@ use Illuminate\View\View;
  *
  * -----------------------------
  * @package KekecMed\Core\Http\Controllers
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 abstract class CoreConventionalResourceController extends CoreResourceController
 {
@@ -27,6 +27,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
      * Get route name
      *
      * @param $route
+     *
      * @return string
      */
     public function getRouteName($route)
@@ -38,6 +39,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
      * Get path to view
      *
      * @param $view
+     *
      * @return string
      */
     public function getViewPath($view)
@@ -70,7 +72,8 @@ abstract class CoreConventionalResourceController extends CoreResourceController
      * Execute before create()
      *
      * @param Model $model
-     * @param View $view
+     * @param View  $view
+     *
      * @return mixed
      */
     protected function beforeCreate(Model $model, View $view)
@@ -104,6 +107,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
      * Execute before store()
      *
      * @param array $data
+     *
      * @return mixed
      */
     protected function beforeStore(array $data)
@@ -116,6 +120,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
      * Execute after store()
      *
      * @param Model $model
+     *
      * @return mixed
      */
     protected function afterStore(Model $model)
@@ -159,6 +164,7 @@ abstract class CoreConventionalResourceController extends CoreResourceController
      *
      * @param $id
      * @param $data
+     *
      * @return mixed
      */
     protected function beforeUpdate($id, $data)

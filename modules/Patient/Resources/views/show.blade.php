@@ -156,9 +156,11 @@
                                 <!-- todo text -->
                                 <span class="text">{{$task->title}}</span>
                                 <!-- Emphasis label -->
-                                <small class="label label-danger"><i class="fa fa-user fa-lg"></i> {{$task->creator->getFullname()}}</small>
+                                <small class="label label-danger"><i
+                                            class="fa fa-user fa-lg"></i> {{$task->creator->getFullname()}}</small>
                                 &nbsp;&nbsp;>&nbsp;&nbsp;
-                                <small class="label label-info"><i class="fa fa-user fa-lg"></i> {{$task->assignee->getFullname()}}</small>
+                                <small class="label label-info"><i
+                                            class="fa fa-user fa-lg"></i> {{$task->assignee->getFullname()}}</small>
                                 <!-- General tools such as edit or delete-->
                                 <div class="tools">
                                     <i class="fa fa-edit"></i>
@@ -180,17 +182,17 @@
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#task-body').slimScroll({
                 height: '250px'
             });
 
-            $('#deletePatient').data('deleteAction', function() {
-                        var form = $('#generalForm');
-                        var method = $('#generalFormMethod');
-                        form.attr('action', '{{route('patient.destroy', ['id' => $model->id])}}');
-                        method.val('DELETE');
-                        form.submit();
+            $('#deletePatient').data('deleteAction', function () {
+                var form = $('#generalForm');
+                var method = $('#generalFormMethod');
+                form.attr('action', '{{route('patient.destroy', ['id' => $model->id])}}');
+                method.val('DELETE');
+                form.submit();
             });
         })
     </script>

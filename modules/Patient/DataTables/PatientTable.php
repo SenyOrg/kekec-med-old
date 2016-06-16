@@ -9,10 +9,10 @@ use KekecMed\Patient\Entities\Patient;
 /**
  * Class PatientTable
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package App\DataTables
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class PatientTable extends AbstractCoreDataTable
 {
@@ -105,13 +105,14 @@ class PatientTable extends AbstractCoreDataTable
      * Ajax processor
      *
      * @param $eloq
+     *
      * @return mixed
      */
     protected function processAjax($eloq)
     {
         // Add image column callback
-        $eloq->addColumn('image', function($model) {
-            return '<img src="'.$model->getImageUrl().'" width="50" height="50"/>';
+        $eloq->addColumn('image', function ($model) {
+            return '<img src="' . $model->getImageUrl() . '" width="50" height="50"/>';
         });
     }
 }

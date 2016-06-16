@@ -1,18 +1,18 @@
 <?php namespace KekecMed\Event\Entities;
-   
+
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use KekecMed\Event\Entities\Event;
 
 /**
  * Class EventParticipant
  * -----------------------------
- * 
+ *
  * -----------------------------
  * @package KekecMed\Calendar\Entities
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
-class EventParticipant extends Model {
+class EventParticipant extends Model
+{
 
     /**
      * Fillable attributes
@@ -29,16 +29,18 @@ class EventParticipant extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function event() {
+    public function event()
+    {
         return $this->belongsTo(Event::class);
     }
 
     /**
      * Get participated user
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function participant() {
+    public function participant()
+    {
         return $this->belongsTo(User::class);
     }
 

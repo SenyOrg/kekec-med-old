@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
  *
  * -----------------------------
  * @package KekecMed\Core\Http\Controllers
- * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 abstract class AbstractCoreResourceController extends AbstractCoreController
 {
@@ -32,6 +32,7 @@ abstract class AbstractCoreResourceController extends AbstractCoreController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     abstract public function store(Request $request);
@@ -40,6 +41,7 @@ abstract class AbstractCoreResourceController extends AbstractCoreController
      * Display the specified resource.
      *
      * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     abstract public function show($id);
@@ -48,6 +50,7 @@ abstract class AbstractCoreResourceController extends AbstractCoreController
      * Show the form for editing the specified resource.
      *
      * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     abstract public function edit($id);
@@ -56,7 +59,8 @@ abstract class AbstractCoreResourceController extends AbstractCoreController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     abstract public function update(Request $request, $id);
@@ -65,6 +69,7 @@ abstract class AbstractCoreResourceController extends AbstractCoreController
      * Remove the specified resource from storage.
      *
      * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     abstract public function destroy($id);
@@ -73,24 +78,25 @@ abstract class AbstractCoreResourceController extends AbstractCoreController
      * Get a validator for an incoming registration request.
      *
      * @param  array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function getValidationData()
     {
         return [
-            'formData.firstname' => 'required|max:255',
-            'formData.lastname' => 'required|max:255',
-            'formData.gender' => 'required',
-            'formData.birthdate' => 'required',
+            'formData.firstname'      => 'required|max:255',
+            'formData.lastname'       => 'required|max:255',
+            'formData.gender'         => 'required',
+            'formData.birthdate'      => 'required',
             'formData.insurance_type' => 'required',
-            'formData.insurance_id' => 'required',
-            'formData.insurance_no' => 'required',
-            'formData.phone' => 'required',
-            'formData.mobile' => 'required',
-            'formData.street' => 'required',
-            'formData.no' => 'required',
-            'formData.zipcode' => 'required',
-            'formData.email' => 'required|email|max:255',
+            'formData.insurance_id'   => 'required',
+            'formData.insurance_no'   => 'required',
+            'formData.phone'          => 'required',
+            'formData.mobile'         => 'required',
+            'formData.street'         => 'required',
+            'formData.no'             => 'required',
+            'formData.zipcode'        => 'required',
+            'formData.email'          => 'required|email|max:255',
 
         ];
     }

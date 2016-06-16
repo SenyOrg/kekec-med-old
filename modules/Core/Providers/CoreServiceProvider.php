@@ -34,18 +34,20 @@ class CoreServiceProvider extends ServiceProvider
         }
     }
 
-    public function registerCommands() {
-        $this->commands(ICDImporterCommand::class);
-    }
-
     /**
-     * Register the service provider.
+     * Register translations.
      *
      * @return void
      */
-    public function register()
+    public function registerTranslations()
     {
-        //
+        $langPath = base_path('resources/lang/modules/core');
+
+        if (is_dir($langPath)) {
+            $this->loadTranslationsFrom($langPath, 'core');
+        } else {
+            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'core');
+        }
     }
 
     /**
@@ -83,20 +85,19 @@ class CoreServiceProvider extends ServiceProvider
         }, \Config::get('view.paths')), [$sourcePath]), 'core');
     }
 
+    public function registerCommands()
+    {
+        $this->commands(ICDImporterCommand::class);
+    }
+
     /**
-     * Register translations.
+     * Register the service provider.
      *
      * @return void
      */
-    public function registerTranslations()
+    public function register()
     {
-        $langPath = base_path('resources/lang/modules/core');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'core');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'core');
-        }
+        //
     }
 
     /**
@@ -106,7 +107,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
 }
