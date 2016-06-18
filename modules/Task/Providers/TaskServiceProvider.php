@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Task\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Theme\Component\ViewComponent;
 
 class TaskServiceProvider extends ServiceProvider
 {
@@ -23,13 +24,12 @@ class TaskServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
 
-        \Menu::modify('navigation', function ($menu) {
+        ViewComponent::getInstance()->modifySidebar(function ($menu) {
             $menu->route(
                 'task.index', // route name
                 'Tasks', // title
                 [], // route parameters
                 [
-                    'target' => 'blank',
                     'icon'   => 'fa fa-tasks'
                 ] // attributes
             );

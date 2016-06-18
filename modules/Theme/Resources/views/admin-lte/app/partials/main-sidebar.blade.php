@@ -24,7 +24,7 @@
         </form>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        {!! Menu::render('navigation', '\KekecMed\Theme\Component\AdminLTEMenuPresenter') !!}
+        {!! $vc->renderSidebar() !!}
     </section>
     <!-- /.sidebar -->
 </aside>

@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Insurance\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Theme\Component\ViewComponent;
 
 class InsuranceServiceProvider extends ServiceProvider
 {
@@ -23,13 +24,12 @@ class InsuranceServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
 
-        \Menu::modify('navigation', function ($menu) {
+        ViewComponent::getInstance()->modifySidebar(function ($menu) {
             $menu->route(
                 'insurance.index', // route name
                 'Insurance', // title
                 [], // route parameters
                 [
-                    'target' => 'blank',
                     'icon'   => 'fa fa-life-ring'
                 ] // attributes
             );

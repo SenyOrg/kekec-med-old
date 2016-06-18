@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Event\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
 use KekecMed\Core\Http\Controllers\Core\View\AbstractViewController;
 use KekecMed\Core\Http\Controllers\CoreDataTableController;
 use KekecMed\Core\Http\Controllers\DataTable;
@@ -8,7 +9,7 @@ use KekecMed\Event\Entities\Event;
 use KekecMed\Event\Entities\EventParticipant;
 
 class EventController extends AbstractViewController
-    implements \KekecMed\Core\Http\Controllers\Core\Traits\DataTable
+    implements \KekecMed\Core\Http\Controllers\Core\Traits\DataTable, Breadcrumbful
 {
 
     /**
@@ -31,6 +32,122 @@ class EventController extends AbstractViewController
     public function getDataTableTemplatePath()
     {
         return 'event::index';
+    }
+
+    /**
+     * Breadcrumb: Root
+     *
+     * @return void
+     */
+    public function rootBreadcrumb()
+    {
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+            $menu->route(
+                $this->getRouteName('index'),
+                'Events',
+                [],
+                0,
+                []
+            );
+        });
+    }
+
+    /**
+     * Breadcrumb: Index
+     *
+     * @return void
+     */
+    public function indexBreadcrumb()
+    {
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+            $menu->route(
+                $this->getRouteName('index'),
+                'All Events',
+                [],
+                0,
+                [
+                    'icon' => 'fa fa-list'
+                ]
+            );
+        });
+    }
+
+    /**
+     * Breadcrumb: Edit
+     *
+     * @return void
+     */
+    public function editBreadcrumb($id)
+    {
+        $class = $this->getModelClass();
+        $model = $class::find($id);
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) use ($model) {
+            $menu->route(
+                $this->getRouteName('edit'),
+                $model->title,
+                [
+                    'id' => $model->id
+                ],
+                0,
+                [
+                    'icon' => 'fa fa-event'
+                ]
+            );
+        });
+    }
+
+    /**
+     * Get model class
+     *
+     * @return Model::class
+     */
+    protected function getModelClass()
+    {
+        return Event::class;
+    }
+
+    /**
+     * Breadcrumb: Create
+     *
+     * @return void
+     */
+    public function createBreadcrumb()
+    {
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+            $menu->route(
+                $this->getRouteName('create'),
+                '[Event title]',
+                [],
+                0,
+                [
+                    'icon' => 'fa fa-event'
+                ]
+            );
+        });
+    }
+
+    /**
+     * Breadcrumb: Show
+     *
+     * @return void
+     */
+    public function showBreadcrumb($id)
+    {
+        $class = $this->getModelClass();
+        $model = $class::find($id);
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) use ($model) {
+            $menu->route(
+                $this->getRouteName('show'),
+                $model->title,
+                [
+                    'id' => $model->id
+                ],
+                0,
+                [
+                    'icon' => 'fa fa-event'
+                ]
+            );
+        });
     }
 
     /**
@@ -70,15 +187,5 @@ class EventController extends AbstractViewController
                 EventParticipant::create(['participant_id' => $userID, 'event_id' => $id]);
             }
         }
-    }
-
-    /**
-     * Get model class
-     *
-     * @return Model::class
-     */
-    protected function getModelClass()
-    {
-        return Event::class;
     }
 }

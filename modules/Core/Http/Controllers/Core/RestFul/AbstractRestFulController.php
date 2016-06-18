@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Psr7\Request;
 use KekecMed\Core\Http\Controllers\Core\AbstractRestFulBlueprintController;
+use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
 use KekecMed\Core\Http\Controllers\Core\Traits\DataTable;
 use KekecMed\Core\Http\Controllers\Core\Traits\ValidatableRest;
 use KekecMed\Theme\Component\ViewComponent;
@@ -14,12 +15,33 @@ use KekecMed\Theme\Component\ViewComponent;
 abstract class AbstractRestFulController extends AbstractRestFulBlueprintController
 {
     /**
+     * AbstractController constructor.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    public function __construct(\Illuminate\Http\Request $request)
+    {
+        parent::__construct($request);
+
+        // Process root node of BreadCrumb
+        if ($this instanceof Breadcrumbful) {
+            $this->rootBreadcrumb();
+        }
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Process index node of BreadCrumb
+        if ($this instanceof Breadcrumbful) {
+            $this->indexBreadcrumb();
+        }
+
         // DataTable routine
         if ($this instanceof DataTable) {
             // Set dataTable instance in ViewComponent
@@ -67,11 +89,16 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      */
     public function create()
     {
+        // Process root node of BreadCrumb
+        if ($this instanceof Breadcrumbful) {
+            $this->createBreadcrumb();
+        }
+
         // Get View Data
         $data = $this->getCreateViewData();
 
         // Return View
-        return $this->getCreatView($data);
+        return $this->getCreateView($data);
     }
 
     /**
@@ -115,6 +142,25 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      * @return Model::class
      */
     abstract protected function getModelClass();
+
+    /**
+     * Returns View for create()
+     *
+     * @param array $data
+     *
+     * @return View
+     */
+    protected function getCreateView(array $data)
+    {
+        return $this->createView($this->getCreateViewPath(), $data);
+    }
+
+    /**
+     * Get ViewPath for create()
+     *
+     * @return string
+     */
+    abstract protected function getCreateViewPath();
 
     /**
      * Store a newly created resource in storage.
@@ -212,6 +258,11 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      */
     public function show($id)
     {
+        // Process edit node of BreadCrumb
+        if ($this instanceof Breadcrumbful) {
+            $this->showBreadcrumb($id);
+        }
+
         // Get View Data
         $data = $this->getShowViewData($id);
 
@@ -270,6 +321,11 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      */
     public function edit($id)
     {
+        // Process edit node of BreadCrumb
+        if ($this instanceof Breadcrumbful) {
+            $this->editBreadcrumb($id);
+        }
+
         // Get View Data
         $data = $this->getEditViewData($id);
 
@@ -415,25 +471,6 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      * @return string
      */
     abstract protected function redirectAfterDestroyRoute();
-
-    /**
-     * Returns View for create()
-     *
-     * @param array $data
-     *
-     * @return View
-     */
-    protected function getCreateView(array $data)
-    {
-        return $this->createView($this->getCreateViewPath(), $data);
-    }
-
-    /**
-     * Get ViewPath for create()
-     *
-     * @return string
-     */
-    abstract protected function getCreateViewPath();
 
     /**
      * Redirection after update()

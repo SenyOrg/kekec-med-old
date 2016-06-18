@@ -1,9 +1,7 @@
 <?php namespace KekecMed\Theme\Providers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use KekecMed\Theme\Component\ViewComponent;
-use Pingpong\Modules\Module;
 
 class ThemeServiceProvider extends ServiceProvider
 {
@@ -35,22 +33,22 @@ class ThemeServiceProvider extends ServiceProvider
         });
 
         view()->share('vc', app()['ViewComponent']);
-
-        /**
-         * Create Navigation
-         */
-        \Menu::create('navigation', function ($menu) {
-        });
     }
 
     /**
-     * Register the service provider.
+     * Register translations.
      *
      * @return void
      */
-    public function register()
+    public function registerTranslations()
     {
-        //
+        $langPath = base_path('resources/lang/modules/theme');
+
+        if (is_dir($langPath)) {
+            $this->loadTranslationsFrom($langPath, 'theme');
+        } else {
+            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'theme');
+        }
     }
 
     /**
@@ -89,19 +87,13 @@ class ThemeServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register translations.
+     * Register the service provider.
      *
      * @return void
      */
-    public function registerTranslations()
+    public function register()
     {
-        $langPath = base_path('resources/lang/modules/theme');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'theme');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'theme');
-        }
+        //
     }
 
     /**

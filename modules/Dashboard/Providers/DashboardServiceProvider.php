@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Dashboard\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Theme\Component\ViewComponent;
 
 class DashboardServiceProvider extends ServiceProvider
 {
@@ -23,13 +24,12 @@ class DashboardServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
 
-        \Menu::modify('navigation', function ($menu) {
+        ViewComponent::getInstance()->modifySidebar(function ($menu) {
             $menu->route(
                 'dashboard.index', // route name
                 'Dashboard', // title
                 [], // route parameters
                 [
-                    'target' => 'blank',
                     'icon'   => 'fa fa-dashboard'
                 ] // attributes
             );

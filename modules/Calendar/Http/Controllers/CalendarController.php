@@ -2,9 +2,73 @@
 
 use KekecMed\Calendar\Entities\Calendar;
 use KekecMed\Core\Http\Controllers\Core\RestFul\AbstractRestFulGenericController;
+use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
 
 class CalendarController extends AbstractRestFulGenericController
+    implements Breadcrumbful
 {
+
+    /**
+     * Breadcrumb: Root
+     *
+     * @return void
+     */
+    public function rootBreadcrumb()
+    {
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+            $menu->route(
+                $this->getRouteName('index'),
+                'Calendar',
+                [],
+                0,
+                []
+            );
+        });
+    }
+
+    /**
+     * Breadcrumb: Index
+     *
+     * @return void
+     */
+    public function indexBreadcrumb()
+    {
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+            $menu->route(
+                $this->getRouteName('index'),
+                'All Events',
+                [],
+                0,
+                [
+                    'icon' => 'fa fa-calendar'
+                ]
+            );
+        });
+    }
+
+    /**
+     * Breadcrumb: Edit
+     *
+     * @return void
+     */
+    public function editBreadcrumb($id)
+    {
+        $class = $this->getModelClass();
+        $model = $class::find($id);
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) use ($model) {
+            $menu->route(
+                $this->getRouteName('edit'),
+                $model->title,
+                [
+                    'id' => $model->id
+                ],
+                0,
+                [
+                    'icon' => 'fa fa-calendar'
+                ]
+            );
+        });
+    }
 
     /**
      * Get model class
@@ -14,6 +78,50 @@ class CalendarController extends AbstractRestFulGenericController
     protected function getModelClass()
     {
         return Calendar::class;
+    }
+
+    /**
+     * Breadcrumb: Create
+     *
+     * @return void
+     */
+    public function createBreadcrumb()
+    {
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+            $menu->route(
+                $this->getRouteName('create'),
+                '[Firstname] [Lastname]',
+                [],
+                0,
+                [
+                    'icon' => 'fa fa-user'
+                ]
+            );
+        });
+    }
+
+    /**
+     * Breadcrumb: Show
+     *
+     * @return void
+     */
+    public function showBreadcrumb($id)
+    {
+        $class = $this->getModelClass();
+        $model = $class::find($id);
+        $this->getViewComponent()->modifyBreadcrumb(function ($menu) use ($model) {
+            $menu->route(
+                $this->getRouteName('show'),
+                $model->title,
+                [
+                    'id' => $model->id
+                ],
+                0,
+                [
+                    'icon' => 'fa fa-calendar'
+                ]
+            );
+        });
     }
 
     /**

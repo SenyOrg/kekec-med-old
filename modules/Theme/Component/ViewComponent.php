@@ -24,12 +24,59 @@ class ViewComponent
      */
     private $dataTable = null;
 
+    /**
+     * @var string
+     */
+    private $sidebarInstanceIdentifier = 'sidebarMenu';
+    private $breadcrumbInstanceIdentifier = 'breadcrumbNavigation';
 
     /**
      * ViewComponent constructor.
      */
     private function __construct()
     {
+        /**
+         * Create Sidebar
+         */
+        \Menu::create($this->sidebarInstanceIdentifier, function ($menu) {
+        });
+
+        /**
+         * Create Breadcrumb
+         */
+        \Menu::create($this->breadcrumbInstanceIdentifier, function ($menu) {
+        });
+        $this->modifyBreadcrumb(function ($menu) {
+            $menu->route(
+                'homeroute',
+                ViewComponent::getTitle(),
+                [],
+                0,
+                [
+                    'icon' => 'fa fa-heartbeat'
+                ]
+            );
+        });
+    }
+
+    /**
+     * Modify SideMenu
+     *
+     * @param $closure
+     */
+    public function modifyBreadcrumb($closure)
+    {
+        \Menu::modify($this->breadcrumbInstanceIdentifier, $closure);
+    }
+
+    /**
+     * Get title for page
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return "KekecMED";
     }
 
     /**
@@ -54,16 +101,6 @@ class ViewComponent
     public function getUser()
     {
         return Auth::user();
-    }
-
-    /**
-     * Get title for page
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return "KekecMED";
     }
 
     /**
@@ -138,5 +175,35 @@ class ViewComponent
     public function getDataTimeFormatAsMomentJS()
     {
         return 'YYYY-MM-DD HH:mm';
+    }
+
+    /**
+     * Modify SideMenu
+     *
+     * @param $closure
+     */
+    public function modifySidebar($closure)
+    {
+        \Menu::modify($this->sidebarInstanceIdentifier, $closure);
+    }
+
+    /**
+     * Render Sidebar
+     *
+     * @return string
+     */
+    public function renderSidebar()
+    {
+        return \Menu::render($this->sidebarInstanceIdentifier, AdminLTEMenuPresenter::class);
+    }
+
+    /**
+     * Render Sidebar
+     *
+     * @return string
+     */
+    public function renderBreadcrumb()
+    {
+        return \Menu::render($this->breadcrumbInstanceIdentifier, BreadcrumbMenuPresenter::class);
     }
 }

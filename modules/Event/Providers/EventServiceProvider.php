@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Event\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Theme\Component\ViewComponent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,13 +24,12 @@ class EventServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
 
-        \Menu::modify('navigation', function ($menu) {
+        ViewComponent::getInstance()->modifySidebar(function ($menu) {
             $menu->route(
                 'event.index', // route name
                 'Events', // title
                 [], // route parameters
                 [
-                    'target' => 'blank',
                     'icon'   => 'fa fa-list'
                 ] // attributes
             );

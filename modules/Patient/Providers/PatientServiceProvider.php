@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Patient\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Theme\Component\ViewComponent;
 
 class PatientServiceProvider extends ServiceProvider
 {
@@ -23,13 +24,12 @@ class PatientServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
 
-        \Menu::modify('navigation', function ($menu) {
+        ViewComponent::getInstance()->modifySidebar(function ($menu) {
             $menu->route(
                 'patient.index', // route name
                 'Patients', // title
                 [], // route parameters
                 [
-                    'target' => 'blank',
                     'icon'   => 'fa fa-wheelchair'
                 ] // attributes
             );

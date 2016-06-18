@@ -18,9 +18,7 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Breadcrump -->
-                <li>
-                    <a href="#" class="text-bold bg-light-blue"><i class="fa fa-heartbeat"></i> KekecMED » Dashboard</a>
-                </li>
+                {!! $vc->renderBreadcrumb() !!}
                 <!-- Logs -->
                 @if (env('APP_DEBUG'))
                     <li><a href="http://kekecmed.app/logs" class="text-bold text-red">Logs</a></li>

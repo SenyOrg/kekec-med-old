@@ -20,7 +20,7 @@ Route::get('/', function () {
     } else {
         return redirect('login');
     }
-});
+})->name('homeroute');
 
 Route::auth();
 

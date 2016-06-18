@@ -88,4 +88,14 @@ abstract class AbstractController extends Controller
     {
         return $this->validate($request, $validationRules);
     }
+
+    /**
+     * Get ViewComponent
+     *
+     * @return ViewComponent|null
+     */
+    protected function getViewComponent()
+    {
+        return ViewComponent::getInstance();
+    }
 }

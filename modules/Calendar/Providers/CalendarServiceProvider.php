@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Calendar\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Theme\Component\ViewComponent;
 
 class CalendarServiceProvider extends ServiceProvider
 {
@@ -23,13 +24,12 @@ class CalendarServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
 
-        \Menu::modify('navigation', function ($menu) {
+        ViewComponent::getInstance()->modifySidebar(function ($menu) {
             $menu->route(
                 'calendar.index', // route name
                 'Calendar', // title
                 [], // route parameters
                 [
-                    'target' => 'blank',
                     'icon'   => 'fa fa-calendar'
                 ] // attributes
             );
