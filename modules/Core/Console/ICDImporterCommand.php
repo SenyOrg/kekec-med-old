@@ -186,11 +186,13 @@ class ICDImporterCommand extends Command
                     }
 
                     // Clean up content: Cut last 2 digits => '\n'
-                    $rubricData['content'] = substr($rubricData['content'], 0, -2);
+                    if (strlen($rubricData['content']))
+                        $rubricData['content'] = substr($rubricData['content'], 0, -2);
                 }
 
                 // Clean up reference: Cut last 2 digits => ', '
-                $rubricData['reference'] = substr($rubricData['reference'], 0, -2);
+                if (strlen($rubricData['reference']))
+                    $rubricData['reference'] = substr($rubricData['reference'], 0, -2);
 
                 // Include Rubric into Collection
                 $rubricCollection[] = new ICDRubric($rubricData);
