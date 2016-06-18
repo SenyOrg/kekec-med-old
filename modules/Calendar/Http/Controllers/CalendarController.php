@@ -3,9 +3,10 @@
 use KekecMed\Calendar\Entities\Calendar;
 use KekecMed\Core\Http\Controllers\Core\RestFul\AbstractRestFulGenericController;
 use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
+use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
 
 class CalendarController extends AbstractRestFulGenericController
-    implements Breadcrumbful
+    implements Breadcrumbful, Headful
 {
 
     /**
@@ -122,6 +123,26 @@ class CalendarController extends AbstractRestFulGenericController
                 ]
             );
         });
+    }
+
+    /**
+     * Get PageHeader
+     *
+     * @return string
+     */
+    public function getPageHeader()
+    {
+        return 'Calendar';
+    }
+
+    /**
+     * Get SubPageHeader
+     *
+     * @return string
+     */
+    public function getPageSubHeader()
+    {
+        return 'Organization and Collaboration';
     }
 
     /**

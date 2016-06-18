@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
+use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
 use KekecMed\Theme\Component\ViewComponent;
 use Pingpong\Modules\Routing\Controller;
 
@@ -28,6 +29,22 @@ abstract class AbstractController extends Controller
 
         // Store Request
         $this->setRequest($request);
+
+        // Set Header
+        if ($this instanceof Headful) {
+            $this->getViewComponent()->setPageHeader($this->getPageHeader());
+            $this->getViewComponent()->setPageSubHeader($this->getPageSubHeader());
+        }
+    }
+
+    /**
+     * Get ViewComponent
+     *
+     * @return ViewComponent|null
+     */
+    protected function getViewComponent()
+    {
+        return ViewComponent::getInstance();
     }
 
     /**
@@ -87,15 +104,5 @@ abstract class AbstractController extends Controller
     protected function validateRequest(Request $request, array $validationRules)
     {
         return $this->validate($request, $validationRules);
-    }
-
-    /**
-     * Get ViewComponent
-     *
-     * @return ViewComponent|null
-     */
-    protected function getViewComponent()
-    {
-        return ViewComponent::getInstance();
     }
 }

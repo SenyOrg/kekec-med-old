@@ -4,6 +4,7 @@ use App\Http\Requests;
 use Illuminate\Database\Eloquent\Model;
 use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
 use KekecMed\Core\Http\Controllers\Core\Traits\DataTable;
+use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
 use KekecMed\Core\Http\Controllers\Core\Traits\ValidatableRest;
 use KekecMed\Core\Http\Controllers\Core\View\AbstractViewController;
 use KekecMed\Core\Http\Controllers\CoreConventionalResourceViewController;
@@ -13,13 +14,13 @@ use KekecMed\Insurance\Entities\Insurance;
 use KekecMed\Patient\Entities\Patient;
 
 class PatientController extends AbstractViewController
-    implements DataTable, ValidatableRest, Breadcrumbful
+    implements DataTable, ValidatableRest, Breadcrumbful, Headful
 {
 
     /**
      * Get DataTable
      *
-     * @return \KekecMed\Core\Http\Controllers\DataTable
+     * @return \KekecMed\Core\DataTables\AbstractCoreDataTable
      */
     public function getDataTable()
     {
@@ -209,6 +210,26 @@ class PatientController extends AbstractViewController
         $model->insurance = new Insurance();
 
         return $model;
+    }
+
+    /**
+     * Get PageHeader
+     *
+     * @return string
+     */
+    public function getPageHeader()
+    {
+        return 'Patients';
+    }
+
+    /**
+     * Get SubPageHeader
+     *
+     * @return string
+     */
+    public function getPageSubHeader()
+    {
+        return 'Organize and manage your patients';
     }
 
     /**

@@ -1,10 +1,11 @@
 <?php namespace KekecMed\Profile\Http\Controllers;
 
-use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+use KekecMed\Core\Http\Controllers\Core\AbstractController;
+use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
 
-class ProfileController extends Controller
+class ProfileController extends AbstractController
+    implements Headful
 {
 
     /**
@@ -64,22 +65,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -114,6 +99,42 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Get PageHeader
+     *
+     * @return string
+     */
+    public function getPageHeader()
+    {
+        return 'Profile';
+    }
+
+    /**
+     * Get SubPageHeader
+     *
+     * @return string
+     */
+    public function getPageSubHeader()
+    {
+        return null;
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array $data
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
     }
 
 }

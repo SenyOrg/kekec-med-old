@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
 use KekecMed\Core\Http\Controllers\Core\Traits\DataTable;
+use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
 use KekecMed\Core\Http\Controllers\Core\Traits\ValidatableRest;
 use KekecMed\Core\Http\Controllers\Core\View\AbstractViewController;
 use KekecMed\Core\Http\Controllers\CoreConventionalResourceViewController;
@@ -11,13 +12,13 @@ use KekecMed\Core\Http\Controllers\CoreValidationController;
 use KekecMed\Insurance\Entities\Insurance;
 
 class InsuranceController extends AbstractViewController
-    implements DataTable, ValidatableRest, Breadcrumbful
+    implements DataTable, ValidatableRest, Breadcrumbful, Headful
 {
 
     /**
      * Get DataTable
      *
-     * @return \KekecMed\Core\Http\Controllers\DataTable
+     * @return \KekecMed\Core\DataTables\AbstractCoreDataTable
      */
     public function getDataTable()
     {
@@ -181,6 +182,26 @@ class InsuranceController extends AbstractViewController
                 ]
             );
         });
+    }
+
+    /**
+     * Get PageHeader
+     *
+     * @return string
+     */
+    public function getPageHeader()
+    {
+        return 'Insurances';
+    }
+
+    /**
+     * Get SubPageHeader
+     *
+     * @return string
+     */
+    public function getPageSubHeader()
+    {
+        return 'Manage insurances';
     }
 
     /**

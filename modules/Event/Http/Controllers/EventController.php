@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
+use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
 use KekecMed\Core\Http\Controllers\Core\View\AbstractViewController;
 use KekecMed\Core\Http\Controllers\CoreDataTableController;
 use KekecMed\Core\Http\Controllers\DataTable;
@@ -9,7 +10,7 @@ use KekecMed\Event\Entities\Event;
 use KekecMed\Event\Entities\EventParticipant;
 
 class EventController extends AbstractViewController
-    implements \KekecMed\Core\Http\Controllers\Core\Traits\DataTable, Breadcrumbful
+    implements \KekecMed\Core\Http\Controllers\Core\Traits\DataTable, Breadcrumbful, Headful
 {
 
     /**
@@ -148,6 +149,26 @@ class EventController extends AbstractViewController
                 ]
             );
         });
+    }
+
+    /**
+     * Get PageHeader
+     *
+     * @return string
+     */
+    public function getPageHeader()
+    {
+        return 'Events';
+    }
+
+    /**
+     * Get SubPageHeader
+     *
+     * @return string
+     */
+    public function getPageSubHeader()
+    {
+        return null;
     }
 
     /**

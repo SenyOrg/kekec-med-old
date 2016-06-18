@@ -1,8 +1,10 @@
 <?php namespace KekecMed\Dashboard\Http\Controllers;
 
 use KekecMed\Core\Http\Controllers\Core\AbstractController;
+use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
 
 class DashboardController extends AbstractController
+    implements Headful
 {
 
     public function index()
@@ -19,6 +21,26 @@ class DashboardController extends AbstractController
             );
         });
         return view('dashboard::index');
+    }
+
+    /**
+     * Get PageHeader
+     *
+     * @return string
+     */
+    public function getPageHeader()
+    {
+        return 'Dashboard';
+    }
+
+    /**
+     * Get SubPageHeader
+     *
+     * @return string
+     */
+    public function getPageSubHeader()
+    {
+        return 'Overview and Statistics';
     }
 
 }

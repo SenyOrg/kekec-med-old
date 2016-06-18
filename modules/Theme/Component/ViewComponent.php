@@ -25,6 +25,20 @@ class ViewComponent
     private $dataTable = null;
 
     /**
+     * Page Header
+     *
+     * @var null
+     */
+    private $pageHeader = 'KekecMed';
+
+    /**
+     * Page Sub Header
+     *
+     * @var null
+     */
+    private $pageSubHeader = null;
+
+    /**
      * @var string
      */
     private $sidebarInstanceIdentifier = 'sidebarMenu';
@@ -205,5 +219,37 @@ class ViewComponent
     public function renderBreadcrumb()
     {
         return \Menu::render($this->breadcrumbInstanceIdentifier, BreadcrumbMenuPresenter::class);
+    }
+
+    /**
+     * @return null
+     */
+    public function getPageHeader()
+    {
+        return $this->pageHeader;
+    }
+
+    /**
+     * @param null $pageHeader
+     */
+    public function setPageHeader($pageHeader)
+    {
+        $this->pageHeader = $pageHeader;
+    }
+
+    /**
+     * @return null
+     */
+    public function getPageSubHeader()
+    {
+        return $this->pageSubHeader;
+    }
+
+    /**
+     * @param null $pageSubHeader
+     */
+    public function setPageSubHeader($pageSubHeader)
+    {
+        $this->pageSubHeader = $pageSubHeader;
     }
 }
