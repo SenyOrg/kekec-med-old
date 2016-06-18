@@ -25,7 +25,8 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerCommands();
-
+        $this->registerEventListeners();
+        
         /**
          * Development Mode
          */
@@ -90,6 +91,17 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->commands(ICDImporterCommand::class);
         $this->commands(SearchIndexingCommand::class);
+    }
+
+    /**
+     * Register event listeners
+     */
+    public function registerEventListeners()
+    {
+        $this->app['events']->listen('Illuminate\Auth\Events\Logout', function ($user) {
+            \Session::clear();
+            \Session::forget('locked');
+        });
     }
 
     /**

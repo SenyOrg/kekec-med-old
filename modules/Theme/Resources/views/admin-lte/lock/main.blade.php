@@ -21,7 +21,7 @@
                     <input type="password" class="form-control" placeholder="Enter password..." id="unlock-password">
 
                     <div class="input-group-btn">
-                        <button type="button" class="btn" id="unlock-button"><i
+                        <button type="submit" class="btn" id="unlock-button"><i
                                     class="fa fa-unlock text-muted fa-lg"></i></button>
                     </div>
                 </div>
@@ -31,10 +31,10 @@
         </div>
         <!-- /.lockscreen-item -->
         <div class="help-block text-center">
-            Enter your password to retrieve your session
+            Enter your password to unlock your session
         </div>
         <div class="text-center">
-            <a href="login.html">Or sign in as a different user</a>
+            <a href="{{url('logout')}}">Or sign in as a different user</a>
         </div>
         <div class="lockscreen-footer text-center">
             Copyright &copy; 2016 <b><a href="http://almsaeedstudio.com" class="text-black">SenyCorp</a></b><br>
@@ -45,13 +45,8 @@
 </div>
 
 @push('document-ready-stack')
-$('#unlock-password').keypress(function(e) {
-if(e.which == 13) {
-$('#unlock-button').trigger('click');
-}
-});
-
-$('#unlock-button').click(function() {
+$('.lockscreen-credentials').submit(function(evt) {
+evt.preventDefault();
 $.getJSON('{{url('core/check/')}}/'+$('#unlock-password').val(), {}, function(data) {
 if (data['result']) {
 $.get('{{url('core/session/locked/0')}}', {}, function() {
@@ -65,11 +60,10 @@ $('#unlock-password').val('');
 $('#unlock-password').val('');
 alert("wrong password");
 })
-})
+});
 
 $('#lock-button').click(function() {
 $.get('{{url('core/session/locked/1')}}', {}, function() {
-console.log("asd");
 $('div.lockscreen').removeClass('hidden');
 })
 })
