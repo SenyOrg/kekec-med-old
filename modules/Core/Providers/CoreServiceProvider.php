@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use KekecMed\Core\Console\ICDImporterCommand;
+use KekecMed\Core\Console\SearchIndexingCommand;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -88,6 +89,7 @@ class CoreServiceProvider extends ServiceProvider
     public function registerCommands()
     {
         $this->commands(ICDImporterCommand::class);
+        $this->commands(SearchIndexingCommand::class);
     }
 
     /**

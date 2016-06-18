@@ -167,6 +167,7 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        TeamTNT\TNTSearch\TNTSearchServiceProvider::class,
     ],
 
     /*
@@ -225,6 +226,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'TNTSearch' => TeamTNT\TNTSearch\Facades\TNTSearch::class,
     ],
 
 ];
