@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use KekecMed\Core\Database\Migrations\AbstractMigration;
 
 /**
  * Class CreatePatientsTable
@@ -10,7 +10,7 @@ use Illuminate\Database\Schema\Blueprint;
  * -----------------------------
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class CreatePatientsTable extends Migration
+class CreatePatientsTable extends AbstractMigration
 {
     /**
      * Run the migrations.
@@ -19,10 +19,7 @@ class CreatePatientsTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('patients');
-
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create($this->getTableName(), function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname')->index();
             $table->string('lastname')->index();
@@ -52,13 +49,12 @@ class CreatePatientsTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Get Table Name as String
      *
-     * @return void
+     * @return string
      */
-    public function down()
+    protected function getTableName()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::drop('patients');
+        return 'patients';
     }
 }

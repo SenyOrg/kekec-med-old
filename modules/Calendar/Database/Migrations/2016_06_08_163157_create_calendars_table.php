@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use KekecMed\Core\Database\Migrations\AbstractMigration;
 
 /**
  * Class CreateCalendarsTable
@@ -10,7 +10,7 @@ use Illuminate\Database\Schema\Blueprint;
  * -----------------------------
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class CreateCalendarsTable extends Migration
+class CreateCalendarsTable extends AbstractMigration
 {
 
     /**
@@ -20,7 +20,7 @@ class CreateCalendarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendars', function (Blueprint $table) {
+        Schema::create($this->getTableName(), function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('color');
@@ -40,13 +40,12 @@ class CreateCalendarsTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Get Table Name as String
      *
-     * @return void
+     * @return string
      */
-    public function down()
+    protected function getTableName()
     {
-        Schema::drop('calendars');
+        return 'calendars';
     }
-
 }

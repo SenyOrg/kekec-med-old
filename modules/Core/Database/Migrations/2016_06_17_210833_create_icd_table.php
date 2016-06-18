@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use KekecMed\Core\Database\Migrations\AbstractMigration;
 
 /**
  * Class CreateIcdTable
  *
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class CreateIcdTable extends Migration
+class CreateIcdTable extends AbstractMigration
 {
 
     /**
@@ -18,9 +18,8 @@ class CreateIcdTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        Schema::create($this->getTableName(), function (Blueprint $table) {
 
-        Schema::create('icd', function (Blueprint $table) {
             // General Columns
             $table->increments('id');
             $table->string('type');
@@ -54,20 +53,15 @@ class CreateIcdTable extends Migration
             // Timestamp Columns
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
-     * Reverse the migrations.
+     * Get Table Name as String
      *
-     * @return void
+     * @return string
      */
-    public function down()
+    protected function getTableName()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::drop('icd');
-        Schema::enableForeignKeyConstraints();
+        return 'icd';
     }
-
 }

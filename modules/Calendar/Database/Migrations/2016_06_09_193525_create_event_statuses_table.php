@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use KekecMed\Core\Database\Migrations\AbstractMigration;
 
 /**
  * Class CreateEventStatusesTable
@@ -10,7 +10,7 @@ use Illuminate\Database\Schema\Blueprint;
  * -----------------------------
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class CreateEventStatusesTable extends Migration
+class CreateEventStatusesTable extends AbstractMigration
 {
 
     /**
@@ -30,13 +30,12 @@ class CreateEventStatusesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Get Table Name as String
      *
-     * @return void
+     * @return string
      */
-    public function down()
+    protected function getTableName()
     {
-        Schema::drop('event_statuses');
+        return 'event_statuses';
     }
-
 }

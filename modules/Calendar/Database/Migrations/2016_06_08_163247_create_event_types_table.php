@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use KekecMed\Core\Database\Migrations\AbstractMigration;
 
 /**
  * Class CreateEventTypesTable
@@ -10,7 +10,7 @@ use Illuminate\Database\Schema\Blueprint;
  * -----------------------------
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class CreateEventTypesTable extends Migration
+class CreateEventTypesTable extends AbstractMigration
 {
 
     /**
@@ -20,7 +20,7 @@ class CreateEventTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_types', function (Blueprint $table) {
+        Schema::create($this->getTableName(), function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('title');
@@ -32,13 +32,12 @@ class CreateEventTypesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Get Table Name as String
      *
-     * @return void
+     * @return string
      */
-    public function down()
+    protected function getTableName()
     {
-        Schema::drop('event_types');
+        return 'event_types';
     }
-
 }

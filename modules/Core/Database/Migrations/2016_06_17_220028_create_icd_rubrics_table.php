@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use KekecMed\Core\Database\Migrations\AbstractMigration;
 
 /**
  * Class CreateIcdRubricsTable
  *
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class CreateIcdRubricsTable extends Migration
+class CreateIcdRubricsTable extends AbstractMigration
 {
 
     /**
@@ -18,9 +18,7 @@ class CreateIcdRubricsTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('icd_rubrics', function (Blueprint $table) {
+        Schema::create($this->getTableName(), function (Blueprint $table) {
             // General Columns
             $table->increments('id');
             $table->string('content');
@@ -43,20 +41,15 @@ class CreateIcdRubricsTable extends Migration
             $table->timestamps();
 
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
-     * Reverse the migrations.
+     * Get Table Name as String
      *
-     * @return void
+     * @return string
      */
-    public function down()
+    protected function getTableName()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::drop('icd_rubrics');
-        Schema::enableForeignKeyConstraints();
+        return 'icd_rubrics';
     }
-
 }

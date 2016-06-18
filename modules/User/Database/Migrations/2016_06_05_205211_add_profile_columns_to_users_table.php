@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use KekecMed\Core\Database\Migrations\AbstractMigration;
 
 /**
  * Class AddProfileColumnsToUsersTable
@@ -12,7 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
  *
  * @author Selcuk Kekec <senycorp@googlemail.com>
  */
-class AddProfileColumnsToUsersTable extends Migration
+class AddProfileColumnsToUsersTable extends AbstractMigration
 {
     /**
      * Run the migrations.
@@ -21,7 +21,7 @@ class AddProfileColumnsToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table($this->getTableName(), function (Blueprint $table) {
             if (!Schema::hasColumn('users', 'firstname')) {
                 $table->string('firstname');
             }
@@ -45,14 +45,23 @@ class AddProfileColumnsToUsersTable extends Migration
     }
 
     /**
+     * Get Table Name as String
+     *
+     * @return string
+     */
+    protected function getTableName()
+    {
+        return 'users';
+    }
+
+    /**
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table($this->getTableName(), function (Blueprint $table) {
             if (Schema::hasColumn('users', 'firstname')) {
                 $table->dropColumn('firstname');
             }
