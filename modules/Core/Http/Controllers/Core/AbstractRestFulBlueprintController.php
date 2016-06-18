@@ -1,18 +1,13 @@
-<?php
+<?php namespace KekecMed\Core\Http\Controllers\Core;
 
-namespace KekecMed\Core\Http\Controllers;
-
-use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\Request;
 
 /**
- * Class AbstractCoreResourceController
- * -----------------------------
+ * Class AbstractRestFulBlueprintController
  *
- * -----------------------------
- * @package KekecMed\Core\Http\Controllers
- * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\Core\Http\Controllers\Core
  */
-abstract class AbstractCoreResourceController extends AbstractCoreController
+abstract class AbstractRestFulBlueprintController extends AbstractController
 {
     /**
      * Display a listing of the resource.
@@ -83,21 +78,6 @@ abstract class AbstractCoreResourceController extends AbstractCoreController
      */
     protected function getValidationData()
     {
-        return [
-            'formData.firstname'      => 'required|max:255',
-            'formData.lastname'       => 'required|max:255',
-            'formData.gender'         => 'required',
-            'formData.birthdate'      => 'required',
-            'formData.insurance_type' => 'required',
-            'formData.insurance_id'   => 'required',
-            'formData.insurance_no'   => 'required',
-            'formData.phone'          => 'required',
-            'formData.mobile'         => 'required',
-            'formData.street'         => 'required',
-            'formData.no'             => 'required',
-            'formData.zipcode'        => 'required',
-            'formData.email'          => 'required|email|max:255',
-
-        ];
+        return [];
     }
 }

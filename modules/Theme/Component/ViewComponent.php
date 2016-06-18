@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use KekecMed\Core\Http\Controllers\AbstractCoreController;
+use KekecMed\Core\Http\Controllers\Core\AbstractController;
 use Yajra\Datatables\Services\DataTable;
 
 class ViewComponent
@@ -32,6 +33,20 @@ class ViewComponent
     }
 
     /**
+     * Get instance
+     *
+     * @return ViewComponent|null
+     */
+    public static function getInstance()
+    {
+        if (!self::$instance) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    /**
      * Get currently logged in user
      *
      * @return Model
@@ -49,20 +64,6 @@ class ViewComponent
     public function getTitle()
     {
         return "KekecMED";
-    }
-
-    /**
-     * Get instance
-     *
-     * @return ViewComponent|null
-     */
-    public static function getInstance()
-    {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
     }
 
     /**
@@ -106,7 +107,7 @@ class ViewComponent
      *
      * @return AbstractCoreController|null
      */
-    public function controller(AbstractCoreController $controller = null)
+    public function controller(AbstractController $controller = null)
     {
         if ($controller) {
             $this->controller = $controller;

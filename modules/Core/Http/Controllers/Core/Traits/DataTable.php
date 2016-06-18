@@ -1,13 +1,11 @@
-<?php
-
-namespace KekecMed\Core\Http\Controllers;
+<?php namespace KekecMed\Core\Http\Controllers\Core\Traits;
 
 /**
- * Interface CoreDataTableController
+ * Interface DataTable
  *
- * @package KekecMed\Core\Http\Controllers
+ * @package KekecMed\Core\Http\Controllers\Core\Traits
  */
-interface CoreDataTableController
+interface DataTable
 {
     /**
      * Get DataTable
