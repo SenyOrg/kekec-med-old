@@ -1,16 +1,16 @@
 <?php namespace KekecMed\Event\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
-use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
-use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
-use KekecMed\Core\Http\Controllers\Core\View\AbstractViewController;
-use KekecMed\Core\Http\Controllers\CoreDataTableController;
-use KekecMed\Core\Http\Controllers\DataTable;
+use KekecMed\Core\Abstracts\Controllers\DataTable;
+use KekecMed\Core\Abstracts\Controllers\Traits\Breadcrumbful;
+use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
+use KekecMed\Core\Abstracts\Controllers\View\AbstractViewController;
+use KekecMed\Core\Abstracts\ControllersDataTableController;
 use KekecMed\Event\Entities\Event;
 use KekecMed\Event\Entities\EventParticipant;
 
 class EventController extends AbstractViewController
-    implements \KekecMed\Core\Http\Controllers\Core\Traits\DataTable, Breadcrumbful, Headful
+    implements \KekecMed\Core\Abstracts\Controllers\Traits\DataTable, Breadcrumbful, Headful
 {
 
     /**

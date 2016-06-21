@@ -1,12 +1,12 @@
-<?php namespace KekecMed\Core\Http\Controllers\Core\View;
+<?php namespace KekecMed\Core\Abstracts\Controllers\View;
 
-use KekecMed\Core\Http\Controllers\Core\RestFul\AbstractRestFulGenericController;
-use KekecMed\Core\Http\Controllers\Core\Traits\Viewable;
+use KekecMed\Core\Abstracts\Controllers\RestFul\AbstractRestFulGenericController;
+use KekecMed\Core\Abstracts\Controllers\Traits\Viewable;
 
 /**
  * Class AbstractRestFulController
  *
- * @package KekecMed\Core\Http\Controllers\Core\RestFul
+ * @package KekecMed\Core\Abstracts\Controllers\RestFul
  */
 abstract class AbstractViewController extends AbstractRestFulGenericController
     implements Viewable

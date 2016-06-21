@@ -1,9 +1,9 @@
-<?php namespace KekecMed\Core\Http\Controllers\Core\Traits;
+<?php namespace KekecMed\Core\Abstracts\Controllers\Traits;
 
 /**
  * Interface ValidatableRest
  *
- * @package KekecMed\Core\Http\Controllers\Core\Traits
+ * @package KekecMed\Core\Abstracts\Controllers\Traits
  */
 interface ValidatableRest extends Validatable
 {

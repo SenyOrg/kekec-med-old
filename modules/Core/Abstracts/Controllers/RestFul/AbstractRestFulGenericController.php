@@ -1,9 +1,9 @@
-<?php namespace KekecMed\Core\Http\Controllers\Core\RestFul;
+<?php namespace KekecMed\Core\Abstracts\Controllers\RestFul;
 
 /**
  * Class AbstractRestFulController
  *
- * @package KekecMed\Core\Http\Controllers\Core\RestFul
+ * @package KekecMed\Core\Abstracts\Controllers\RestFul
  */
 abstract class AbstractRestFulGenericController extends AbstractRestFulController
 {

@@ -1,14 +1,14 @@
-<?php namespace KekecMed\Core\Http\Controllers\Core;
+<?php namespace KekecMed\Core\Abstracts\Controllers;
 
 use Illuminate\Http\Request;
-use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
+use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
 use KekecMed\Theme\Component\ViewComponent;
 use Pingpong\Modules\Routing\Controller;
 
 /**
  * Class AbstractController
  *
- * @package KekecMed\Core\Http\Controllers\Core
+ * @package KekecMed\ore\Abstracts\Controllers
  */
 abstract class AbstractController extends Controller
 {

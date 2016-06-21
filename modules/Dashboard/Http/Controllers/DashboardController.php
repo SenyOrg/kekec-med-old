@@ -1,7 +1,7 @@
 <?php namespace KekecMed\Dashboard\Http\Controllers;
 
-use KekecMed\Core\Http\Controllers\Core\AbstractController;
-use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
+use KekecMed\Core\Abstracts\Controllers\AbstractController;
+use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
 
 class DashboardController extends AbstractController
     implements Headful

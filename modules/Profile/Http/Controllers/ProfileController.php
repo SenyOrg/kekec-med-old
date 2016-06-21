@@ -1,8 +1,8 @@
 <?php namespace KekecMed\Profile\Http\Controllers;
 
 use Illuminate\Http\Request;
-use KekecMed\Core\Http\Controllers\Core\AbstractController;
-use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
+use KekecMed\Core\Abstracts\Controllers\AbstractController;
+use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
 
 class ProfileController extends AbstractController
     implements Headful

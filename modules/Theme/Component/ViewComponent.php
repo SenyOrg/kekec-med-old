@@ -1,8 +1,8 @@
 <?php namespace KekecMed\Theme\Component;
 
 use Illuminate\Support\Facades\Auth;
-use KekecMed\Core\Http\Controllers\AbstractCoreController;
-use KekecMed\Core\Http\Controllers\Core\AbstractController;
+use KekecMed\Core\Abstracts\Controllers\AbstractController;
+use KekecMed\Core\Abstracts\Controllers\AbstractCoreController;
 use Yajra\Datatables\Services\DataTable;
 
 class ViewComponent

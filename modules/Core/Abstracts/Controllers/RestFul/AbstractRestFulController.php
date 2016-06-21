@@ -1,16 +1,16 @@
-<?php namespace KekecMed\Core\Http\Controllers\Core\RestFul;
+<?php namespace KekecMed\Core\Abstracts\Controllers\RestFul;
 
 use GuzzleHttp\Psr7\Request;
-use KekecMed\Core\Http\Controllers\Core\AbstractRestFulBlueprintController;
-use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
-use KekecMed\Core\Http\Controllers\Core\Traits\DataTable;
-use KekecMed\Core\Http\Controllers\Core\Traits\ValidatableRest;
+use KekecMed\Core\Abstracts\Controllers\AbstractRestFulBlueprintController;
+use KekecMed\Core\Abstracts\Controllers\Traits\Breadcrumbful;
+use KekecMed\Core\Abstracts\Controllers\Traits\DataTable;
+use KekecMed\Core\Abstracts\Controllers\Traits\ValidatableRest;
 use KekecMed\Theme\Component\ViewComponent;
 
 /**
  * Class AbstractRestFulController
  *
- * @package KekecMed\Core\Http\Controllers\Core\RestFul
+ * @package KekecMed\Core\Abstracts\Controllers\RestFul
  */
 abstract class AbstractRestFulController extends AbstractRestFulBlueprintController
 {

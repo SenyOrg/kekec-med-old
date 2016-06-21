@@ -1,11 +1,11 @@
-<?php namespace KekecMed\Core\Http\Controllers\Core;
+<?php namespace KekecMed\Core\Abstracts\Controllers;
 
 use GuzzleHttp\Psr7\Request;
 
 /**
  * Class AbstractRestFulBlueprintController
  *
- * @package KekecMed\Core\Http\Controllers\Core
+ * @package KekecMed\Core\Abstracts\Controllers
  */
 abstract class AbstractRestFulBlueprintController extends AbstractController
 {

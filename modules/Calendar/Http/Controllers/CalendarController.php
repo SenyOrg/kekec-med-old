@@ -1,9 +1,9 @@
 <?php namespace KekecMed\Calendar\Http\Controllers;
 
 use KekecMed\Calendar\Entities\Calendar;
-use KekecMed\Core\Http\Controllers\Core\RestFul\AbstractRestFulGenericController;
-use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
-use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
+use KekecMed\Core\Abstracts\Controllers\RestFul\AbstractRestFulGenericController;
+use KekecMed\Core\Abstracts\Controllers\Traits\Breadcrumbful;
+use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
 
 class CalendarController extends AbstractRestFulGenericController
     implements Breadcrumbful, Headful
@@ -74,7 +74,7 @@ class CalendarController extends AbstractRestFulGenericController
     /**
      * Get model class
      *
-     * @return \KekecMed\Core\Http\Controllers\Core\RestFul\Model::class
+     * @return \KekecMed\Core\Abstracts\Controllers\RestFul\Model::class
      */
     protected function getModelClass()
     {

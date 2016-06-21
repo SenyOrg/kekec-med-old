@@ -2,14 +2,14 @@
 
 use App\Http\Requests;
 use Illuminate\Database\Eloquent\Model;
-use KekecMed\Core\Http\Controllers\Core\Traits\Breadcrumbful;
-use KekecMed\Core\Http\Controllers\Core\Traits\DataTable;
-use KekecMed\Core\Http\Controllers\Core\Traits\Headful;
-use KekecMed\Core\Http\Controllers\Core\Traits\ValidatableRest;
-use KekecMed\Core\Http\Controllers\Core\View\AbstractViewController;
-use KekecMed\Core\Http\Controllers\CoreConventionalResourceViewController;
-use KekecMed\Core\Http\Controllers\CoreDataTableController;
-use KekecMed\Core\Http\Controllers\CoreValidationController;
+use KekecMed\Core\Abstracts\Controllers\Traits\Breadcrumbful;
+use KekecMed\Core\Abstracts\Controllers\Traits\DataTable;
+use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
+use KekecMed\Core\Abstracts\Controllers\Traits\ValidatableRest;
+use KekecMed\Core\Abstracts\Controllers\View\AbstractViewController;
+use KekecMed\Core\Abstracts\ControllersConventionalResourceViewController;
+use KekecMed\Core\Abstracts\ControllersDataTableController;
+use KekecMed\Core\Abstracts\ControllersValidationController;
 use KekecMed\Insurance\Entities\Insurance;
 use KekecMed\Patient\Entities\Patient;
 
