@@ -3,12 +3,14 @@
 namespace KekecMed\Core\Views\Elements;
 
 /**
- * Class MobilePhone
+ * Class RadiosSelect
+ *
+ * General radio select element
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class MobilePhone extends Text
+class RadioSelect extends Select
 {
     /**
      * Configuration
@@ -16,17 +18,11 @@ class MobilePhone extends Text
      * @var array
      */
     protected $configuration = [
-
-    ];
-
-    /**
-     * Parameters
-     *
-     * @var array
-     */
-    protected $parameters = [
-        'value'       => '',
-        'placeholder' => '',
+        'trackChanges' => true,
+        'emptyOption'  => true,
+        'icon'         => null,
+        'labelClass'   => 'primary',
+        'maxChars'     => 50,
     ];
 
     /**
@@ -34,18 +30,16 @@ class MobilePhone extends Text
      *
      * @var array
      */
-    protected $attributes = [
-        'onchange' => '',
-    ];
+    protected $attributes = [];
 
     /**
-     * Handle inputs make some
+     * Handle inputs
      *
      * @param null $viewMode
      */
     protected function handle($viewMode = null)
     {
-        // TODO: Implement handle() method.
+        parent::handle($viewMode);
     }
 
     /**
@@ -56,6 +50,6 @@ class MobilePhone extends Text
      */
     protected function getIdentifier()
     {
-        return 'mobilephone';
+        return 'radioselect';
     }
 }

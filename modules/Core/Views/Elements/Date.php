@@ -2,13 +2,15 @@
 
 namespace KekecMed\Core\Views\Elements;
 
+use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
+
 /**
  * Class Date
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class Date extends Text
+class Date extends AbstractGenericInputParameters
 {
     /**
      * Configuration
@@ -16,7 +18,9 @@ class Date extends Text
      * @var array
      */
     protected $configuration = [
-
+        'icon'         => 'fa fa-calendar',
+        'labelClass'   => 'primary',
+        'trackChanges' => true,
     ];
 
     /**
@@ -35,7 +39,7 @@ class Date extends Text
      */
     protected function handle($viewMode = null)
     {
-        parent::handle($viewMode);
+        $this->defaultHandler();
     }
 
     /**

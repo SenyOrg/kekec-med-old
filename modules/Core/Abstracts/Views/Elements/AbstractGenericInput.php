@@ -77,4 +77,38 @@ abstract class AbstractGenericInput extends AbstractInput
     {
         return $this->getViewPath(self::VIEW);
     }
+
+    /**
+     * Handle some default properties
+     */
+    protected function defaultHandler()
+    {
+        /**
+         * Value Handling
+         */
+        if (!isset($this->parameters['value']) || is_null($this->parameters['value'])) {
+            /**
+             * Get Model if present
+             */
+            $model = static::model();
+
+            if ($model !== null) {
+                /**
+                 * Get Models value for given propertyIndex
+                 */
+                $value = $model->{$this->parameters['name']};
+
+                /**
+                 * Set it if present
+                 */
+                if ($value != null) {
+                    $this->parameters['value'] = $value;
+                }
+            }
+        }
+
+        if (!isset($this->parameters['id'])) {
+            $this->parameters['id'] = $this->parameters['name'] . '_id';
+        }
+    }
 }

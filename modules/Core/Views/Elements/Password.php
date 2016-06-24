@@ -2,13 +2,15 @@
 
 namespace KekecMed\Core\Views\Elements;
 
+use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
+
 /**
  * Class Password
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class Password extends Text
+class Password extends AbstractGenericInputParameters
 {
     /**
      * Configuration
@@ -16,17 +18,7 @@ class Password extends Text
      * @var array
      */
     protected $configuration = [
-
-    ];
-
-    /**
-     * Parameters
-     *
-     * @var array
-     */
-    protected $parameters = [
-        'value'       => '',
-        'placeholder' => '',
+        'trackChanges' => true,
     ];
 
     /**
@@ -45,7 +37,9 @@ class Password extends Text
      */
     protected function handle($viewMode = null)
     {
-        // TODO: Implement handle() method.
+        $this->defaultHandler();
+
+        $this->parameters['type'] = 'password';
     }
 
     /**

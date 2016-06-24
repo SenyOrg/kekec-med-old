@@ -5,14 +5,12 @@ namespace KekecMed\Core\Views\Elements;
 use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 
 /**
- * Class Text
- *
- * General input element
+ * Class MobilePhone
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class Text extends AbstractGenericInputParameters
+class MobilePhone extends AbstractGenericInputParameters
 {
     /**
      * Configuration
@@ -20,6 +18,8 @@ class Text extends AbstractGenericInputParameters
      * @var array
      */
     protected $configuration = [
+        'icon'         => 'fa fa-mobile',
+        'labelClass'   => 'primary',
         'trackChanges' => true,
     ];
 
@@ -28,10 +28,12 @@ class Text extends AbstractGenericInputParameters
      *
      * @var array
      */
-    protected $attributes = [];
+    protected $attributes = [
+
+    ];
 
     /**
-     * Handle inputs
+     * Handle inputs make some
      *
      * @param null $viewMode
      */
@@ -48,6 +50,6 @@ class Text extends AbstractGenericInputParameters
      */
     protected function getIdentifier()
     {
-        return 'text';
+        return 'mobilephone';
     }
 }

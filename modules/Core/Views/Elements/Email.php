@@ -5,14 +5,12 @@ namespace KekecMed\Core\Views\Elements;
 use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 
 /**
- * Class Text
- *
- * General input element
+ * Class Email
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class Text extends AbstractGenericInputParameters
+class Email extends AbstractGenericInputParameters
 {
     /**
      * Configuration
@@ -20,6 +18,8 @@ class Text extends AbstractGenericInputParameters
      * @var array
      */
     protected $configuration = [
+        'icon'         => 'fa fa-envelope',
+        'labelClass'   => 'primary',
         'trackChanges' => true,
     ];
 
@@ -31,13 +31,15 @@ class Text extends AbstractGenericInputParameters
     protected $attributes = [];
 
     /**
-     * Handle inputs
+     * Handle inputs make some
      *
      * @param null $viewMode
      */
     protected function handle($viewMode = null)
     {
         $this->defaultHandler();
+
+        $this->parameters['type'] = 'email';
     }
 
     /**
@@ -48,6 +50,6 @@ class Text extends AbstractGenericInputParameters
      */
     protected function getIdentifier()
     {
-        return 'text';
+        return 'email';
     }
 }

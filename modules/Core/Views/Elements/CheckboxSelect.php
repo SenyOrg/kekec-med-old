@@ -2,17 +2,15 @@
 
 namespace KekecMed\Core\Views\Elements;
 
-use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
-
 /**
- * Class Text
+ * Class CheckboxSelect
  *
- * General input element
+ * General multi select element
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class Text extends AbstractGenericInputParameters
+class CheckboxSelect extends MultiSelect
 {
     /**
      * Configuration
@@ -21,6 +19,10 @@ class Text extends AbstractGenericInputParameters
      */
     protected $configuration = [
         'trackChanges' => true,
+        'emptyOption'  => true,
+        'icon'         => null,
+        'labelClass'   => 'primary',
+        'maxChars'     => 50,
     ];
 
     /**
@@ -37,7 +39,7 @@ class Text extends AbstractGenericInputParameters
      */
     protected function handle($viewMode = null)
     {
-        $this->defaultHandler();
+        parent::handle($viewMode);
     }
 
     /**
@@ -48,6 +50,6 @@ class Text extends AbstractGenericInputParameters
      */
     protected function getIdentifier()
     {
-        return 'text';
+        return 'checkboxselect';
     }
 }

@@ -8,25 +8,20 @@ namespace KekecMed\Core\Views\Elements;
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class DateTime extends Text
+class DateTime extends Date
 {
+
+    use ParameterTrait;
+    
     /**
      * Configuration
      *
      * @var array
      */
     protected $configuration = [
-
-    ];
-
-    /**
-     * Parameters
-     *
-     * @var array
-     */
-    protected $parameters = [
-        'value'       => '',
-        'placeholder' => '',
+        'icon'         => 'fa fa-calendar',
+        'labelClass'   => 'primary',
+        'trackChanges' => true,
     ];
 
     /**
@@ -35,7 +30,7 @@ class DateTime extends Text
      * @var array
      */
     protected $attributes = [
-        'onchange' => '',
+
     ];
 
     /**
@@ -45,7 +40,7 @@ class DateTime extends Text
      */
     protected function handle($viewMode = null)
     {
-        // TODO: Implement handle() method.
+        $this->defaultHandler();
     }
 
     /**

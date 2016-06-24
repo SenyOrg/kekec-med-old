@@ -5,14 +5,14 @@ namespace KekecMed\Core\Views\Elements;
 use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 
 /**
- * Class Text
+ * Class File
  *
- * General input element
+ * General file element
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Views\Elements
  */
-class Text extends AbstractGenericInputParameters
+class File extends AbstractGenericInputParameters
 {
     /**
      * Configuration
@@ -38,6 +38,8 @@ class Text extends AbstractGenericInputParameters
     protected function handle($viewMode = null)
     {
         $this->defaultHandler();
+
+        $this->parameters['type'] = 'file';
     }
 
     /**
@@ -48,6 +50,6 @@ class Text extends AbstractGenericInputParameters
      */
     protected function getIdentifier()
     {
-        return 'text';
+        return 'file';
     }
 }

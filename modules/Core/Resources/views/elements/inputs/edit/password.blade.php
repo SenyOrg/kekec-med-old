@@ -1,0 +1,1 @@
+@extends('core::elements.inputs.edit.generic-input')

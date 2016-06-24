@@ -2,13 +2,14 @@
 
 namespace KekecMed\Core\Views\Elements;
 
+use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 
 /**
  * Class Phone
  *
  * @package KekecMed\Core\Views\Elements
  */
-class Phone extends Text
+class Phone extends AbstractGenericInputParameters
 {
     /**
      * Configuration
@@ -16,17 +17,9 @@ class Phone extends Text
      * @var array
      */
     protected $configuration = [
-
-    ];
-
-    /**
-     * Parameters
-     *
-     * @var array
-     */
-    protected $parameters = [
-        'value'       => '',
-        'placeholder' => '',
+        'icon'         => 'fa fa-phone',
+        'labelClass'   => 'primary',
+        'trackChanges' => true,
     ];
 
     /**
@@ -35,7 +28,7 @@ class Phone extends Text
      * @var array
      */
     protected $attributes = [
-        'onchange' => '',
+
     ];
 
     /**
@@ -45,7 +38,7 @@ class Phone extends Text
      */
     protected function handle($viewMode = null)
     {
-        // TODO: Implement handle() method.
+        $this->defaultHandler();
     }
 
     /**
