@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Core\Entities\ImageableModel;
+use KekecMed\Task\Entities\Task;
 
 class User extends Authenticatable implements Dialogable
 {
@@ -48,7 +49,17 @@ class User extends Authenticatable implements Dialogable
      */
     public function createdTasks()
     {
-        return $this->hasMany('App\Task', 'creator_id');
+        return $this->hasMany(Task::class, 'creator_id');
+    }
+
+    /**
+     * Get assigned tasks
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->assignedTasks();
     }
 
     /**
@@ -58,16 +69,7 @@ class User extends Authenticatable implements Dialogable
      */
     public function assignedTasks()
     {
-        return $this->hasMany('App\Task', 'assignee_id');
-    }
-
-    /**
-     * Get assigned tasks
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tasks() {
-        return $this->assignedTasks();
+        return $this->hasMany(Task::class, 'assignee_id');
     }
 
     /**
