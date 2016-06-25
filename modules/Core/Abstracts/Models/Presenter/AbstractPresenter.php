@@ -3,6 +3,7 @@
 namespace KekecMed\Core\Abstracts\Models\Presenter;
 
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Abstracts\Models\Presentable;
 
 /**
  * Class AbstractPresenter
@@ -22,9 +23,9 @@ abstract class AbstractPresenter
     /**
      * AbstractPresenter constructor.
      *
-     * @param AbstractModel $model
+     * @param Presentable $model
      */
-    public function __construct(Model $model)
+    public function __construct(Presentable $model)
     {
         $this->model = $model;
     }
