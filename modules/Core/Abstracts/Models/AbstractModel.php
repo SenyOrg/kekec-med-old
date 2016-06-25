@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Validator;
+use KekecMed\Core\Exceptions\ModelValidationException;
 
 /**
  * Class AbstractModel
@@ -23,7 +24,7 @@ abstract class AbstractModel extends Model
         parent::__construct($attributes);
 
         if ($this instanceof Validatable) {
-            $this->creating(function (ValidatableModel $model) {
+            $this->creating(function (Validatable $model) {
                 /** @var Validator $validator */
                 $validator = $model->getValidator();
 
@@ -34,12 +35,12 @@ abstract class AbstractModel extends Model
                 return true;
             });
 
-            $this->updating(function (ValidatableModel $model) {
+            $this->updating(function (Validatable $model) {
                 /** @var Validator $validator */
                 $validator = $model->getValidator();
 
                 if ($validator->fails()) {
-                    return $validator;
+                    throw new ModelValidationException(null, 200, null, $model);
                 }
 
                 return true;

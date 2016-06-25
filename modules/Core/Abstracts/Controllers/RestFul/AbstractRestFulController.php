@@ -446,6 +446,13 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         }
     }
 
+    /**
+     * Get Model to update
+     *
+     * @param $id
+     *
+     * @return Model|null
+     */
     protected function getUpdateModel($id)
     {
         $class = $this->getModelClass();

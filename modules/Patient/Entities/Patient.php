@@ -1,6 +1,8 @@
 <?php namespace KekecMed\Patient\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Abstracts\Models\AbstractModel;
+use KekecMed\Core\Abstracts\Models\Validatable;
+use KekecMed\Core\Abstracts\Models\ValidatableModel;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Core\Entities\ImageableModel;
 use KekecMed\Insurance\Entities\Insurance;
@@ -8,15 +10,14 @@ use KekecMed\Task\Entities\Task;
 
 /**
  * Class Patient
- * -----------------------------
  *
- * -----------------------------
- * @package App
+ * @property Insurance insurance
  * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\Patient\Entities
  */
-class Patient extends Model implements Dialogable
+class Patient extends AbstractModel implements Dialogable, Validatable
 {
-    use ImageableModel;
+    use ImageableModel, ValidatableModel;
 
     /**
      * The attributes that are mass assignable.
@@ -100,5 +101,33 @@ class Patient extends Model implements Dialogable
         });
 
         return $arr;
+    }
+
+    /**
+     * Get Validation Rules
+     *
+     * @return array
+     */
+    public function getValidationRules()
+    {
+        return [
+            'rules'    => [
+                'firstname'      => 'required|alpha',
+                'lastname'       => 'required|alpha',
+                'gender'         => 'in:m,w',
+                'image',
+                'birthdate'      => 'required|date',
+                'insurance_type' => 'required',
+                'insurance_id'   => 'required|exists:insurances,id',
+                'insurance_no'   => 'required',
+                'phone'          => 'numeric',
+                'mobile'         => 'numeric',
+                'email'          => 'email',
+                'street'         => 'alpha_num',
+                'no'             => 'alpha_num',
+                'zipcode'        => 'numeric'
+            ],
+            'messages' => []
+        ];
     }
 }

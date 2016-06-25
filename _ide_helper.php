@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.35 on 2016-06-05.
+ * Generated for Laravel 5.2.39 on 2016-06-25.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1630,6 +1630,18 @@ namespace {
         /**
          * Determine if the current user is authenticated.
          *
+         * @return \App\User
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static
+         */
+        public static function authenticate()
+        {
+            return \Illuminate\Auth\SessionGuard::authenticate();
+        }
+
+        /**
+         * Determine if the current user is authenticated.
+         *
          * @return bool 
          * @static 
          */
@@ -1645,17 +1657,6 @@ namespace {
          */
         public static function guest(){
             return \Illuminate\Auth\SessionGuard::guest();
-        }
-        
-        /**
-         * Determine if the current user is authenticated.
-         *
-         * @return \App\User 
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static 
-         */
-        public static function authenticate(){
-            return \Illuminate\Auth\SessionGuard::authenticate();
         }
         
     }
@@ -3700,6 +3701,18 @@ namespace {
         }
         
         /**
+         * Get the deeply nested relations for a given top-level relation.
+         *
+         * @param string $relation
+         * @return array
+         * @static
+         */
+        public static function nestedRelations($relation)
+        {
+            return \Illuminate\Database\Eloquent\Builder::nestedRelations($relation);
+        }
+
+        /**
          * Apply the callback's query changes if the given "value" is true.
          *
          * @param bool $value
@@ -3819,6 +3832,31 @@ namespace {
             return \Illuminate\Database\Eloquent\Builder::orWhereHas($relation, $callback, $operator, $count);
         }
         
+        /**
+         * Merge the constraints from a relation query to the current query.
+         *
+         * @param \Illuminate\Database\Eloquent\Builder $relation
+         * @return \Illuminate\Database\Eloquent\Builder|static
+         * @static
+         */
+        public static function mergeModelDefinedRelationConstraints($relation)
+        {
+            return \Illuminate\Database\Eloquent\Builder::mergeModelDefinedRelationConstraints($relation);
+        }
+
+        /**
+         * Prevent the specified relations from being eager loaded.
+         *
+         * @param mixed $relations
+         *
+         * @return $this
+         * @static
+         */
+        public static function without($relations)
+        {
+            return \Illuminate\Database\Eloquent\Builder::without($relations);
+        }
+
         /**
          * Add subselect queries to count the relations.
          *
@@ -5990,6 +6028,20 @@ namespace {
     class Log extends \Illuminate\Support\Facades\Log{
         
         /**
+         * Log a message to the logs.
+         *
+         * @param string $level
+         * @param string $message
+         * @param array  $context
+         * @return void
+         * @static
+         */
+        public static function log($level, $message, $context = [])
+        {
+            \Illuminate\Log\Writer::log($level, $message, $context);
+        }
+
+        /**
          * Adds a log record at the DEBUG level.
          *
          * @param string $message The log message
@@ -6083,19 +6135,6 @@ namespace {
          */
         public static function emergency($message, $context = array()){
             return \Monolog\Logger::emergency($message, $context);
-        }
-        
-        /**
-         * Log a message to the logs.
-         *
-         * @param string $level
-         * @param string $message
-         * @param array $context
-         * @return void 
-         * @static 
-         */
-        public static function log($level, $message, $context = array()){
-            \Illuminate\Log\Writer::log($level, $message, $context);
         }
         
         /**
@@ -7466,7 +7505,8 @@ namespace {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @return \Symfony\Component\HttpFoundation\Request The duplicated request
+         *
+         * @return \Request The duplicated request
          * @static 
          */
         public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null){
@@ -7636,7 +7676,7 @@ namespace {
         /**
          * Creates a new request with values from PHP's super globals.
          *
-         * @return \Symfony\Component\HttpFoundation\Request A new request
+         * @return \Request A new request
          * @static 
          */
         public static function createFromGlobals(){
@@ -7657,7 +7697,8 @@ namespace {
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
          * @param string $content The raw body data
-         * @return \Symfony\Component\HttpFoundation\Request A Request instance
+         *
+         * @return \Request A Request instance
          * @static 
          */
         public static function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null){
@@ -10065,7 +10106,8 @@ namespace {
          * Get a filesystem instance.
          *
          * @param string $name
-         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         *
+         * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
         public static function drive($name = null){
@@ -10076,7 +10118,8 @@ namespace {
          * Get a filesystem instance.
          *
          * @param string $name
-         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         *
+         * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
         public static function disk($name = null){
@@ -10086,7 +10129,7 @@ namespace {
         /**
          * Get a default cloud filesystem instance.
          *
-         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
         public static function cloud(){
@@ -10097,7 +10140,8 @@ namespace {
          * Create an instance of the local driver.
          *
          * @param array $config
-         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         *
+         * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
         public static function createLocalDriver($config){
@@ -10108,7 +10152,8 @@ namespace {
          * Create an instance of the ftp driver.
          *
          * @param array $config
-         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         *
+         * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
         public static function createFtpDriver($config){
@@ -10167,6 +10212,287 @@ namespace {
          */
         public static function extend($driver, $callback){
             return \Illuminate\Filesystem\FilesystemManager::extend($driver, $callback);
+        }
+
+        /**
+         * Determine if a file exists.
+         *
+         * @param string $path
+         *
+         * @return bool
+         * @static
+         */
+        public static function exists($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::exists($path);
+        }
+
+        /**
+         * Get the contents of a file.
+         *
+         * @param string $path
+         *
+         * @return string
+         * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+         * @static
+         */
+        public static function get($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::get($path);
+        }
+
+        /**
+         * Write the contents of a file.
+         *
+         * @param string          $path
+         * @param string|resource $contents
+         * @param string          $visibility
+         *
+         * @return bool
+         * @static
+         */
+        public static function put($path, $contents, $visibility = null)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::put($path, $contents, $visibility);
+        }
+
+        /**
+         * Get the visibility for the given path.
+         *
+         * @param string $path
+         *
+         * @return string
+         * @static
+         */
+        public static function getVisibility($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::getVisibility($path);
+        }
+
+        /**
+         * Set the visibility for the given path.
+         *
+         * @param string $path
+         * @param string $visibility
+         *
+         * @return void
+         * @static
+         */
+        public static function setVisibility($path, $visibility)
+        {
+            \Illuminate\Filesystem\FilesystemAdapter::setVisibility($path, $visibility);
+        }
+
+        /**
+         * Prepend to a file.
+         *
+         * @param string $path
+         * @param string $data
+         *
+         * @return int
+         * @static
+         */
+        public static function prepend($path, $data, $separator = '')
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::prepend($path, $data, $separator);
+        }
+
+        /**
+         * Append to a file.
+         *
+         * @param string $path
+         * @param string $data
+         *
+         * @return int
+         * @static
+         */
+        public static function append($path, $data, $separator = '')
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::append($path, $data, $separator);
+        }
+
+        /**
+         * Delete the file at a given path.
+         *
+         * @param string|array $paths
+         *
+         * @return bool
+         * @static
+         */
+        public static function delete($paths)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::delete($paths);
+        }
+
+        /**
+         * Copy a file to a new location.
+         *
+         * @param string $from
+         * @param string $to
+         *
+         * @return bool
+         * @static
+         */
+        public static function copy($from, $to)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::copy($from, $to);
+        }
+
+        /**
+         * Move a file to a new location.
+         *
+         * @param string $from
+         * @param string $to
+         *
+         * @return bool
+         * @static
+         */
+        public static function move($from, $to)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::move($from, $to);
+        }
+
+        /**
+         * Get the file size of a given file.
+         *
+         * @param string $path
+         *
+         * @return int
+         * @static
+         */
+        public static function size($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::size($path);
+        }
+
+        /**
+         * Get the mime-type of a given file.
+         *
+         * @param string $path
+         *
+         * @return string|false
+         * @static
+         */
+        public static function mimeType($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::mimeType($path);
+        }
+
+        /**
+         * Get the file's last modification time.
+         *
+         * @param string $path
+         *
+         * @return int
+         * @static
+         */
+        public static function lastModified($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::lastModified($path);
+        }
+
+        /**
+         * Get the URL for the file at the given path.
+         *
+         * @param string $path
+         *
+         * @return string
+         * @static
+         */
+        public static function url($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::url($path);
+        }
+
+        /**
+         * Get an array of all files in a directory.
+         *
+         * @param string|null $directory
+         * @param bool        $recursive
+         *
+         * @return array
+         * @static
+         */
+        public static function files($directory = null, $recursive = false)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::files($directory, $recursive);
+        }
+
+        /**
+         * Get all of the files from the given directory (recursive).
+         *
+         * @param string|null $directory
+         *
+         * @return array
+         * @static
+         */
+        public static function allFiles($directory = null)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::allFiles($directory);
+        }
+
+        /**
+         * Get all of the directories within a given directory.
+         *
+         * @param string|null $directory
+         * @param bool        $recursive
+         *
+         * @return array
+         * @static
+         */
+        public static function directories($directory = null, $recursive = false)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::directories($directory, $recursive);
+        }
+
+        /**
+         * Get all (recursive) of the directories within a given directory.
+         *
+         * @param string|null $directory
+         *
+         * @return array
+         * @static
+         */
+        public static function allDirectories($directory = null)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::allDirectories($directory);
+        }
+
+        /**
+         * Create a directory.
+         *
+         * @param string $path
+         *
+         * @return bool
+         * @static
+         */
+        public static function makeDirectory($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::makeDirectory($path);
+        }
+
+        /**
+         * Recursively delete a directory.
+         *
+         * @param string $directory
+         *
+         * @return bool
+         * @static
+         */
+        public static function deleteDirectory($directory)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::deleteDirectory($directory);
+        }
+
+        /**
+         * Get the Flysystem driver.
+         *
+         * @return \League\Flysystem\FilesystemInterface
+         * @static
+         */
+        public static function getDriver()
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::getDriver();
         }
         
     }
@@ -11216,7 +11542,8 @@ namespace {
          * Find a specific module, if there return that, otherwise throw exception.
          *
          * @param $name
-         * @return \Pingpong\Modules\Module 
+         *
+         * @return \Module 
          * @throws ModuleNotFoundException
          * @static 
          */
@@ -11738,9 +12065,10 @@ namespace {
          * (requires additional package intervention/imagecache)
          *
          * @param \Closure $callback
-         * @param integer $lifetime
-         * @param boolean $returnObj
-         * @return \Intervention\Image\Image 
+         * @param integer  $lifetime
+         * @param boolean  $returnObj
+         *
+         * @return \Image 
          * @static 
          */
         public static function cache($callback, $lifetime = null, $returnObj = false){
@@ -12647,474 +12975,191 @@ namespace {
         public static function componentCall($method, $parameters){
             return \Collective\Html\HtmlBuilder::componentCall($method, $parameters);
         }
-        
+
     }
 
 
-    class Debugbar extends \Barryvdh\Debugbar\Facade{
+    class TNTSearch extends \TeamTNT\TNTSearch\Facades\TNTSearch
+    {
         
         /**
-         * Enable the Debugbar and boot, if not already booted.
          *
-         * @static 
+         *
+         * @static
          */
-        public static function enable(){
-            return \Barryvdh\Debugbar\LaravelDebugbar::enable();
+        public static function loadConfig($config)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::loadConfig($config);
         }
         
         /**
-         * Boot the debugbar (add collectors, renderer and listener)
          *
-         * @static 
+         *
+         * @static
          */
-        public static function boot(){
-            return \Barryvdh\Debugbar\LaravelDebugbar::boot();
+        public static function createIndex($indexName)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::createIndex($indexName);
         }
         
         /**
-         * 
          *
-         * @static 
+         *
+         * @static
          */
-        public static function shouldCollect($name, $default = false){
-            return \Barryvdh\Debugbar\LaravelDebugbar::shouldCollect($name, $default);
+        public static function selectIndex($indexName)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::selectIndex($indexName);
         }
         
         /**
-         * Starts a measure
          *
-         * @param string $name Internal name, used to stop the measure
-         * @param string $label Public name
-         * @static 
+         *
+         * @static
          */
-        public static function startMeasure($name, $label = null){
-            return \Barryvdh\Debugbar\LaravelDebugbar::startMeasure($name, $label);
+        public static function search($phrase, $numOfResults = 100)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::search($phrase, $numOfResults);
         }
         
         /**
-         * Stops a measure
          *
-         * @param string $name
-         * @static 
+         *
+         * @static
          */
-        public static function stopMeasure($name){
-            return \Barryvdh\Debugbar\LaravelDebugbar::stopMeasure($name);
+        public static function searchBoolean($phrase, $numOfResults = 100)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::searchBoolean($phrase, $numOfResults);
         }
         
         /**
-         * Adds an exception to be profiled in the debug bar
          *
-         * @param \Barryvdh\Debugbar\Exception $e
-         * @static 
+         *
+         * @static
          */
-        public static function addException($e){
-            return \Barryvdh\Debugbar\LaravelDebugbar::addException($e);
+        public static function getAllDocumentsForKeyword($keyword, $noLimit = false)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::getAllDocumentsForKeyword($keyword, $noLimit);
         }
         
         /**
-         * Returns a JavascriptRenderer for this instance
          *
-         * @param string $baseUrl
-         * @param string $basePathng
-         * @return \Barryvdh\Debugbar\JavascriptRenderer 
-         * @static 
+         *
+         * @static
          */
-        public static function getJavascriptRenderer($baseUrl = null, $basePath = null){
-            return \Barryvdh\Debugbar\LaravelDebugbar::getJavascriptRenderer($baseUrl, $basePath);
+        public static function getAllDocumentsForWhereKeywordNot($keyword, $noLimit = false)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::getAllDocumentsForWhereKeywordNot($keyword, $noLimit);
         }
         
         /**
-         * Modify the response and inject the debugbar (or data in headers)
          *
-         * @param \Symfony\Component\HttpFoundation\Request $request
-         * @param \Symfony\Component\HttpFoundation\Response $response
-         * @return \Symfony\Component\HttpFoundation\Response 
-         * @static 
+         *
+         * @static
          */
-        public static function modifyResponse($request, $response){
-            return \Barryvdh\Debugbar\LaravelDebugbar::modifyResponse($request, $response);
+        public static function totalMatchingDocuments($keyword, $isLastWord = false)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::totalMatchingDocuments($keyword, $isLastWord);
         }
         
         /**
-         * Check if the Debugbar is enabled
          *
-         * @return boolean 
-         * @static 
+         *
+         * @static
          */
-        public static function isEnabled(){
-            return \Barryvdh\Debugbar\LaravelDebugbar::isEnabled();
+        public static function getWordlistByKeyword($keyword, $isLastWord = false)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::getWordlistByKeyword($keyword, $isLastWord);
         }
         
         /**
-         * Collects the data from the collectors
          *
-         * @return array 
-         * @static 
+         *
+         * @static
          */
-        public static function collect(){
-            return \Barryvdh\Debugbar\LaravelDebugbar::collect();
+        public static function totalDocumentsInCollection()
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::totalDocumentsInCollection();
         }
         
         /**
-         * Injects the web debug toolbar into the given Response.
          *
-         * @param \Symfony\Component\HttpFoundation\Response $response A Response instance
-         * Based on https://github.com/symfony/WebProfilerBundle/blob/master/EventListener/WebDebugToolbarListener.php
-         * @static 
+         *
+         * @static
          */
-        public static function injectDebugbar($response){
-            return \Barryvdh\Debugbar\LaravelDebugbar::injectDebugbar($response);
+        public static function setStemmer()
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::setStemmer();
         }
         
         /**
-         * Disable the Debugbar
          *
-         * @static 
+         *
+         * @static
          */
-        public static function disable(){
-            return \Barryvdh\Debugbar\LaravelDebugbar::disable();
+        public static function isFileSystemIndex()
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::isFileSystemIndex();
         }
         
         /**
-         * Adds a measure
          *
-         * @param string $label
-         * @param float $start
-         * @param float $end
-         * @static 
+         *
+         * @static
          */
-        public static function addMeasure($label, $start, $end){
-            return \Barryvdh\Debugbar\LaravelDebugbar::addMeasure($label, $start, $end);
+        public static function filesystemMapIdsToPaths($docs)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::filesystemMapIdsToPaths($docs);
         }
         
         /**
-         * Utility function to measure the execution of a Closure
          *
-         * @param string $label
-         * @param \Closure $closure
-         * @static 
+         *
+         * @static
          */
-        public static function measure($label, $closure){
-            return \Barryvdh\Debugbar\LaravelDebugbar::measure($label, $closure);
+        public static function info($str)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::info($str);
         }
         
         /**
-         * Collect data in a CLI request
          *
-         * @return array 
-         * @static 
+         *
+         * @static
          */
-        public static function collectConsole(){
-            return \Barryvdh\Debugbar\LaravelDebugbar::collectConsole();
+        public static function breakIntoTokens($text)
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::breakIntoTokens($text);
         }
         
         /**
-         * Adds a message to the MessagesCollector
-         * 
-         * A message can be anything from an object to a string
          *
-         * @param mixed $message
-         * @param string $label
-         * @static 
+         *
+         * @static
          */
-        public static function addMessage($message, $label = 'info'){
-            return \Barryvdh\Debugbar\LaravelDebugbar::addMessage($message, $label);
+        public static function highlight($text, $needle, $tag = 'em', $options = [])
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::highlight($text, $needle, $tag, $options);
         }
         
         /**
-         * Adds a data collector
          *
-         * @param \DebugBar\DataCollectorInterface $collector
-         * @throws DebugBarException
-         * @return $this 
-         * @static 
+         *
+         * @static
          */
-        public static function addCollector($collector){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::addCollector($collector);
+        public static function snippet($words, $fulltext, $rellength = 300, $prevcount = 50, $indicator = '...')
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::snippet($words, $fulltext, $rellength, $prevcount, $indicator);
         }
         
         /**
-         * Checks if a data collector has been added
          *
-         * @param string $name
-         * @return boolean 
-         * @static 
-         */
-        public static function hasCollector($name){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::hasCollector($name);
-        }
-        
-        /**
-         * Returns a data collector
          *
-         * @param string $name
-         * @return \DebugBar\DataCollectorInterface 
-         * @static 
+         * @static
          */
-        public static function getCollector($name){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getCollector($name);
-        }
-        
-        /**
-         * Returns an array of all data collectors
-         *
-         * @return \DebugBar\array[DataCollectorInterface] 
-         * @static 
-         */
-        public static function getCollectors(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getCollectors();
-        }
-        
-        /**
-         * Sets the request id generator
-         *
-         * @param \DebugBar\RequestIdGeneratorInterface $generator
-         * @static 
-         */
-        public static function setRequestIdGenerator($generator){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::setRequestIdGenerator($generator);
-        }
-        
-        /**
-         * 
-         *
-         * @return \DebugBar\RequestIdGeneratorInterface 
-         * @static 
-         */
-        public static function getRequestIdGenerator(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getRequestIdGenerator();
-        }
-        
-        /**
-         * Returns the id of the current request
-         *
-         * @return string 
-         * @static 
-         */
-        public static function getCurrentRequestId(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getCurrentRequestId();
-        }
-        
-        /**
-         * Sets the storage backend to use to store the collected data
-         *
-         * @param \DebugBar\StorageInterface $storage
-         * @static 
-         */
-        public static function setStorage($storage = null){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::setStorage($storage);
-        }
-        
-        /**
-         * 
-         *
-         * @return \DebugBar\StorageInterface 
-         * @static 
-         */
-        public static function getStorage(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getStorage();
-        }
-        
-        /**
-         * Checks if the data will be persisted
-         *
-         * @return boolean 
-         * @static 
-         */
-        public static function isDataPersisted(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::isDataPersisted();
-        }
-        
-        /**
-         * Sets the HTTP driver
-         *
-         * @param \DebugBar\HttpDriverInterface $driver
-         * @static 
-         */
-        public static function setHttpDriver($driver){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::setHttpDriver($driver);
-        }
-        
-        /**
-         * Returns the HTTP driver
-         * 
-         * If no http driver where defined, a PhpHttpDriver is automatically created
-         *
-         * @return \DebugBar\HttpDriverInterface 
-         * @static 
-         */
-        public static function getHttpDriver(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getHttpDriver();
-        }
-        
-        /**
-         * Returns collected data
-         * 
-         * Will collect the data if none have been collected yet
-         *
-         * @return array 
-         * @static 
-         */
-        public static function getData(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getData();
-        }
-        
-        /**
-         * Returns an array of HTTP headers containing the data
-         *
-         * @param string $headerName
-         * @param integer $maxHeaderLength
-         * @return array 
-         * @static 
-         */
-        public static function getDataAsHeaders($headerName = 'phpdebugbar', $maxHeaderLength = 4096, $maxTotalHeaderLength = 250000){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getDataAsHeaders($headerName, $maxHeaderLength, $maxTotalHeaderLength);
-        }
-        
-        /**
-         * Sends the data through the HTTP headers
-         *
-         * @param bool $useOpenHandler
-         * @param string $headerName
-         * @param integer $maxHeaderLength
-         * @static 
-         */
-        public static function sendDataInHeaders($useOpenHandler = null, $headerName = 'phpdebugbar', $maxHeaderLength = 4096){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::sendDataInHeaders($useOpenHandler, $headerName, $maxHeaderLength);
-        }
-        
-        /**
-         * Stacks the data in the session for later rendering
-         *
-         * @static 
-         */
-        public static function stackData(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::stackData();
-        }
-        
-        /**
-         * Checks if there is stacked data in the session
-         *
-         * @return boolean 
-         * @static 
-         */
-        public static function hasStackedData(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::hasStackedData();
-        }
-        
-        /**
-         * Returns the data stacked in the session
-         *
-         * @param boolean $delete Whether to delete the data in the session
-         * @return array 
-         * @static 
-         */
-        public static function getStackedData($delete = true){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getStackedData($delete);
-        }
-        
-        /**
-         * Sets the key to use in the $_SESSION array
-         *
-         * @param string $ns
-         * @static 
-         */
-        public static function setStackDataSessionNamespace($ns){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::setStackDataSessionNamespace($ns);
-        }
-        
-        /**
-         * Returns the key used in the $_SESSION array
-         *
-         * @return string 
-         * @static 
-         */
-        public static function getStackDataSessionNamespace(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::getStackDataSessionNamespace();
-        }
-        
-        /**
-         * Sets whether to only use the session to store stacked data even
-         * if a storage is enabled
-         *
-         * @param boolean $enabled
-         * @static 
-         */
-        public static function setStackAlwaysUseSessionStorage($enabled = true){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::setStackAlwaysUseSessionStorage($enabled);
-        }
-        
-        /**
-         * Checks if the session is always used to store stacked data
-         * even if a storage is enabled
-         *
-         * @return boolean 
-         * @static 
-         */
-        public static function isStackAlwaysUseSessionStorage(){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::isStackAlwaysUseSessionStorage();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function offsetSet($key, $value){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::offsetSet($key, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function offsetGet($key){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::offsetGet($key);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function offsetExists($key){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::offsetExists($key);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function offsetUnset($key){
-            //Method inherited from \DebugBar\DebugBar            
-            return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
+        public static function getIndex()
+        {
+            return \TeamTNT\TNTSearch\TNTSearch::getIndex();
         }
         
     }

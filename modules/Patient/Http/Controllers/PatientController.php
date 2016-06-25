@@ -7,12 +7,16 @@ use KekecMed\Core\Abstracts\Controllers\Traits\DataTable;
 use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
 use KekecMed\Core\Abstracts\Controllers\Traits\ValidatableRest;
 use KekecMed\Core\Abstracts\Controllers\View\AbstractViewController;
-use KekecMed\Core\Abstracts\ControllersConventionalResourceViewController;
-use KekecMed\Core\Abstracts\ControllersDataTableController;
-use KekecMed\Core\Abstracts\ControllersValidationController;
 use KekecMed\Insurance\Entities\Insurance;
 use KekecMed\Patient\Entities\Patient;
+use Pingpong\Menus\MenuBuilder;
 
+/**
+ * Class PatientController
+ *
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\Patient\Http\Controllers
+ */
 class PatientController extends AbstractViewController
     implements DataTable, ValidatableRest, Breadcrumbful, Headful
 {
@@ -46,7 +50,8 @@ class PatientController extends AbstractViewController
      */
     public function getModelForCreate()
     {
-        $model = $this->getModel();
+        /** @var Patient $model */
+        $model = $this->getModelInstance();
         $model->insurance = new Insurance();
 
         return $model;
@@ -90,7 +95,7 @@ class PatientController extends AbstractViewController
      */
     public function rootBreadcrumb()
     {
-        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+        $this->getViewComponent()->modifyBreadcrumb(function (MenuBuilder $menu) {
             $menu->route(
                 $this->getRouteName('index'),
                 'Patients',
@@ -108,7 +113,7 @@ class PatientController extends AbstractViewController
      */
     public function indexBreadcrumb()
     {
-        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+        $this->getViewComponent()->modifyBreadcrumb(function (MenuBuilder $menu) {
             $menu->route(
                 $this->getRouteName('index'),
                 'All Patients',
@@ -124,13 +129,16 @@ class PatientController extends AbstractViewController
     /**
      * Breadcrumb: Edit
      *
-     * @return void
+     * @param $id
      */
     public function editBreadcrumb($id)
     {
         $class = $this->getModelClass();
+
+        /** @var Patient $model */
         $model = $class::find($id);
-        $this->getViewComponent()->modifyBreadcrumb(function ($menu) use ($model) {
+
+        $this->getViewComponent()->modifyBreadcrumb(function (MenuBuilder $menu) use ($model) {
             $menu->route(
                 $this->getRouteName('edit'),
                 $model->getFullName(),
@@ -162,7 +170,7 @@ class PatientController extends AbstractViewController
      */
     public function createBreadcrumb()
     {
-        $this->getViewComponent()->modifyBreadcrumb(function ($menu) {
+        $this->getViewComponent()->modifyBreadcrumb(function (MenuBuilder $menu) {
             $menu->route(
                 $this->getRouteName('create'),
                 '[Firstname] [Lastname]',
@@ -178,13 +186,15 @@ class PatientController extends AbstractViewController
     /**
      * Breadcrumb: Show
      *
-     * @return void
+     * @param $id
      */
     public function showBreadcrumb($id)
     {
         $class = $this->getModelClass();
+
+        /** @var Patient $model */
         $model = $class::find($id);
-        $this->getViewComponent()->modifyBreadcrumb(function ($menu) use ($model) {
+        $this->getViewComponent()->modifyBreadcrumb(function (MenuBuilder $menu) use ($model) {
             $menu->route(
                 $this->getRouteName('show'),
                 $model->getFullName(),
@@ -206,6 +216,7 @@ class PatientController extends AbstractViewController
      */
     public function getCreateModel()
     {
+        /** @var Patient $model */
         $model = parent::getCreateModel();
         $model->insurance = new Insurance();
 
