@@ -1,6 +1,8 @@
 <?php namespace KekecMed\Core\Abstracts\Controllers\RestFul;
 
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 use KekecMed\Core\Abstracts\Controllers\AbstractRestFulBlueprintController;
 use KekecMed\Core\Abstracts\Controllers\Traits\Breadcrumbful;
 use KekecMed\Core\Abstracts\Controllers\Traits\DataTable;
@@ -19,7 +21,7 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      *
      * @param \Illuminate\Http\Request $request
      */
-    public function __construct(\Illuminate\Http\Request $request)
+    public function __construct(Request $request)
     {
         parent::__construct($request);
 
@@ -68,7 +70,9 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
     /**
      * Get View for index()
      *
-     * @return mixed
+     * @param array $data
+     *
+     * @return View
      */
     protected function getIndexView(array $data)
     {
@@ -177,7 +181,7 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         }
 
         // Get form data
-        $data = $this->getStoreModelData();
+        $data = $this->getStoreModelData($request);
 
         // Create model
         $model = $this->storeModel($data);
@@ -186,6 +190,13 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         return $this->redirectAfterStore($model);
     }
 
+    /**
+     * Get prepared data to store
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
     public function getStoreModelData(Request $request)
     {
         return $this->getDataStore($request);
@@ -209,7 +220,7 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      *
      * @param $data
      *
-     * @return static
+     * @return Model
      */
     protected function storeModel($data)
     {
@@ -272,6 +283,10 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
 
     /**
      * Get View Data for show()
+     *
+     * @param $id
+     *
+     * @return array
      */
     protected function getShowViewData($id)
     {
@@ -282,6 +297,8 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
 
     /**
      * Get model instance for show()
+     *
+     * @param $id
      *
      * @return Model
      */
@@ -296,7 +313,7 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
     /**
      * Get View for show()
      *
-     * @param Model $model
+     * @param array $viewData
      *
      * @return View
      */
@@ -352,6 +369,13 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         return $this->getShowModel($id);
     }
 
+    /**
+     * Get Edit View
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
     protected function getEditView(array $data)
     {
         return $this->createView($this->getEditViewPath(), $data);
@@ -386,7 +410,7 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         $model = $this->updateModel($id, $data);
 
         // Redirect request
-        return $this->redirectAfterStore($model);
+        return $this->redirectAfterUpdate($model);
     }
 
     /**
@@ -407,12 +431,19 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      *
      * @param       $id
      * @param array $data
+     *
+     * @return
+     * @throws \Exception
      */
     protected function updateModel($id, array $data)
     {
         $modelInstance = $this->getUpdateModel($id);
 
-        return $modelInstance->update($data);
+        if ($modelInstance->update($data)) {
+            return $modelInstance;
+        } else {
+            throw new \Exception('Unable to update Model');
+        }
     }
 
     protected function getUpdateModel($id)
@@ -421,6 +452,25 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
 
         return $class::findOrFail($id);
     }
+
+    /**
+     * Redirection after update()
+     *
+     * @param Model $model
+     *
+     * @return mixed
+     */
+    protected function redirectAfterUpdate(Model $model)
+    {
+        return $this->redirectToRoute($this->redirectAfterUpdateRoute(), $model->id);
+    }
+
+    /**
+     * Route to redirect after update()
+     *
+     * @return string
+     */
+    abstract protected function redirectAfterUpdateRoute();
 
     /**
      * Remove the specified resource from storage.
@@ -448,7 +498,14 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         $modelClass::destroy($id);
     }
 
-    protected function getDestroyModel()
+    /**
+     * Get Model to delete
+     *
+     * @param $id
+     *
+     * @return Model
+     */
+    protected function getDestroyModel($id)
     {
         return $this->getModelClass();
     }
@@ -471,23 +528,4 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      * @return string
      */
     abstract protected function redirectAfterDestroyRoute();
-
-    /**
-     * Redirection after update()
-     *
-     * @param $id
-     *
-     * @return mixed
-     */
-    protected function redirectAfterUpdate(Model $model)
-    {
-        return $this->redirectToRoute($this->redirectAfterUpdateRoute(), $model->id);
-    }
-
-    /**
-     * Route to redirect after update()
-     *
-     * @return string
-     */
-    abstract protected function redirectAfterUpdateRoute();
 }

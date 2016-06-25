@@ -1,6 +1,6 @@
 <?php namespace KekecMed\Core\Abstracts\Controllers;
 
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 /**
  * Class AbstractRestFulBlueprintController
@@ -53,8 +53,8 @@ abstract class AbstractRestFulBlueprintController extends AbstractController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param  Request $request
+     * @param  int     $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -71,8 +71,6 @@ abstract class AbstractRestFulBlueprintController extends AbstractController
 
     /**
      * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */

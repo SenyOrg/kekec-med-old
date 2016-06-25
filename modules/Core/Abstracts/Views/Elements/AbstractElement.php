@@ -83,7 +83,19 @@ abstract class AbstractElement
         $this->configuration = array_replace_recursive($this->configuration, $configuration);
         $this->parameters = array_replace_recursive($this->parameters, $parameters);
         $this->attributes = array_replace_recursive($this->attributes, $attributes);
+
+        /**
+         * Handle everything first
+         */
+        $this->handle();
     }
+
+    /**
+     * Handle inputs make some
+     *
+     * @param null $viewMode
+     */
+    protected abstract function handle($viewMode = null);
 
     /**
      * Get global ViewMode
@@ -127,6 +139,8 @@ abstract class AbstractElement
     /**
      * Render Element
      *
+     * @param null $viewMode
+     *
      * @return string
      * @throws \Exception
      */
@@ -141,7 +155,7 @@ abstract class AbstractElement
         /**
          * Handle everything first
          */
-        $this->handle($viewMode);
+        //$this->handle($viewMode);
 
         /**
          * Render Elemenet
@@ -165,6 +179,10 @@ abstract class AbstractElement
 
     /**
      * Get ViewMode
+     *
+     * @param null $local Local ViewMode
+     *
+     * @return null
      */
     protected function getViewMode($local = null)
     {
@@ -203,13 +221,6 @@ abstract class AbstractElement
     }
 
     /**
-     * Handle inputs make some
-     *
-     * @param null $viewMode
-     */
-    protected abstract function handle($viewMode = null);
-
-    /**
      * Renders ViewMode representation
      *
      * @return string
@@ -246,7 +257,7 @@ abstract class AbstractElement
      *
      * @param Model|null $model
      *
-     * @return Model
+     * @return Model|null
      */
     public static function model(Model $model = null)
     {
@@ -258,6 +269,8 @@ abstract class AbstractElement
         } else {
             return self::$model;
         }
+
+        return null;
     }
 
     /**
@@ -279,5 +292,15 @@ abstract class AbstractElement
     public function __toString()
     {
         return e($this->render());
+    }
+
+    /**
+     * Get element parameters
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 }

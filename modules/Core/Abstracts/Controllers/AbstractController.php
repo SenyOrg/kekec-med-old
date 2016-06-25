@@ -13,14 +13,14 @@ use Pingpong\Modules\Routing\Controller;
 abstract class AbstractController extends Controller
 {
     /**
-     * @var \Request
+     * @var \Illuminate\Http\Request
      */
     protected $request = null;
 
     /**
      * AbstractController constructor.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      */
     public function __construct(Request $request)
     {
@@ -30,7 +30,7 @@ abstract class AbstractController extends Controller
         // Store Request
         $this->setRequest($request);
 
-        // Set Header
+        // Set View (Sub-)Header
         if ($this instanceof Headful) {
             $this->getViewComponent()->setPageHeader($this->getPageHeader());
             $this->getViewComponent()->setPageSubHeader($this->getPageSubHeader());
@@ -60,9 +60,9 @@ abstract class AbstractController extends Controller
     /**
      * Set request
      *
-     * @param \Request $request
+     * @param Request $request
      */
-    public function setRequest($request)
+    public function setRequest(Request $request)
     {
         $this->request = $request;
     }
@@ -103,6 +103,6 @@ abstract class AbstractController extends Controller
      */
     protected function validateRequest(Request $request, array $validationRules)
     {
-        return $this->validate($request, $validationRules);
+        $this->validate($request, $validationRules);
     }
 }
