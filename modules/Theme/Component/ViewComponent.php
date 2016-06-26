@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use KekecMed\Core\Abstracts\Controllers\AbstractController;
 use KekecMed\Core\Abstracts\Controllers\AbstractCoreController;
+use KekecMed\Core\Abstracts\Views\Elements\AbstractElement;
 use Yajra\Datatables\Services\DataTable;
 
 class ViewComponent
@@ -251,5 +252,15 @@ class ViewComponent
     public function setPageSubHeader($pageSubHeader)
     {
         $this->pageSubHeader = $pageSubHeader;
+    }
+
+    /**
+     * Set global viewMode
+     *
+     * @param $viewMode
+     */
+    public function setViewMode($viewMode)
+    {
+        AbstractElement::setGlobalViewMode($viewMode);
     }
 }

@@ -10,6 +10,7 @@
 
 
 @section('content')
+    {{$model->getPresenter()->setViewMode('edit')}}
     @if (!isset($create))
         <div class="row">
             <div class="col-md-12">
@@ -20,7 +21,7 @@
                         <h5 class="widget-user-desc">Created at {{$model->created_at}}</h5>
                     </div>
                     <div class="widget-user-image">
-                        <img class="img-circle bg-aqua-active" src="{{$model->getImageUrl()}}" alt="User Avatar">
+                        <img class="img-circle bg-aqua-active" src="{{$model->getFileUrl('image')}}" alt="User Avatar">
                     </div>
                     <div class="box-footer">
                         <div class="row">
@@ -63,11 +64,11 @@
                     <h3 class="box-title">General Data</h3>
                 </div>
                 <div class="box-body">
-                    {{Form::itext('Firstname', 'firstname') }}
-                    {{Form::itext('Lastname', 'lastname')}}
-                    {{Form::iselectbox('Gender', 'gender', ['m' => 'Männlich', 'w' => 'Weiblich'], true, ['class' => 'form-control'])}}
-                    {{Form::idate('Birthdate', 'birthdate')}}
-                    {{Form::ifile('Image', 'image')}}
+                    {{$model->getPresenter()->getFirstname()}}
+                    {{$model->getPresenter()->getLastname()}}
+                    {{$model->getPresenter()->getGender()}}
+                    {{$model->getPresenter()->getBirthdate()}}
+                    {{$model->getPresenter()->getImage()}}
                 </div>
             </div>
         </div>
@@ -84,9 +85,9 @@
                     <h5 class="widget-user-desc">&nbsp;</h5>
                 </div>
                 <div class="box-footer">
-                    {{Form::iselect2('Insurance', 'insurance_id', \KekecMed\Insurance\Entities\Insurance::class, $model->insurance_id)}}
-                    {{Form::itext('Insurance UUID', 'insurance_no',  $model->insurance_no)}}
-                    {{Form::itext('Insurance type', 'insurance_type', $model->insurance_type)}}
+                    {{$model->getPresenter()->getInsurance()}}
+                    {{$model->getPresenter()->getInsuranceNo()}}
+                    {{$model->getPresenter()->getInsuranceType()}}
                 </div>
             </div>
         </div>
@@ -98,13 +99,12 @@
                     <h3 class="box-title">Contact Information</h3>
                 </div>
                 <div class="box-body">
-                    {{Form::itext('Street', 'street')}}
-                    {{Form::itext('No', 'no')}}
-                    {{Form::itext('Zipcode', 'zipcode')}}
-                    {{Form::itext('City', 'city')}}
-                    {{Form::iphone('Phone', 'phone')}}
-                    {{Form::imobile('Mobile', 'mobile')}}
-                    {{Form::iemail('E-mail', 'email')}}
+                    {{$model->getPresenter()->getStreet()}}
+                    {{$model->getPresenter()->getStreetNo()}}
+                    {{$model->getPresenter()->getZipcode()}}
+                    {{$model->getPresenter()->getPhone()}}
+                    {{$model->getPresenter()->getMobile()}}
+                    {{$model->getPresenter()->getEmail()}}
                 </div>
             </div>
         </div>

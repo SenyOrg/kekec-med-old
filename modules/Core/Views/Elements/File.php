@@ -21,6 +21,7 @@ class File extends AbstractGenericInputParameters
      */
     protected $configuration = [
         'trackChanges' => true,
+        'icon'         => 'fa fa-document',
     ];
 
     /**

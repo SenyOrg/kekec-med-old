@@ -1,11 +1,16 @@
 <?php namespace KekecMed\Patient\Entities;
 
 use KekecMed\Core\Abstracts\Models\AbstractModel;
+use KekecMed\Core\Abstracts\Models\Fileable;
+use KekecMed\Core\Abstracts\Models\FileableModel;
+use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\PresentableModel;
+use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Abstracts\Models\Validatable;
 use KekecMed\Core\Abstracts\Models\ValidatableModel;
 use KekecMed\Core\Entities\Dialogable;
-use KekecMed\Core\Entities\ImageableModel;
 use KekecMed\Insurance\Entities\Insurance;
+use KekecMed\Patient\Presenters\PatientPresenter;
 use KekecMed\Task\Entities\Task;
 
 /**
@@ -15,9 +20,9 @@ use KekecMed\Task\Entities\Task;
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Patient\Entities
  */
-class Patient extends AbstractModel implements Dialogable, Validatable
+class Patient extends AbstractModel implements Dialogable, Validatable, Presentable, Fileable
 {
-    use ImageableModel, ValidatableModel;
+    use ValidatableModel, PresentableModel, FileableModel;
 
     /**
      * The attributes that are mass assignable.
@@ -68,16 +73,6 @@ class Patient extends AbstractModel implements Dialogable, Validatable
     }
 
     /**
-     * Get Image Url
-     *
-     * @return mixed
-     */
-    public function getImageUrl()
-    {
-        return \Storage::url($this->image);
-    }
-
-    /**
      * Get Fullname
      *
      * @return string
@@ -116,18 +111,38 @@ class Patient extends AbstractModel implements Dialogable, Validatable
                 'lastname'       => 'required|alpha',
                 'gender'         => 'in:m,w',
                 'image',
-                'birthdate'      => 'required|date',
+                'birthdate'      => 'date',
                 'insurance_type' => 'required',
                 'insurance_id'   => 'required|exists:insurances,id',
                 'insurance_no'   => 'required',
-                'phone'          => 'numeric',
-                'mobile'         => 'numeric',
+                'phone'          => '',
+                'mobile'         => '',
                 'email'          => 'email',
-                'street'         => 'alpha_num',
+                'street'         => '',
                 'no'             => 'alpha_num',
                 'zipcode'        => 'numeric'
             ],
             'messages' => []
         ];
+    }
+
+    /**
+     * Get Presenter Class
+     *
+     * @return AbstractPresenter
+     */
+    public function getPresenterClass()
+    {
+        return PatientPresenter::class;
+    }
+
+    /**
+     * Get array of file attributes
+     *
+     * @return array
+     */
+    public function getFileAttributes()
+    {
+        return ['image'];
     }
 }
