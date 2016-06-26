@@ -14,6 +14,13 @@ use KekecMed\Core\Abstracts\Models\Presentable;
 abstract class AbstractPresenter
 {
     /**
+     * ViewMode
+     *
+     * @var string
+     */
+    protected $viewMode = 'edit';
+
+    /**
      * Model
      *
      * @var Model
@@ -38,5 +45,25 @@ abstract class AbstractPresenter
     public function getModel()
     {
         return $this->model;
+    }
+
+    /**
+     * Get ViewMode
+     *
+     * @return string
+     */
+    public function getViewMode()
+    {
+        return $this->viewMode;
+    }
+
+    /**
+     * Set ViewMode
+     *
+     * @param string $viewMode
+     */
+    public function setViewMode($viewMode)
+    {
+        $this->viewMode = $viewMode;
     }
 }

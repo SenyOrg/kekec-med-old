@@ -74,10 +74,19 @@ abstract class AbstractFormElement
     /**
      * Render Form Element
      *
+     * @param null $viewMode
+     *
      * @return HtmlString
      */
-    public function render()
+    public function render($viewMode = null)
     {
+        /**
+         * Set ViewMode
+         */
+        if ($viewMode) {
+            $this->element->setViewMode($viewMode);
+        }
+
         return new HtmlString(view('core::forms.main', [
             'label'      => $this->label,
             'element'    => $this->element,

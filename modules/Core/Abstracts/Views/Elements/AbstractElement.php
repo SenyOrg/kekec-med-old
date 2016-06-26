@@ -184,9 +184,23 @@ abstract class AbstractElement
      *
      * @return null
      */
-    protected function getViewMode($local = null)
+    public function getViewMode($local = null)
     {
         return self::handleViewModes($local, $this->viewMode, static::$globalViewMode);
+    }
+
+    /**
+     * Set ViewMode
+     *
+     * @param null $viewMode
+     *
+     * @return $this
+     */
+    public function setViewMode($viewMode)
+    {
+        $this->viewMode = $viewMode;
+
+        return $this;
     }
 
     /**

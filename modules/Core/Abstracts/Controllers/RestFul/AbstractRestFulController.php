@@ -143,7 +143,7 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
     /**
      * Get model class
      *
-     * @return Model::class
+     * @return \Eloquent
      */
     abstract protected function getModelClass();
 
@@ -350,6 +350,13 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         return $this->getEditView($data);
     }
 
+    /**
+     * Get View Data for Edit
+     *
+     * @param $id
+     *
+     * @return array
+     */
     protected function getEditViewData($id)
     {
         return [

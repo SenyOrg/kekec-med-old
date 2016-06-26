@@ -1,5 +1,7 @@
 <?php namespace KekecMed\Core\Abstracts\Models;
 
+use Illuminate\Validation\Validator;
+
 /**
  * Trait ValidatableModel
  *
@@ -8,6 +10,45 @@
  */
 trait ValidatableModel
 {
+    /**
+     *
+     * @param Validatable $u
+     *
+     * @return mixed
+     */
+    public function callValidatable(Validatable $u)
+    {
+        /** @var ValidatableModel $u */
+        $closure = $u->getValidationClosure();
+
+        return $closure($u);
+    }
+
+    /**
+     * Returns closure for validation routine
+     *
+     * @return \Closure
+     */
+    public function getValidationClosure()
+    {
+        /**
+         * @param Validatable $model
+         *
+         * @return bool|Validator
+         */
+        return function (Validatable $model) {
+            /** @var Validator $validator */
+            /** @var ValidatableModel $model */
+            $validator = $model->getValidator();
+
+            if ($validator->fails()) {
+                return $validator;
+            }
+
+            return true;
+        };
+    }
+
     /**
      * Get Validator for Model
      *
@@ -19,7 +60,7 @@ trait ValidatableModel
         if ($this instanceof Validatable) {
             $rules = $this->getValidationRules();
 
-            return \Validator::make($this->attributes, $rules['rules'], $rules['messages']);
+            return \Validator::make($this->attributesToArray(), $rules['rules'], $rules['messages']);
         }
 
         throw new \Exception('ValidatableModel needs a Model that implements Validatable Interface');

@@ -6,10 +6,17 @@ use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
  * Trait PresentableModel
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
- * @package KekecMed\ore\Abstracts\Models
+ * @package KekecMed\Core\Abstracts\Models
  */
 trait PresentableModel
 {
+    /**
+     * Presenter
+     *
+     * @var Presentable
+     */
+    protected $presenterInstance = null;
+
     /**
      * Get Presenter for Model
      *
@@ -18,10 +25,16 @@ trait PresentableModel
      */
     public function getPresenter()
     {
+        if ($this->presenterInstance) {
+            return $this->presenterInstance;
+        }
+
         if ($this instanceof Presentable) {
             $class = $this->getPresenterClass();
 
-            return new $class($this);
+            $this->presenterInstance = new $class($this);
+
+            return $this->presenterInstance;
         }
 
         throw new \Exception('Model does not implement Presentable Interface.');
