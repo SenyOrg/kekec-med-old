@@ -9,7 +9,11 @@
                 <i class="fa fa-times-circle-o"></i> Value is shitty
             </label>
         @endif
+        @if ($element->getViewMode() == 'edit')
         {{$element->render()}}
+        @else
+            <p class="form-control-static">{{$element->render()}}</p>
+        @endif
         <span class="glyphicon glyphicon-time form-control-feedback hidden" aria-hidden="true"></span>
         <span id="{{$parameters['id']}}" class="sr-only">(success)</span>
 
