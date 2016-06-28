@@ -17,6 +17,16 @@ use KekecMed\Patient\Entities\Patient;
 class PatientTable extends AbstractCoreDataTable
 {
     /**
+     * Get table id
+     *
+     * @return string
+     */
+    public function getTableID()
+    {
+        return 'patientTable';
+    }
+
+    /**
      * Get route name for show
      *
      * @return string
@@ -34,16 +44,6 @@ class PatientTable extends AbstractCoreDataTable
     protected function getModelQuery()
     {
         return Patient::query();
-    }
-
-    /**
-     * Get table id
-     *
-     * @return string
-     */
-    public function getTableID()
-    {
-        return 'patientTable';
     }
 
     /**
@@ -112,7 +112,7 @@ class PatientTable extends AbstractCoreDataTable
     {
         // Add image column callback
         $eloq->addColumn('image', function ($model) {
-            return '<img src="' . $model->getImageUrl() . '" width="50" height="50"/>';
+            return '<img src="' . $model->getFileUrl('image') . '" width="50" height="50"/>';
         });
     }
 }

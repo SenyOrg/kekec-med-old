@@ -1,8 +1,15 @@
 <?php namespace KekecMed\Task\Entities;
 
 use App\User;
-use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Abstracts\Models\AbstractModel;
+use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\PresentableModel;
+use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
+use KekecMed\Core\Abstracts\Models\Validatable;
+use KekecMed\Core\Abstracts\Models\ValidatableModel;
+use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Patient\Entities\Patient;
+use KekecMed\Task\Entities\Presenters\TaskPresenter;
 
 /**
  * Class Task
@@ -12,8 +19,11 @@ use KekecMed\Patient\Entities\Patient;
  * @package App
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
-class Task extends Model
+class Task extends AbstractModel implements Validatable, Dialogable, Presentable
 {
+
+    use ValidatableModel, PresentableModel;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +37,10 @@ class Task extends Model
         'creator_id',
         'assignee_id',
         'object_id',
+    ];
+
+    protected $casts = [
+        'done' => 'boolean'
     ];
 
     /**
@@ -68,4 +82,39 @@ class Task extends Model
         return $this->belongsTo(Patient::class, 'object_id');
     }
 
+    /**
+     * Returns data for dialog view
+     *
+     * @return array
+     */
+    public function getDialogData()
+    {
+        // TODO: Implement getDialogData() method.
+    }
+
+    /**
+     * Get Validation Rules
+     *
+     * @return array
+     */
+    public function getValidationRules()
+    {
+        // TODO: Implement getValidationRules() method.
+        return [
+            'rules'    => [
+            ],
+            'messages' => [
+            ],
+        ];
+    }
+
+    /**
+     * Get Presenter Class
+     *
+     * @return AbstractPresenter
+     */
+    public function getPresenterClass()
+    {
+        return TaskPresenter::class;
+    }
 }

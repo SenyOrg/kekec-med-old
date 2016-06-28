@@ -19,6 +19,7 @@ class CoreDatabaseSeeder extends Seeder
          * DevelopmentSeeder
          */
         if (env('APP_DEBUG')) {
+            \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
             $this->call(DevelopmentDatabaseSeeder::class);
         }
     }

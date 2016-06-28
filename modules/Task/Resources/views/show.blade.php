@@ -8,38 +8,16 @@
                     <h3 class="box-title">General Data</h3>
                 </div>
                 <div class="box-body no-padding">
-                    <table class="table table-striped">
-                        <tbody>
-                        <tr>
-                            <th>Title</th>
-                            <td>{{$model->title}}</td>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <td>{{$model->description}}</td>
-                        </tr>
-                        <tr>
-                            <th>Deadline</th>
-                            <td>{{$model->deadline}}</td>
-                        </tr>
-                        <tr>
-                            <th>Done</th>
-                            <td>{{$model->done}}</td>
-                        </tr>
-                        <tr>
-                            <th>Creator</th>
-                            <td>{{$model->creator()->first()->getFullName()}}</td>
-                        </tr>
-                        <tr>
-                            <th>Assignee</th>
-                            <td>{{$model->assignee()->first()->getFullName()}}</td>
-                        </tr>
-                        <tr>
-                            <th>Patient</th>
-                            <td>{{$model->object()->first()->getFullName()}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <form class="form-horizontal">
+                        {{$model->getPresenter()->setViewMode('view')}}
+                        {{$model->getPresenter()->getTitle()}}
+                        {{$model->getPresenter()->getDescription()}}
+                        {{$model->getPresenter()->getDeadline()}}
+                        {{$model->getPresenter()->getDone()}}
+                        {{$model->getPresenter()->getCreator()}}
+                        {{$model->getPresenter()->getAssignee()}}
+                        {{$model->getPresenter()->getObject()}}
+                    </form>
                 </div>
             </div>
         </div>

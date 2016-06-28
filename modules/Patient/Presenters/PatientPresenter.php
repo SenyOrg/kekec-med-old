@@ -199,4 +199,14 @@ class PatientPresenter extends AbstractPresenter
             'value'  => $this->getModel()->image,
         ]))->render($this->getViewMode());
     }
+
+    /**
+     * Get Representable String
+     *
+     * @return string
+     */
+    public function getRepresentable()
+    {
+        return $this->getModel()->getFullName();
+    }
 }

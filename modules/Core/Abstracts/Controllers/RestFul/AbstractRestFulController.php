@@ -439,7 +439,7 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
      * @param       $id
      * @param array $data
      *
-     * @return
+     * @return Model|null
      * @throws \Exception
      */
     protected function updateModel($id, array $data)

@@ -5,6 +5,7 @@ namespace KekecMed\Core\Views\Elements;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use KekecMed\Core\Abstracts\Models\Presentable;
 use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 use KekecMed\Core\Entities\Dialogable;
 
@@ -69,6 +70,17 @@ class Select extends AbstractGenericInputParameters
                     $this->parameters['options'] = $instance->getDialogData();
                 } else {
                     $this->parameters['options'] = $instance::lists('title', 'id')->toArray();
+                }
+
+                $this->parameters['presentable'] = $this->parameters['value'];
+                if ($this->getViewMode() == 'view') {
+                    if (isset($this->parameters['value'])) {
+                        $modelInstance = $this->parameters['model']::find($this->parameters['value']);
+
+                        if ($modelInstance instanceof Presentable) {
+                            $this->parameters['presentable'] = $modelInstance->getPresenter()->getRepresentable();
+                        }
+                    }
                 }
             }
         }

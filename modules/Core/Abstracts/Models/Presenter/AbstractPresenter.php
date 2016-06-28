@@ -66,4 +66,11 @@ abstract class AbstractPresenter
     {
         $this->viewMode = $viewMode;
     }
+
+    /**
+     * Get Representable String
+     *
+     * @return string
+     */
+    public abstract function getRepresentable();
 }

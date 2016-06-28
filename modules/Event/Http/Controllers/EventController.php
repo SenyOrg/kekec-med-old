@@ -196,17 +196,21 @@ class EventController extends AbstractViewController
         return $model;
     }
 
+    /**
+     * Updates a given model
+     *
+     * @param       $id
+     * @param array $data
+     *
+     * @return
+     * @throws \Exception
+     */
     protected function updateModel($id, array $data)
     {
         $class = $this->getModelClass();
 
-        $class::findOrFail($id)->update($data);
-        $class::findOrFail($id)->participants()->delete();
-
-        if (isset($data['participants'])) {
-            foreach ($data['participants'] as $userID) {
-                EventParticipant::create(['participant_id' => $userID, 'event_id' => $id]);
-            }
+        if ($class::findOrFail($id)->updateWithRelations($data)) {
+            return $class::findOrFail($id);
         }
     }
 }

@@ -11,19 +11,19 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">General Data</h3>
                 </div>
                 <div class="box-body">
-                    {{Form::itext('Title', 'title') }}
-                    {{Form::itext('Description', 'description')}}
-                    {{Form::idate('Deadline', 'deadline')}}
-                    {{Form::itext('Done', 'done')}}
-                    {{Form::iselect2('Creator', 'creator_id', \App\User::class, $model->creator_id)}}
-                    {{Form::iselect2('Assignee', 'assignee_id', \App\User::class, $model->assignee_id)}}
-                    {{Form::iselect2('Patient', 'object_id', \KekecMed\Patient\Entities\Patient::class, $model->object_id)}}
+                    {{$model->getPresenter()->getTitle()}}
+                    {{$model->getPresenter()->getDescription()}}
+                    {{$model->getPresenter()->getDeadline()}}
+                    {{$model->getPresenter()->getDone()}}
+                    {{$model->getPresenter()->getCreator()}}
+                    {{$model->getPresenter()->getAssignee()}}
+                    {{$model->getPresenter()->getObject()}}
                 </div>
             </div>
         </div>

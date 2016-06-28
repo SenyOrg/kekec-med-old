@@ -1,1 +1,1 @@
-@extends('core::elements.inputs.view.generic-input')
+{{$parameters['presentable']}}

@@ -1,8 +1,11 @@
 <?php namespace KekecMed\Event\Entities;
 
 use App\User;
-use Illuminate\Database\Eloquent\Model;
 use KekecMed\Calendar\Entities\Calendar;
+use KekecMed\Core\Abstracts\Models\AbstractModel;
+use KekecMed\Core\Abstracts\Models\Relational;
+use KekecMed\Core\Abstracts\Models\RelationalMeta;
+use KekecMed\Core\Abstracts\Models\RelationalModel;
 use KekecMed\Patient\Entities\Patient;
 
 /**
@@ -13,8 +16,9 @@ use KekecMed\Patient\Entities\Patient;
  * @package KekecMed\Calendar\Entities
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
-class Event extends Model
+class Event extends AbstractModel implements Relational
 {
+    use RelationalModel;
 
     /**
      * Fillable attributes
@@ -91,5 +95,17 @@ class Event extends Model
     public function participants()
     {
         return $this->hasMany(EventParticipant::class);
+    }
+
+    /**
+     * Get relational Meta
+     *
+     * @return array
+     */
+    public function getRelationalMeta()
+    {
+        return [
+            new RelationalMeta('participants', 'participants', 'participant_id', 'delete'),
+        ];
     }
 }

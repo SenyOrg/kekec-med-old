@@ -3,13 +3,17 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\PresentableModel;
+use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Core\Entities\ImageableModel;
+use KekecMed\Core\Entities\Presenters\UserPresenter;
 use KekecMed\Task\Entities\Task;
 
-class User extends Authenticatable implements Dialogable
+class User extends Authenticatable implements Dialogable, Presentable
 {
-    use ImageableModel;
+    use ImageableModel, PresentableModel;
     
     /**
      * The attributes that are mass assignable.
@@ -86,5 +90,15 @@ class User extends Authenticatable implements Dialogable
         });
 
         return $arr;
+    }
+
+    /**
+     * Get Presenter Class
+     *
+     * @return AbstractPresenter
+     */
+    public function getPresenterClass()
+    {
+        return UserPresenter::class;
     }
 }
