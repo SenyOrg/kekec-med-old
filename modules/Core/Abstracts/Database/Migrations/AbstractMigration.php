@@ -1,4 +1,4 @@
-<?php namespace KekecMed\Core\Database\Migrations;
+<?php namespace KekecMed\Core\Abstracts\Database\Migrations;
 
 use Illuminate\Database\Migrations\Migration;
 use Schema;
@@ -11,7 +11,6 @@ use Schema;
  */
 abstract class AbstractMigration extends Migration
 {
-
     /**
      * AbstractMigration constructor.
      */

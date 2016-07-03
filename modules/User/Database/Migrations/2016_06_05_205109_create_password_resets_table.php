@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use KekecMed\Core\Database\Migrations\AbstractMigration;
+use KekecMed\Core\Abstracts\Database\Migrations\AbstractMigration;
 
 /**
  * Class CreatePasswordResetsTable
