@@ -22,6 +22,7 @@
             <i class="fa fa-pencil"></i>
             Edit
         </a>
+        @yield('append-head-buttons')
         {{Form::close()}}
     </li>
 @endsection

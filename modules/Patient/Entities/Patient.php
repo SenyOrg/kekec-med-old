@@ -3,15 +3,20 @@
 use KekecMed\Core\Abstracts\Models\AbstractModel;
 use KekecMed\Core\Abstracts\Models\Fileable;
 use KekecMed\Core\Abstracts\Models\FileableModel;
+use KekecMed\Core\Abstracts\Models\Mediable\Mediable;
+use KekecMed\Core\Abstracts\Models\Mediable\MediableModel;
+use KekecMed\Core\Abstracts\Models\Noticeable\Noticeable;
+use KekecMed\Core\Abstracts\Models\Noticeable\NoticeableModel;
 use KekecMed\Core\Abstracts\Models\Presentable;
 use KekecMed\Core\Abstracts\Models\PresentableModel;
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
+use KekecMed\Core\Abstracts\Models\Taskable\Taskable;
+use KekecMed\Core\Abstracts\Models\Taskable\TaskableModel;
 use KekecMed\Core\Abstracts\Models\Validatable;
 use KekecMed\Core\Abstracts\Models\ValidatableModel;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Insurance\Entities\Insurance;
 use KekecMed\Patient\Presenters\PatientPresenter;
-use KekecMed\Task\Entities\Task;
 
 /**
  * Class Patient
@@ -20,9 +25,9 @@ use KekecMed\Task\Entities\Task;
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Patient\Entities
  */
-class Patient extends AbstractModel implements Dialogable, Validatable, Presentable, Fileable
+class Patient extends AbstractModel implements Dialogable, Validatable, Presentable, Fileable, Taskable, Mediable, Noticeable
 {
-    use ValidatableModel, PresentableModel, FileableModel;
+    use ValidatableModel, PresentableModel, FileableModel, TaskableModel, MediableModel, NoticeableModel;
 
     /**
      * The attributes that are mass assignable.
@@ -62,14 +67,6 @@ class Patient extends AbstractModel implements Dialogable, Validatable, Presenta
     public function insurance()
     {
         return $this->belongsTo(Insurance::class);
-    }
-
-    /**
-     * Get Insurance object.
-     */
-    public function tasks()
-    {
-        return $this->hasMany(Task::class, 'object_id');
     }
 
     /**
@@ -144,5 +141,28 @@ class Patient extends AbstractModel implements Dialogable, Validatable, Presenta
     public function getFileAttributes()
     {
         return ['image'];
+    }
+
+    /**
+     * Get path to upload directory
+     *
+     * @return string
+     */
+    public function getMediaFileUploadPath()
+    {
+        return 'patient/' . $this->id . '/';
+    }
+
+    /**
+     * Get attribute to watch in request
+     *
+     * @return string
+     */
+    public function getMediaAttributes()
+    {
+        return [
+            'media'            => 'mediaFile',
+            'mediaDescription' => 'mediaDescription',
+        ];
     }
 }

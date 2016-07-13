@@ -1,6 +1,12 @@
 <?php namespace KekecMed\Core\Abstracts\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use KekecMed\Core\Abstracts\Models\Mediable\Mediable;
+use KekecMed\Core\Abstracts\Models\Mediable\MediableModel;
+use KekecMed\Core\Abstracts\Models\Noticeable\Noticeable;
+use KekecMed\Core\Abstracts\Models\Noticeable\NoticeableModel;
+use KekecMed\Core\Abstracts\Models\Taskable\Taskable;
+use KekecMed\Core\Abstracts\Models\Taskable\TaskableModel;
 
 /**
  * Class AbstractModel
@@ -60,6 +66,21 @@ abstract class AbstractModel extends Model
             if ($model instanceof Fileable) {
                 /** @var FileableModel|Fileable $model */
                 $model->callFileableDelete($model);
+            }
+
+            if ($model instanceof Taskable) {
+                /** @var TaskableModel|Taskable $model */
+                $model->callTaskableDelete($model);
+            }
+
+            if ($model instanceof Noticeable) {
+                /** @var NoticeableModel|Noticeable $model */
+                $model->callNoticeableDelete($model);
+            }
+
+            if ($model instanceof Mediable) {
+                /** @var MediableModel|Mediable $model */
+                $model->callMediableDelete($model);
             }
 
             return $model;

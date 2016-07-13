@@ -413,8 +413,11 @@ abstract class AbstractRestFulController extends AbstractRestFulBlueprintControl
         // Get form data
         $data = $this->getUpdateModelData($request, $id);
 
-        // Create model
+        // Update model
         $model = $this->updateModel($id, $data);
+
+        // Handle required model hooks
+        $this->handleModelHooks($model);
 
         // Redirect request
         return $this->redirectAfterUpdate($model);

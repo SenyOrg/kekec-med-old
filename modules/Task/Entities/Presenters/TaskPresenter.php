@@ -3,6 +3,7 @@
 namespace KekecMed\Task\Entities\Presenters;
 
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
+use KekecMed\Core\Abstracts\Models\Taskable\Taskable;
 use KekecMed\Core\Views\Elements;
 use KekecMed\Core\Views\Forms\FormElement;
 
@@ -98,14 +99,21 @@ class TaskPresenter extends AbstractPresenter
     /**
      * Get Insurance Type
      *
+     * @param string $selectedObject Format: {NAMESPACED_MODEL}-{MODEL_ID}
+     *
      * @return static
      */
-    public function getObject()
+    public function getObject($selectedObject = null)
     {
-        return FormElement::factory('Patient', Elements::select([
-            'name'  => 'object_id',
-            'value' => $this->getModel()->object_id,
-            'model' => $this->getModel()->object()
+        if (!isset($selectedObject)) {
+            $selectedObject = $this->getModel()->object_type . '-' . $this->getModel()->object_id;
+        }
+
+        return FormElement::factory('Patient', Elements::object([
+            'name'      => 'object_id',
+            'interface' => Taskable::class,
+            'value'     => $selectedObject,
+            'model'     => $this->getModel()->object()
         ]))->render($this->getViewMode());
     }
 

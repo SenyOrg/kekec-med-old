@@ -32,10 +32,12 @@ class CreateTasksTable extends AbstractMigration
             $table->unsignedInteger('assignee_id');
             $table->foreign('assignee_id')->references('id')->on('users')->onDelete('cascade');
 
+            /**
+             * Polymorphic Relation Columns
+             */
             $table->unsignedInteger('object_id');
-            $table->foreign('object_id')->references('id')->on('patients')->onDelete('cascade');
-
-
+            $table->string('object_type');
+            
             $table->timestamps();
         });
     }

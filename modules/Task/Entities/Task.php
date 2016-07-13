@@ -2,13 +2,13 @@
 
 use App\User;
 use KekecMed\Core\Abstracts\Models\AbstractModel;
+use KekecMed\Core\Abstracts\Models\ObjectableModel;
 use KekecMed\Core\Abstracts\Models\Presentable;
 use KekecMed\Core\Abstracts\Models\PresentableModel;
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Abstracts\Models\Validatable;
 use KekecMed\Core\Abstracts\Models\ValidatableModel;
 use KekecMed\Core\Entities\Dialogable;
-use KekecMed\Patient\Entities\Patient;
 use KekecMed\Task\Entities\Presenters\TaskPresenter;
 
 /**
@@ -16,13 +16,12 @@ use KekecMed\Task\Entities\Presenters\TaskPresenter;
  * -----------------------------
  *
  * -----------------------------
- * @package App
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  */
 class Task extends AbstractModel implements Validatable, Dialogable, Presentable
 {
 
-    use ValidatableModel, PresentableModel;
+    use ValidatableModel, PresentableModel, ObjectableModel;
 
     /**
      * The attributes that are mass assignable.
@@ -73,23 +72,13 @@ class Task extends AbstractModel implements Validatable, Dialogable, Presentable
     }
 
     /**
-     * Get related patient
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function object()
-    {
-        return $this->belongsTo(Patient::class, 'object_id');
-    }
-
-    /**
      * Returns data for dialog view
      *
      * @return array
      */
     public function getDialogData()
     {
-        // TODO: Implement getDialogData() method.
+        return self::lists('title', 'id');
     }
 
     /**
@@ -99,9 +88,9 @@ class Task extends AbstractModel implements Validatable, Dialogable, Presentable
      */
     public function getValidationRules()
     {
-        // TODO: Implement getValidationRules() method.
         return [
             'rules'    => [
+                'assignee_id' => 'required'
             ],
             'messages' => [
             ],

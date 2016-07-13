@@ -23,7 +23,7 @@
                     {{$model->getPresenter()->getDone()}}
                     {{$model->getPresenter()->getCreator()}}
                     {{$model->getPresenter()->getAssignee()}}
-                    {{$model->getPresenter()->getObject()}}
+                    {{$model->getPresenter()->getObject(request('object'))}}
                 </div>
             </div>
         </div>

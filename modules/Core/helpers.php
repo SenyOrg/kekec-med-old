@@ -41,3 +41,24 @@ function defEmptyString($value, $default)
 
     return $value;
 }
+
+/**
+ * Get classes that implements a specific interface
+ *
+ * @param      $interfaceName
+ * @param null $classes
+ *
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @return array
+ */
+function getImplementingClasses($interfaceName, $classes = null)
+{
+    $classes = defNull($classes, get_declared_classes());
+
+    return array_filter(
+        $classes,
+        function ($className) use ($interfaceName) {
+            return in_array($interfaceName, class_implements($className));
+        }
+    );
+}

@@ -9,6 +9,7 @@ use KekecMed\Core\Views\Elements\Email;
 use KekecMed\Core\Views\Elements\File;
 use KekecMed\Core\Views\Elements\MobilePhone;
 use KekecMed\Core\Views\Elements\MultiSelect;
+use KekecMed\Core\Views\Elements\Object;
 use KekecMed\Core\Views\Elements\Password;
 use KekecMed\Core\Views\Elements\Phone;
 use KekecMed\Core\Views\Elements\RadioSelect;
@@ -167,5 +168,17 @@ abstract class Elements
     public static function select($parameters = null, $configuration = null, $attributes = null)
     {
         return Select::factory($parameters, $configuration, $attributes);
+    }
+
+    /**
+     * @param null $parameters
+     * @param null $configuration
+     * @param null $attributes
+     *
+     * @return static
+     */
+    public static function object($parameters = null, $configuration = null, $attributes = null)
+    {
+        return Object::factory($parameters, $configuration, $attributes);
     }
 }

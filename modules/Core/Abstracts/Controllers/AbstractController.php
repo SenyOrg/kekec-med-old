@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use KekecMed\Core\Abstracts\Controllers\Traits\Headful;
+use KekecMed\Core\Abstracts\Models\AbstractModel;
+use KekecMed\Core\Abstracts\Models\Mediable\Mediable;
+use KekecMed\Core\Abstracts\Models\Mediable\MediableModel;
 use KekecMed\Theme\Component\ViewComponent;
 use Pingpong\Modules\Routing\Controller;
 
@@ -104,5 +107,23 @@ abstract class AbstractController extends Controller
     protected function validateRequest(Request $request, array $validationRules)
     {
         $this->validate($request, $validationRules);
+    }
+
+    /**
+     * Handle required Model Hooks
+     *
+     * This method should hold all routines related to
+     * models and their handling. Please prevent mixing
+     * model handling into common request.
+     *
+     * @param AbstractModel $model
+     */
+    protected function handleModelHooks(AbstractModel $model)
+    {
+        // MediableModel
+        if ($model instanceof Mediable) {
+            /** @var MediableModel $model */
+            $model->callMediableUpdate($model);
+        }
     }
 }
