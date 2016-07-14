@@ -2,23 +2,26 @@
 
 use App\User;
 use KekecMed\Calendar\Entities\Calendar;
+use KekecMed\Consultation\Entities\Consultation;
 use KekecMed\Core\Abstracts\Models\AbstractModel;
+use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\PresentableModel;
+use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Abstracts\Models\Relational;
 use KekecMed\Core\Abstracts\Models\RelationalMeta;
 use KekecMed\Core\Abstracts\Models\RelationalModel;
+use KekecMed\Event\Entities\Presenters\EventPresenter;
 use KekecMed\Patient\Entities\Patient;
 
 /**
  * Class Event
- * -----------------------------
  *
- * -----------------------------
- * @package KekecMed\Calendar\Entities
  * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\Event\Entities
  */
-class Event extends AbstractModel implements Relational
+class Event extends AbstractModel implements Relational, Presentable
 {
-    use RelationalModel;
+    use RelationalModel, PresentableModel;
 
     /**
      * Fillable attributes
@@ -107,5 +110,25 @@ class Event extends AbstractModel implements Relational
         return [
             new RelationalMeta('participants', 'participants', 'participant_id', 'delete'),
         ];
+    }
+
+    /**
+     * Get related consultations
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function consultations()
+    {
+        return $this->hasMany(Consultation::class);
+    }
+
+    /**
+     * Get Presenter Class
+     *
+     * @return AbstractPresenter
+     */
+    public function getPresenterClass()
+    {
+        return EventPresenter::class;
     }
 }

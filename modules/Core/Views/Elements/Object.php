@@ -2,6 +2,7 @@
 
 namespace KekecMed\Core\Views\Elements;
 
+use KekecMed\Consultation\Entities\Consultation;
 use KekecMed\Core\Abstracts\Models\Presentable;
 use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 use KekecMed\Core\Entities\Dialogable;
@@ -56,10 +57,15 @@ class Object extends AbstractGenericInputParameters
             throw new \Exception('Element \'object\' needs parameter \'interface\' to be set.');
         }
 
+
+        /**
+         * @todo: We have to update this array with available models each time :(
+         */
         // Retrieve classes that implements a given interface
         $models = getImplementingClasses($this->parameters['interface'], [
             Patient::class,
-            Event::class
+            Event::class,
+            Consultation::class,
         ]);
 
         // Transform single selection into multiple
@@ -100,7 +106,7 @@ class Object extends AbstractGenericInputParameters
                     foreach ($result as $record) {
                         if ($record instanceof Presentable) {
                             // Make use of presentable
-                            $options[$type][$modelClass . '-' . $record->id] = $record->getPresenterClass()
+                            $options[$type][$modelClass . '-' . $record->id] = $record->getPresenter()
                                                                                       ->getRepresentable();
                         } else {
                             // Otherwise try to get title field - This is really risky!

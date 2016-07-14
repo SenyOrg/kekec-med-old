@@ -66,7 +66,7 @@ class Media extends AbstractModel implements Presentable
              * This will delete file on storage
              * when model will be deleted
              */
-            \Storage::delete($u->getAttribute('path'));
+            \Storage::delete('public/' . $u->getAttribute('path'));
         });
     }
 

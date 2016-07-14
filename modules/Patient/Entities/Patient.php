@@ -1,5 +1,6 @@
 <?php namespace KekecMed\Patient\Entities;
 
+use KekecMed\Consultation\Entities\Consultation;
 use KekecMed\Core\Abstracts\Models\AbstractModel;
 use KekecMed\Core\Abstracts\Models\Fileable;
 use KekecMed\Core\Abstracts\Models\FileableModel;
@@ -21,7 +22,8 @@ use KekecMed\Patient\Presenters\PatientPresenter;
 /**
  * Class Patient
  *
- * @property Insurance insurance
+ * @property string $firstname
+ * @property string $lastname
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Patient\Entities
  */
@@ -62,21 +64,13 @@ class Patient extends AbstractModel implements Dialogable, Validatable, Presenta
 
 
     /**
-     * Get Insurance object.
+     * Get insurance of patient
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function insurance()
     {
         return $this->belongsTo(Insurance::class);
-    }
-
-    /**
-     * Get Fullname
-     *
-     * @return string
-     */
-    public function getFullName()
-    {
-        return $this->firstname . ' ' . $this->lastname;
     }
 
     /**
@@ -88,11 +82,21 @@ class Patient extends AbstractModel implements Dialogable, Validatable, Presenta
     {
         $arr = [];
 
-        self::select(['firstname', 'lastname', 'id'])->orderBy('firstname')->each(function ($u) use (&$arr) {
+        self::select(['firstname', 'lastname', 'id'])->orderBy('firstname')->each(function (Patient $u) use (&$arr) {
             $arr[$u->id] = $u->getFullName();
         });
 
         return $arr;
+    }
+
+    /**
+     * Get Fullname
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 
     /**
@@ -164,5 +168,15 @@ class Patient extends AbstractModel implements Dialogable, Validatable, Presenta
             'media'            => 'mediaFile',
             'mediaDescription' => 'mediaDescription',
         ];
+    }
+
+    /**
+     * Get related consultations
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function consultations()
+    {
+        return $this->hasMany(Consultation::class);
     }
 }
