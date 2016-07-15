@@ -3,6 +3,7 @@
 namespace KekecMed\Task\DataTables;
 
 use Illuminate\Database\Eloquent\Builder;
+use KekecMed\Core\Abstracts\Models\Presentable;
 use KekecMed\Core\DataTables\AbstractCoreDataTable;
 use KekecMed\Task\Entities\Task;
 
@@ -16,6 +17,16 @@ use KekecMed\Task\Entities\Task;
  */
 class TaskTable extends AbstractCoreDataTable
 {
+    /**
+     * Get table id
+     *
+     * @return string
+     */
+    public function getTableID()
+    {
+        return 'taskTable';
+    }
+
     /**
      * Get route name for show
      *
@@ -34,16 +45,6 @@ class TaskTable extends AbstractCoreDataTable
     protected function getModelQuery()
     {
         return Task::query();
-    }
-
-    /**
-     * Get table id
-     *
-     * @return string
-     */
-    public function getTableID()
-    {
-        return 'taskTable';
     }
 
     /**
@@ -112,7 +113,16 @@ class TaskTable extends AbstractCoreDataTable
 
         // Add image column callback
         $eloq->addColumn('object_id', function ($model) {
-            return $model->object()->first()->getFullName();
+            if ($model->getAttribute('object_id')) {
+                $object = $model->object()->first();
+                if ($object instanceof Presentable) {
+                    return $model->object->getPresenter()->getRepresentable();
+                } else {
+                    return $model->object->title;
+                }
+            }
+
+            return null;
         });
     }
 }
