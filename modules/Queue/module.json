@@ -1,0 +1,15 @@
+{
+  "name": "Queue",
+  "alias": "queue",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 0,
+  "providers": [
+    "KekecMed\\Queue\\Providers\\QueueServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "start.php"
+  ]
+}
