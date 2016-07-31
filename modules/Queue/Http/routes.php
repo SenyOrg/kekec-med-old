@@ -1,6 +1,19 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'queue', 'namespace' => 'KekecMed\Queue\Http\Controllers'],
+/**
+ * Queue related routes
+ *
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ */
+
+/**
+ * GROUP: /queue
+ */
+Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'queue', 'namespace' => 'KekecMed\Queue\Http\Controllers'],
     function () {
-        Route::get('/', 'QueueController@index');
+
+        /**
+         * Endpoint: /overview
+         */
+        Route::get('/overview', 'QueueOverviewController@index');
     });

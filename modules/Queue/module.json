@@ -1,7 +1,7 @@
 {
   "name": "Queue",
   "alias": "queue",
-  "description": "",
+  "description": "Queue-Module for KekecMed",
   "keywords": [],
   "active": 1,
   "order": 0,
