@@ -12,13 +12,24 @@
 */
 
 /**
- * @todo: Implement factory methods
+ * This file should  be used to define
+ * default factory methods for models
+ *
+ * @author Selcuk Kekec <senycorp@googlemail.com>
  */
+
+use App\User;
+use KekecMed\Calendar\Entities\Calendar;
+use KekecMed\Event\Entities\Event;
+use KekecMed\Event\Entities\EventParticipant;
+use KekecMed\Patient\Entities\Patient;
+use KekecMed\Queue\Entities\Queue;
+use KekecMed\Task\Entities\Task;
 
 /**
  * User-Factory
  */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
@@ -32,7 +43,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 /**
  * Patient-Factory
  */
-$factory->define(\KekecMed\Patient\Entities\Patient::class, function (Faker\Generator $faker) {
+$factory->define(Patient::class, function (Faker\Generator $faker) {
     return [
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
@@ -53,7 +64,7 @@ $factory->define(\KekecMed\Patient\Entities\Patient::class, function (Faker\Gene
 /**
  * Task-Factory
  */
-$factory->define(\KekecMed\Task\Entities\Task::class, function (Faker\Generator $faker) {
+$factory->define(Task::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->realText(),
         'description' => $faker->realText(400),
@@ -68,7 +79,7 @@ $factory->define(\KekecMed\Task\Entities\Task::class, function (Faker\Generator 
 /**
  * Calendar-Factory
  */
-$factory->define(\KekecMed\Calendar\Entities\Calendar::class, function (Faker\Generator $faker) {
+$factory->define(Calendar::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->text(10),
         'color' => $faker->hexColor,
@@ -82,7 +93,7 @@ $factory->define(\KekecMed\Calendar\Entities\Calendar::class, function (Faker\Ge
 /**
  * Event-Factory
  */
-$factory->define(\KekecMed\Event\Entities\Event::class, function (Faker\Generator $faker) {
+$factory->define(Event::class, function (Faker\Generator $faker) {
     $start = $faker->dateTimeBetween('-5 days', '+5 days');
     $end = \Carbon\Carbon::instance($start)->addHour(1);
 
@@ -100,6 +111,13 @@ $factory->define(\KekecMed\Event\Entities\Event::class, function (Faker\Generato
 /**
  * EventParticipant-Factory
  */
-$factory->define(\KekecMed\Event\Entities\EventParticipant::class, function (Faker\Generator $faker) {
+$factory->define(EventParticipant::class, function (Faker\Generator $faker) {
+    return [];
+});
+
+/**
+ * Queue-Factory
+ */
+$factory->define(Queue::class, function (Faker\Generator $faker) {
     return [];
 });
