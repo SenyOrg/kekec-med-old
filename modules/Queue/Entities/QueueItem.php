@@ -14,7 +14,6 @@ use KekecMed\Patient\Entities\Patient;
  */
 class QueueItem extends AbstractModel
 {
-
     /**
      * Fillable attributes
      *
@@ -56,6 +55,6 @@ class QueueItem extends AbstractModel
      */
     public function queue()
     {
-        return $this->belongsTo(\Queue::class);
+        return $this->belongsTo(Queue::class);
     }
 }
