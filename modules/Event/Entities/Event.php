@@ -5,13 +5,12 @@ use KekecMed\Calendar\Entities\Calendar;
 use KekecMed\Consultation\Entities\Consultation;
 use KekecMed\Core\Abstracts\Models\AbstractModel;
 use KekecMed\Core\Abstracts\Models\Presentable;
-use KekecMed\Core\Abstracts\Models\PresentableModel;
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Abstracts\Models\Relational;
 use KekecMed\Core\Abstracts\Models\RelationalMeta;
-use KekecMed\Core\Abstracts\Models\RelationalModel;
 use KekecMed\Event\Entities\Presenters\EventPresenter;
 use KekecMed\Patient\Entities\Patient;
+use KekecMed\Queue\Entities\QueueItem;
 
 /**
  * Class Event
@@ -21,7 +20,7 @@ use KekecMed\Patient\Entities\Patient;
  */
 class Event extends AbstractModel implements Relational, Presentable
 {
-    use RelationalModel, PresentableModel;
+    //use RelationalModel, PresentableModel;
 
     /**
      * Fillable attributes
@@ -29,6 +28,7 @@ class Event extends AbstractModel implements Relational, Presentable
      * @var array
      */
     protected $fillable = [
+        'id',
         'title',
         'calendar_id',
         'event_type_id',
@@ -120,6 +120,16 @@ class Event extends AbstractModel implements Relational, Presentable
     public function consultations()
     {
         return $this->hasMany(Consultation::class);
+    }
+
+    /**
+     * Get related Queue Item
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function queueItem()
+    {
+        return $this->hasOne(QueueItem::class, 'event_id', 'id');
     }
 
     /**
