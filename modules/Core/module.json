@@ -6,9 +6,12 @@
     "active": 1,
     "order": -1000000000,
     "providers": [
-        "KekecMed\\Core\\Providers\\CoreServiceProvider"
+        "KekecMed\\Core\\Providers\\CoreServiceProvider",
+        "KekecMed\\Core\\Providers\\WebsocketServiceProvider"
     ],
-    "aliases":{},
+    "aliases": {
+        "WebsocketClient": "KekecMed\\Core\\Facades\\WebsocketFacade"
+    },
     "files": [
         "start.php"
     ]

@@ -1,8 +1,10 @@
 <?php namespace KekecMed\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Console\FilewatcherCommand;
 use KekecMed\Core\Console\ICDImporterCommand;
 use KekecMed\Core\Console\SearchIndexingCommand;
+use KekecMed\Core\Console\TestCommand;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -87,10 +89,14 @@ class CoreServiceProvider extends ServiceProvider
         }, \Config::get('view.paths')), [$sourcePath]), 'core');
     }
 
+    /**
+     * Register commands
+     */
     public function registerCommands()
     {
         $this->commands(ICDImporterCommand::class);
         $this->commands(SearchIndexingCommand::class);
+        $this->commands(FilewatcherCommand::class);
     }
 
     /**
