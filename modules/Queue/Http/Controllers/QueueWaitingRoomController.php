@@ -18,6 +18,6 @@ class QueueWaitingRoomController extends AbstractController
      */
     public function index()
     {
-        return view('queue::watingroom');
+        return view('queue::watingroom.index');
     }
 }

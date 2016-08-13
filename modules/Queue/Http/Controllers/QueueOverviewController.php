@@ -32,7 +32,7 @@ class QueueOverviewController extends AbstractController
               INNER JOIN patients ON patients.id = events.patient_id
               where queue_items.id IS NULL', []))->pluck('id')->toArray();
 
-        return view('queue::overview', [
+        return view('queue::overview.index', [
             'queues' => Queue::where('title', '!=', 'Ingoing')->where('title', '!=', 'Outgoing')->get(),
             'events' => Event::whereIn('id', $eventIds)->with('patient')->get()
         ]);
