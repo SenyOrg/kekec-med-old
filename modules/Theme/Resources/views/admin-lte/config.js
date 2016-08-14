@@ -19,10 +19,6 @@ module.exports = {
             destination: 'public/vendor/fonts/'
         },
         {
-            source: 'modules/Theme/Resources/views/admin-lte/assets/plugins/iCheck/flat',
-            destination: 'public/vendor/flat'
-        },
-        {
             source: 'modules/Theme/Resources/views/admin-lte/assets/dist/img',
             destination: 'public/vendor/admin-lte/img'
         },

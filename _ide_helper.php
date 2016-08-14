@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.39 on 2016-06-25.
+ * Generated for Laravel 5.2.41 on 2016-08-09.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1630,18 +1630,6 @@ namespace {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \App\User
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static
-         */
-        public static function authenticate()
-        {
-            return \Illuminate\Auth\SessionGuard::authenticate();
-        }
-
-        /**
-         * Determine if the current user is authenticated.
-         *
          * @return bool 
          * @static 
          */
@@ -1657,6 +1645,17 @@ namespace {
          */
         public static function guest(){
             return \Illuminate\Auth\SessionGuard::guest();
+        }
+        
+        /**
+         * Determine if the current user is authenticated.
+         *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */
+        public static function authenticate(){
+            return \Illuminate\Auth\SessionGuard::authenticate();
         }
         
     }
@@ -3701,18 +3700,6 @@ namespace {
         }
         
         /**
-         * Get the deeply nested relations for a given top-level relation.
-         *
-         * @param string $relation
-         * @return array
-         * @static
-         */
-        public static function nestedRelations($relation)
-        {
-            return \Illuminate\Database\Eloquent\Builder::nestedRelations($relation);
-        }
-
-        /**
          * Apply the callback's query changes if the given "value" is true.
          *
          * @param bool $value
@@ -3836,27 +3823,24 @@ namespace {
          * Merge the constraints from a relation query to the current query.
          *
          * @param \Illuminate\Database\Eloquent\Builder $relation
-         * @return \Illuminate\Database\Eloquent\Builder|static
-         * @static
+         * @return \Illuminate\Database\Eloquent\Builder|static 
+         * @static 
          */
-        public static function mergeModelDefinedRelationConstraints($relation)
-        {
+        public static function mergeModelDefinedRelationConstraints($relation){
             return \Illuminate\Database\Eloquent\Builder::mergeModelDefinedRelationConstraints($relation);
         }
-
+        
         /**
          * Prevent the specified relations from being eager loaded.
          *
          * @param mixed $relations
-         *
-         * @return $this
-         * @static
+         * @return $this 
+         * @static 
          */
-        public static function without($relations)
-        {
+        public static function without($relations){
             return \Illuminate\Database\Eloquent\Builder::without($relations);
         }
-
+        
         /**
          * Add subselect queries to count the relations.
          *
@@ -3866,6 +3850,17 @@ namespace {
          */
         public static function withCount($relations){
             return \Illuminate\Database\Eloquent\Builder::withCount($relations);
+        }
+        
+        /**
+         * Add the given scopes to the current builder instance.
+         *
+         * @param array $scopes
+         * @return mixed 
+         * @static 
+         */
+        public static function scopes($scopes){
+            return \Illuminate\Database\Eloquent\Builder::scopes($scopes);
         }
         
         /**
@@ -5543,6 +5538,19 @@ namespace {
         }
         
         /**
+         * Move a directory.
+         *
+         * @param string $from
+         * @param string $to
+         * @param bool $overwrite
+         * @return bool 
+         * @static 
+         */
+        public static function moveDirectory($from, $to, $overwrite = false){
+            return \Illuminate\Filesystem\Filesystem::moveDirectory($from, $to, $overwrite);
+        }
+        
+        /**
          * Copy a directory from one location to another.
          *
          * @param string $directory
@@ -6028,20 +6036,6 @@ namespace {
     class Log extends \Illuminate\Support\Facades\Log{
         
         /**
-         * Log a message to the logs.
-         *
-         * @param string $level
-         * @param string $message
-         * @param array  $context
-         * @return void
-         * @static
-         */
-        public static function log($level, $message, $context = [])
-        {
-            \Illuminate\Log\Writer::log($level, $message, $context);
-        }
-
-        /**
          * Adds a log record at the DEBUG level.
          *
          * @param string $message The log message
@@ -6135,6 +6129,19 @@ namespace {
          */
         public static function emergency($message, $context = array()){
             return \Monolog\Logger::emergency($message, $context);
+        }
+        
+        /**
+         * Log a message to the logs.
+         *
+         * @param string $level
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */
+        public static function log($level, $message, $context = array()){
+            \Illuminate\Log\Writer::log($level, $message, $context);
         }
         
         /**
@@ -6762,15 +6769,15 @@ namespace {
         }
         
         /**
-         * Set the encrypter instance.
+         * Set the encrypter implementation.
          *
-         * @param \Illuminate\Contracts\Encryption\Encrypter $crypt
+         * @param \Illuminate\Contracts\Encryption\Encrypter $encrypter
          * @return void 
          * @static 
          */
-        public static function setEncrypter($crypt){
+        public static function setEncrypter($encrypter){
             //Method inherited from \Illuminate\Queue\Queue            
-            \Illuminate\Queue\SyncQueue::setEncrypter($crypt);
+            \Illuminate\Queue\SyncQueue::setEncrypter($encrypter);
         }
         
     }
@@ -7505,7 +7512,6 @@ namespace {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         *
          * @return \Request The duplicated request
          * @static 
          */
@@ -7697,7 +7703,6 @@ namespace {
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
          * @param string $content The raw body data
-         *
          * @return \Request A Request instance
          * @static 
          */
@@ -7750,7 +7755,7 @@ namespace {
         /**
          * Gets the list of trusted proxies.
          *
-         * @return array An array of trusted proxies.
+         * @return array An array of trusted proxies
          * @static 
          */
         public static function getTrustedProxies(){
@@ -7774,7 +7779,7 @@ namespace {
         /**
          * Gets the list of trusted host patterns.
          *
-         * @return array An array of trusted host patterns.
+         * @return array An array of trusted host patterns
          * @static 
          */
         public static function getTrustedHosts(){
@@ -8338,7 +8343,7 @@ namespace {
         /**
          * Sets the request format.
          *
-         * @param string $format The request format.
+         * @param string $format The request format
          * @static 
          */
         public static function setRequestFormat($format){
@@ -8404,7 +8409,7 @@ namespace {
         /**
          * Checks if the request method is of specified type.
          *
-         * @param string $method Uppercase request method (GET, POST etc).
+         * @param string $method Uppercase request method (GET, POST etc)
          * @return bool 
          * @static 
          */
@@ -8428,7 +8433,7 @@ namespace {
          * Returns the request body content.
          *
          * @param bool $asResource If true, a resource will be returned
-         * @return string|resource The request body content or a resource to read the body stream.
+         * @return string|resource The request body content or a resource to read the body stream
          * @throws \LogicException
          * @static 
          */
@@ -9615,7 +9620,7 @@ namespace {
         /**
          * Starts the session storage.
          *
-         * @return bool True if session started.
+         * @return bool True if session started
          * @throws \RuntimeException If session fails to start.
          * @static 
          */
@@ -9626,7 +9631,7 @@ namespace {
         /**
          * Returns the session ID.
          *
-         * @return string The session ID.
+         * @return string The session ID
          * @static 
          */
         public static function getId(){
@@ -9657,7 +9662,7 @@ namespace {
         /**
          * Returns the session name.
          *
-         * @return mixed The session name.
+         * @return mixed The session name
          * @static 
          */
         public static function getName(){
@@ -9684,7 +9689,7 @@ namespace {
          *                      will leave the system settings unchanged, 0 sets the cookie
          *                      to expire with browser session. Time is in seconds, and is
          *                      not a Unix timestamp.
-         * @return bool True if session invalidated, false if error.
+         * @return bool True if session invalidated, false if error
          * @static 
          */
         public static function invalidate($lifetime = null){
@@ -9695,12 +9700,12 @@ namespace {
          * Migrates the current session to a new session id while maintaining all
          * session attributes.
          *
-         * @param bool $destroy Whether to delete the old session or leave it to garbage collection.
+         * @param bool $destroy Whether to delete the old session or leave it to garbage collection
          * @param int $lifetime Sets the cookie lifetime for the session cookie. A null value
          *                       will leave the system settings unchanged, 0 sets the cookie
          *                       to expire with browser session. Time is in seconds, and is
          *                       not a Unix timestamp.
-         * @return bool True if session migrated, false if error.
+         * @return bool True if session migrated, false if error
          * @static 
          */
         public static function migrate($destroy = false, $lifetime = null){
@@ -9756,7 +9761,7 @@ namespace {
          * Returns an attribute.
          *
          * @param string $name The attribute name
-         * @param mixed $default The default value if not found.
+         * @param mixed $default The default value if not found
          * @return mixed 
          * @static 
          */
@@ -9832,6 +9837,30 @@ namespace {
          */
         public static function push($key, $value){
             \Illuminate\Session\Store::push($key, $value);
+        }
+        
+        /**
+         * Increment the value of an item in the session.
+         *
+         * @param string $key
+         * @param int $amount
+         * @return mixed 
+         * @static 
+         */
+        public static function increment($key, $amount = 1){
+            return \Illuminate\Session\Store::increment($key, $amount);
+        }
+        
+        /**
+         * Decrement the value of an item in the session.
+         *
+         * @param string $key
+         * @param int $amount
+         * @return int 
+         * @static 
+         */
+        public static function decrement($key, $amount = 1){
+            return \Illuminate\Session\Store::decrement($key, $amount);
         }
         
         /**
@@ -10106,7 +10135,6 @@ namespace {
          * Get a filesystem instance.
          *
          * @param string $name
-         *
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
@@ -10118,7 +10146,6 @@ namespace {
          * Get a filesystem instance.
          *
          * @param string $name
-         *
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
@@ -10140,7 +10167,6 @@ namespace {
          * Create an instance of the local driver.
          *
          * @param array $config
-         *
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
@@ -10152,7 +10178,6 @@ namespace {
          * Create an instance of the ftp driver.
          *
          * @param array $config
-         *
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */
@@ -10213,285 +10238,244 @@ namespace {
         public static function extend($driver, $callback){
             return \Illuminate\Filesystem\FilesystemManager::extend($driver, $callback);
         }
-
+        
         /**
          * Determine if a file exists.
          *
          * @param string $path
-         *
-         * @return bool
-         * @static
+         * @return bool 
+         * @static 
          */
-        public static function exists($path)
-        {
+        public static function exists($path){
             return \Illuminate\Filesystem\FilesystemAdapter::exists($path);
         }
-
+        
         /**
          * Get the contents of a file.
          *
          * @param string $path
-         *
-         * @return string
+         * @return string 
          * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-         * @static
+         * @static 
          */
-        public static function get($path)
-        {
+        public static function get($path){
             return \Illuminate\Filesystem\FilesystemAdapter::get($path);
         }
-
+        
         /**
          * Write the contents of a file.
          *
-         * @param string          $path
+         * @param string $path
          * @param string|resource $contents
-         * @param string          $visibility
-         *
-         * @return bool
-         * @static
+         * @param string $visibility
+         * @return bool 
+         * @static 
          */
-        public static function put($path, $contents, $visibility = null)
-        {
+        public static function put($path, $contents, $visibility = null){
             return \Illuminate\Filesystem\FilesystemAdapter::put($path, $contents, $visibility);
         }
-
+        
         /**
          * Get the visibility for the given path.
          *
          * @param string $path
-         *
-         * @return string
-         * @static
+         * @return string 
+         * @static 
          */
-        public static function getVisibility($path)
-        {
+        public static function getVisibility($path){
             return \Illuminate\Filesystem\FilesystemAdapter::getVisibility($path);
         }
-
+        
         /**
          * Set the visibility for the given path.
          *
          * @param string $path
          * @param string $visibility
-         *
-         * @return void
-         * @static
+         * @return void 
+         * @static 
          */
-        public static function setVisibility($path, $visibility)
-        {
+        public static function setVisibility($path, $visibility){
             \Illuminate\Filesystem\FilesystemAdapter::setVisibility($path, $visibility);
         }
-
+        
         /**
          * Prepend to a file.
          *
          * @param string $path
          * @param string $data
-         *
-         * @return int
-         * @static
+         * @return int 
+         * @static 
          */
-        public static function prepend($path, $data, $separator = '')
-        {
+        public static function prepend($path, $data, $separator = ''){
             return \Illuminate\Filesystem\FilesystemAdapter::prepend($path, $data, $separator);
         }
-
+        
         /**
          * Append to a file.
          *
          * @param string $path
          * @param string $data
-         *
-         * @return int
-         * @static
+         * @return int 
+         * @static 
          */
-        public static function append($path, $data, $separator = '')
-        {
+        public static function append($path, $data, $separator = ''){
             return \Illuminate\Filesystem\FilesystemAdapter::append($path, $data, $separator);
         }
-
+        
         /**
          * Delete the file at a given path.
          *
          * @param string|array $paths
-         *
-         * @return bool
-         * @static
+         * @return bool 
+         * @static 
          */
-        public static function delete($paths)
-        {
+        public static function delete($paths){
             return \Illuminate\Filesystem\FilesystemAdapter::delete($paths);
         }
-
+        
         /**
          * Copy a file to a new location.
          *
          * @param string $from
          * @param string $to
-         *
-         * @return bool
-         * @static
+         * @return bool 
+         * @static 
          */
-        public static function copy($from, $to)
-        {
+        public static function copy($from, $to){
             return \Illuminate\Filesystem\FilesystemAdapter::copy($from, $to);
         }
-
+        
         /**
          * Move a file to a new location.
          *
          * @param string $from
          * @param string $to
-         *
-         * @return bool
-         * @static
+         * @return bool 
+         * @static 
          */
-        public static function move($from, $to)
-        {
+        public static function move($from, $to){
             return \Illuminate\Filesystem\FilesystemAdapter::move($from, $to);
         }
-
+        
         /**
          * Get the file size of a given file.
          *
          * @param string $path
-         *
-         * @return int
-         * @static
+         * @return int 
+         * @static 
          */
-        public static function size($path)
-        {
+        public static function size($path){
             return \Illuminate\Filesystem\FilesystemAdapter::size($path);
         }
-
+        
         /**
          * Get the mime-type of a given file.
          *
          * @param string $path
-         *
-         * @return string|false
-         * @static
+         * @return string|false 
+         * @static 
          */
-        public static function mimeType($path)
-        {
+        public static function mimeType($path){
             return \Illuminate\Filesystem\FilesystemAdapter::mimeType($path);
         }
-
+        
         /**
          * Get the file's last modification time.
          *
          * @param string $path
-         *
-         * @return int
-         * @static
+         * @return int 
+         * @static 
          */
-        public static function lastModified($path)
-        {
+        public static function lastModified($path){
             return \Illuminate\Filesystem\FilesystemAdapter::lastModified($path);
         }
-
+        
         /**
          * Get the URL for the file at the given path.
          *
          * @param string $path
-         *
-         * @return string
-         * @static
+         * @return string 
+         * @static 
          */
-        public static function url($path)
-        {
+        public static function url($path){
             return \Illuminate\Filesystem\FilesystemAdapter::url($path);
         }
-
+        
         /**
          * Get an array of all files in a directory.
          *
          * @param string|null $directory
-         * @param bool        $recursive
-         *
-         * @return array
-         * @static
+         * @param bool $recursive
+         * @return array 
+         * @static 
          */
-        public static function files($directory = null, $recursive = false)
-        {
+        public static function files($directory = null, $recursive = false){
             return \Illuminate\Filesystem\FilesystemAdapter::files($directory, $recursive);
         }
-
+        
         /**
          * Get all of the files from the given directory (recursive).
          *
          * @param string|null $directory
-         *
-         * @return array
-         * @static
+         * @return array 
+         * @static 
          */
-        public static function allFiles($directory = null)
-        {
+        public static function allFiles($directory = null){
             return \Illuminate\Filesystem\FilesystemAdapter::allFiles($directory);
         }
-
+        
         /**
          * Get all of the directories within a given directory.
          *
          * @param string|null $directory
-         * @param bool        $recursive
-         *
-         * @return array
-         * @static
+         * @param bool $recursive
+         * @return array 
+         * @static 
          */
-        public static function directories($directory = null, $recursive = false)
-        {
+        public static function directories($directory = null, $recursive = false){
             return \Illuminate\Filesystem\FilesystemAdapter::directories($directory, $recursive);
         }
-
+        
         /**
          * Get all (recursive) of the directories within a given directory.
          *
          * @param string|null $directory
-         *
-         * @return array
-         * @static
+         * @return array 
+         * @static 
          */
-        public static function allDirectories($directory = null)
-        {
+        public static function allDirectories($directory = null){
             return \Illuminate\Filesystem\FilesystemAdapter::allDirectories($directory);
         }
-
+        
         /**
          * Create a directory.
          *
          * @param string $path
-         *
-         * @return bool
-         * @static
+         * @return bool 
+         * @static 
          */
-        public static function makeDirectory($path)
-        {
+        public static function makeDirectory($path){
             return \Illuminate\Filesystem\FilesystemAdapter::makeDirectory($path);
         }
-
+        
         /**
          * Recursively delete a directory.
          *
          * @param string $directory
-         *
-         * @return bool
-         * @static
+         * @return bool 
+         * @static 
          */
-        public static function deleteDirectory($directory)
-        {
+        public static function deleteDirectory($directory){
             return \Illuminate\Filesystem\FilesystemAdapter::deleteDirectory($directory);
         }
-
+        
         /**
          * Get the Flysystem driver.
          *
-         * @return \League\Flysystem\FilesystemInterface
-         * @static
+         * @return \League\Flysystem\FilesystemInterface 
+         * @static 
          */
-        public static function getDriver()
-        {
+        public static function getDriver(){
             return \Illuminate\Filesystem\FilesystemAdapter::getDriver();
         }
         
@@ -10523,11 +10507,12 @@ namespace {
         /**
          * Get the URL for the previous request.
          *
+         * @param mixed $fallback
          * @return string 
          * @static 
          */
-        public static function previous(){
-            return \Illuminate\Routing\UrlGenerator::previous();
+        public static function previous($fallback = false){
+            return \Illuminate\Routing\UrlGenerator::previous($fallback);
         }
         
         /**
@@ -11542,7 +11527,6 @@ namespace {
          * Find a specific module, if there return that, otherwise throw exception.
          *
          * @param $name
-         *
          * @return \Module 
          * @throws ModuleNotFoundException
          * @static 
@@ -12065,9 +12049,8 @@ namespace {
          * (requires additional package intervention/imagecache)
          *
          * @param \Closure $callback
-         * @param integer  $lifetime
-         * @param boolean  $returnObj
-         *
+         * @param integer $lifetime
+         * @param boolean $returnObj
          * @return \Image 
          * @static 
          */
@@ -12975,190 +12958,180 @@ namespace {
         public static function componentCall($method, $parameters){
             return \Collective\Html\HtmlBuilder::componentCall($method, $parameters);
         }
-
+        
     }
 
 
-    class TNTSearch extends \TeamTNT\TNTSearch\Facades\TNTSearch
-    {
+    class TNTSearch extends \TeamTNT\TNTSearch\Facades\TNTSearch{
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function loadConfig($config)
-        {
+        public static function loadConfig($config){
             return \TeamTNT\TNTSearch\TNTSearch::loadConfig($config);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function createIndex($indexName)
-        {
+        public static function setTokenizer($tokenizer){
+            return \TeamTNT\TNTSearch\TNTSearch::setTokenizer($tokenizer);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function createIndex($indexName){
             return \TeamTNT\TNTSearch\TNTSearch::createIndex($indexName);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function selectIndex($indexName)
-        {
+        public static function selectIndex($indexName){
             return \TeamTNT\TNTSearch\TNTSearch::selectIndex($indexName);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function search($phrase, $numOfResults = 100)
-        {
+        public static function search($phrase, $numOfResults = 100){
             return \TeamTNT\TNTSearch\TNTSearch::search($phrase, $numOfResults);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function searchBoolean($phrase, $numOfResults = 100)
-        {
+        public static function searchBoolean($phrase, $numOfResults = 100){
             return \TeamTNT\TNTSearch\TNTSearch::searchBoolean($phrase, $numOfResults);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function getAllDocumentsForKeyword($keyword, $noLimit = false)
-        {
-            return \TeamTNT\TNTSearch\TNTSearch::getAllDocumentsForKeyword($keyword, $noLimit);
+        public static function getAllDocumentsForKeyword($keyword, $noLimit = false, $isLastKeyword = false){
+            return \TeamTNT\TNTSearch\TNTSearch::getAllDocumentsForKeyword($keyword, $noLimit, $isLastKeyword);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function getAllDocumentsForWhereKeywordNot($keyword, $noLimit = false)
-        {
+        public static function getAllDocumentsForWhereKeywordNot($keyword, $noLimit = false){
             return \TeamTNT\TNTSearch\TNTSearch::getAllDocumentsForWhereKeywordNot($keyword, $noLimit);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function totalMatchingDocuments($keyword, $isLastWord = false)
-        {
+        public static function totalMatchingDocuments($keyword, $isLastWord = false){
             return \TeamTNT\TNTSearch\TNTSearch::totalMatchingDocuments($keyword, $isLastWord);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function getWordlistByKeyword($keyword, $isLastWord = false)
-        {
+        public static function getWordlistByKeyword($keyword, $isLastWord = false){
             return \TeamTNT\TNTSearch\TNTSearch::getWordlistByKeyword($keyword, $isLastWord);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function totalDocumentsInCollection()
-        {
+        public static function totalDocumentsInCollection(){
             return \TeamTNT\TNTSearch\TNTSearch::totalDocumentsInCollection();
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function setStemmer()
-        {
+        public static function setStemmer(){
             return \TeamTNT\TNTSearch\TNTSearch::setStemmer();
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function isFileSystemIndex()
-        {
+        public static function isFileSystemIndex(){
             return \TeamTNT\TNTSearch\TNTSearch::isFileSystemIndex();
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function filesystemMapIdsToPaths($docs)
-        {
+        public static function filesystemMapIdsToPaths($docs){
             return \TeamTNT\TNTSearch\TNTSearch::filesystemMapIdsToPaths($docs);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function info($str)
-        {
+        public static function info($str){
             return \TeamTNT\TNTSearch\TNTSearch::info($str);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function breakIntoTokens($text)
-        {
+        public static function breakIntoTokens($text){
             return \TeamTNT\TNTSearch\TNTSearch::breakIntoTokens($text);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function highlight($text, $needle, $tag = 'em', $options = [])
-        {
+        public static function highlight($text, $needle, $tag = 'em', $options = array()){
             return \TeamTNT\TNTSearch\TNTSearch::highlight($text, $needle, $tag, $options);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function snippet($words, $fulltext, $rellength = 300, $prevcount = 50, $indicator = '...')
-        {
+        public static function snippet($words, $fulltext, $rellength = 300, $prevcount = 50, $indicator = '...'){
             return \TeamTNT\TNTSearch\TNTSearch::snippet($words, $fulltext, $rellength, $prevcount, $indicator);
         }
         
         /**
+         * 
          *
-         *
-         * @static
+         * @static 
          */
-        public static function getIndex()
-        {
+        public static function getIndex(){
             return \TeamTNT\TNTSearch\TNTSearch::getIndex();
         }
         
@@ -13229,6 +13202,447 @@ namespace {
          */
         public static function getRequest(){
             return \Yajra\Datatables\Datatables::getRequest();
+        }
+        
+    }
+
+
+    class WebsocketClient extends \KekecMed\Core\Facades\WebsocketFacade{
+        
+        /**
+         * Publish data to a specific websocket topic
+         *
+         * @param $topic
+         * @param $data
+         * @param array $options
+         * @param $success
+         * @param $error
+         * @static 
+         */
+        public static function send($topic, $data, $success, $error, $options = array()){
+            return \KekecMed\Core\Websocket\Client::send($topic, $data, $success, $error, $options);
+        }
+        
+        /**
+         * This is meant to be overridden so that the client can do its
+         * thing
+         *
+         * @param \Thruway\ClientSession $session
+         * @param \Thruway\Transport\TransportInterface $transport
+         * @static 
+         */
+        public static function onSessionStart($session, $transport){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::onSessionStart($session, $transport);
+        }
+        
+        /**
+         * Add transport provider
+         *
+         * @param \Thruway\Transport\ClientTransportProviderInterface $transportProvider
+         * @throws \Exception
+         * @static 
+         */
+        public static function addTransportProvider($transportProvider){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::addTransportProvider($transportProvider);
+        }
+        
+        /**
+         * Set reconnect options
+         *
+         * @param array $reconnectOptions
+         * @static 
+         */
+        public static function setReconnectOptions($reconnectOptions){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::setReconnectOptions($reconnectOptions);
+        }
+        
+        /**
+         * Add client authenticator
+         *
+         * @param \Thruway\Authentication\ClientAuthenticationInterface $ca
+         * @static 
+         */
+        public static function addClientAuthenticator($ca){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::addClientAuthenticator($ca);
+        }
+        
+        /**
+         * Start the transport
+         *
+         * @param boolean $startLoop
+         * @throws \Exception
+         * @static 
+         */
+        public static function start($startLoop = true){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::start($startLoop);
+        }
+        
+        /**
+         * Handle open transport
+         *
+         * @param \Thruway\Peer\TransportInterface $transport
+         * @static 
+         */
+        public static function onOpen($transport){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::onOpen($transport);
+        }
+        
+        /**
+         * Start client session
+         *
+         * @param \Thruway\ClientSession $session
+         * @static 
+         */
+        public static function startSession($session){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::startSession($session);
+        }
+        
+        /**
+         * 
+         *
+         * @return object 
+         * @static 
+         */
+        public static function getRoleInfoObject(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getRoleInfoObject();
+        }
+        
+        /**
+         * Add role
+         *
+         * @param \Thruway\Role\AbstractRole $role
+         * @return \Thruway\Peer\Client 
+         * @static 
+         */
+        public static function addRole($role){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::addRole($role);
+        }
+        
+        /**
+         * Handle process message
+         *
+         * @param \Thruway\Transport\TransportInterface $transport
+         * @param \Thruway\Message\Message $msg
+         * @static 
+         */
+        public static function onMessage($transport, $msg){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::onMessage($transport, $msg);
+        }
+        
+        /**
+         * Process Welcome message
+         *
+         * @param \Thruway\ClientSession $session
+         * @param \Thruway\Message\WelcomeMessage $msg
+         * @static 
+         */
+        public static function processWelcome($session, $msg){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::processWelcome($session, $msg);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Thruway\ClientSession $session
+         * @param \Thruway\Message\AbortMessage $msg
+         * @static 
+         */
+        public static function processAbort($session, $msg){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::processAbort($session, $msg);
+        }
+        
+        /**
+         * Handle process challenge message
+         *
+         * @param \Thruway\ClientSession $session
+         * @param \Thruway\Message\ChallengeMessage $msg
+         * @static 
+         */
+        public static function processChallenge($session, $msg){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::processChallenge($session, $msg);
+        }
+        
+        /**
+         * Handle process goodbye message
+         *
+         * @param \Thruway\ClientSession $session
+         * @param \Thruway\Message\GoodbyeMessage $msg
+         * @static 
+         */
+        public static function processGoodbye($session, $msg){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::processGoodbye($session, $msg);
+        }
+        
+        /**
+         * Handle process other Message
+         *
+         * @param \Thruway\ClientSession $session
+         * @param \Thruway\Peer\Message $msg
+         * @static 
+         */
+        public static function processOther($session, $msg){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::processOther($session, $msg);
+        }
+        
+        /**
+         * Handle end session
+         *
+         * @param \Thruway\ClientSession $session
+         * @static 
+         */
+        public static function onSessionEnd($session){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::onSessionEnd($session);
+        }
+        
+        /**
+         * Handle close session
+         *
+         * @param mixed $reason
+         * @static 
+         */
+        public static function onClose($reason){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::onClose($reason);
+        }
+        
+        /**
+         * Retry connecting to the transport
+         *
+         * @static 
+         */
+        public static function retryConnection(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::retryConnection();
+        }
+        
+        /**
+         * Set attempt retry
+         *
+         * @param boolean $attemptRetry
+         * @static 
+         */
+        public static function setAttemptRetry($attemptRetry){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::setAttemptRetry($attemptRetry);
+        }
+        
+        /**
+         * Get callee
+         *
+         * @return \Thruway\Role\Callee 
+         * @static 
+         */
+        public static function getCallee(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getCallee();
+        }
+        
+        /**
+         * Get caller
+         *
+         * @return \Thruway\Role\Caller 
+         * @static 
+         */
+        public static function getCaller(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getCaller();
+        }
+        
+        /**
+         * Get publisher
+         *
+         * @return \Thruway\Role\Publisher 
+         * @static 
+         */
+        public static function getPublisher(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getPublisher();
+        }
+        
+        /**
+         * Get subscriber
+         *
+         * @return \Thruway\Role\Subscriber 
+         * @static 
+         */
+        public static function getSubscriber(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getSubscriber();
+        }
+        
+        /**
+         * Get list roles
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getRoles(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getRoles();
+        }
+        
+        /**
+         * Get loop
+         *
+         * @return \React\EventLoop\LoopInterface 
+         * @static 
+         */
+        public static function getLoop(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getLoop();
+        }
+        
+        /**
+         * Set authenticate ID
+         *
+         * @param string $authId
+         * @static 
+         */
+        public static function setAuthId($authId){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::setAuthId($authId);
+        }
+        
+        /**
+         * Get authenticate ID
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getAuthId(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getAuthId();
+        }
+        
+        /**
+         * Get list authenticate methods
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getAuthMethods(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getAuthMethods();
+        }
+        
+        /**
+         * Set list authenticate methods
+         *
+         * @param array $authMethods
+         * @static 
+         */
+        public static function setAuthMethods($authMethods){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::setAuthMethods($authMethods);
+        }
+        
+        /**
+         * Get client session
+         *
+         * @return \Thruway\ClientSession 
+         * @static 
+         */
+        public static function getSession(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getSession();
+        }
+        
+        /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getRealm(){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::getRealm();
+        }
+        
+        /**
+         * 
+         *
+         * @param \Thruway\Peer\LoopInterface $loop
+         * @static 
+         */
+        public static function setLoop($loop){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::setLoop($loop);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function on($event, $listener){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::on($event, $listener);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function once($event, $listener){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::once($event, $listener);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function removeListener($event, $listener){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::removeListener($event, $listener);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function removeAllListeners($event = null){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::removeAllListeners($event);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function listeners($event){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::listeners($event);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function emit($event, $arguments = array()){
+            //Method inherited from \Thruway\Peer\Client            
+            return \KekecMed\Core\Websocket\Client::emit($event, $arguments);
         }
         
     }
