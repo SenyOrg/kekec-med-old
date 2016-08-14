@@ -53,30 +53,4 @@
         <!-- /.login-box-body -->
     </div>
     <!-- /.login-box -->
-
-    <style type="text/css">
-        body.login-page {
-            background-image: url('{{asset('modules/theme/admin-lte/dist/img/background.jpg')}}') !important;
-            background-color: transparent !important;
-        }
-
-        div.login-box-body {
-            background-color: transparent;
-        }
-
-        input.form-control {
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-
-        .form-control-feedback {
-            line-height: 40px !important;
-        }
-
-        /* Change the white to any color ;) */
-        input:-webkit-autofill {
-            -webkit-box-shadow: 0 0 0px 1000px white inset;
-        }
-    </style>
-
 @endsection

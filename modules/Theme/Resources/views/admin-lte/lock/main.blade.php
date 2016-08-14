@@ -82,7 +82,7 @@ $('div.lockscreen').removeClass('hidden');
         left: 0px;
         width: 100%;
         height: 100%;
-        background-image: url('{{asset('modules/theme/admin-lte/background.jpg')}}') !important;
+        background-image: url('{{$vc->getThemeAsset('img/background.jpg')}}') !important;
         background-color: transparent !important;
         z-index: 1600;
     }

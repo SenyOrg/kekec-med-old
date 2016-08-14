@@ -139,6 +139,16 @@ class ViewComponent
     }
 
     /**
+     * Get theme hero layout view path
+     *
+     * @return string
+     */
+    public function getHeroTheme()
+    {
+        return 'theme::admin-lte.hero.main';
+    }
+
+    /**
      * Get / Set DataTable
      *
      * @param DataTable $dataTable
@@ -262,5 +272,27 @@ class ViewComponent
     public function setViewMode($viewMode)
     {
         AbstractElement::setGlobalViewMode($viewMode);
+    }
+
+    /**
+     * Get Theme asset
+     *
+     * @param $file
+     *
+     * @return mixed
+     */
+    public function getThemeAsset($file)
+    {
+        return asset('vendor/' . $this->getThemeIdentifier() . '/' . $file);
+    }
+
+    /**
+     * Get ThemeIdentifier
+     *
+     * @return string
+     */
+    public function getThemeIdentifier()
+    {
+        return 'admin-lte';
     }
 }

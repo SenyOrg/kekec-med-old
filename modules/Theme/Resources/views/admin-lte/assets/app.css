@@ -1,0 +1,64 @@
+.content-header {
+    background: #fff !important;
+    padding: 15px;
+    color: #444;
+    border-bottom: 1px solid #d2d6de;
+    border-top: 3px solid #d2d6de;
+}
+
+.content-header>.head-buttons {
+    float: right;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    border-radius: 2px;
+}
+
+.head-buttons {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+div.has-warning span.select2-selection {
+    border-color: #f39c12 !important;
+}
+
+.box-body.data-table-wrapper > table td {
+    vertical-align: middle;
+}
+
+.box.data-table-wrapper {
+    margin-top: -15px;
+}
+
+.td-wrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100px;
+}
+
+.cal-event-list {
+    background-image: url('/modules/theme/admin-lte/img/dark_wood.png') !important;
+}
+
+body, .content-wrapper {
+    overflow: hidden !important;
+}
+
+.full-background {
+    background-color: transparent !important;
+    background-repeat: no-repeat !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

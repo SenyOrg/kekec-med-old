@@ -11,6 +11,33 @@
  */
 var kekecmed = {
     /**
+     * User specific data
+     */
+    user: {
+        /**
+         * This will be setted by bootCore.blade.php in Theme Views
+         */
+    },
+
+    /**
+     * Session specific data
+     */
+    session: {
+        /**
+         * This will be setted by bootCore.blade.php in Theme Views
+         */
+    },
+
+    /**
+     * Location
+     */
+    location: {
+        /**
+         * This will be setted by bootCore.blade.php in Theme Views
+         */
+    },
+
+    /**
      * Configuration
      */
     config: {
