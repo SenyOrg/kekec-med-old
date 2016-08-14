@@ -57,7 +57,9 @@ class QueueItemChanged extends AbstractWebsocketEvent
     public function getData()
     {
         return [
-            throw new \Exception('getData not implemented yet');
+            /**
+             * @todo: Implement this
+             */
         ];
     }
 }

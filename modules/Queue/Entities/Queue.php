@@ -27,6 +27,26 @@ class Queue extends AbstractModel implements Dialogable
     ];
 
     /**
+     * Get Outgoing Queue
+     *
+     * @return Queue
+     */
+    public static function outgoingQueue()
+    {
+        return self::where('title', 'Outgoing')->first();
+    }
+
+    /**
+     * Get Ingoing Queue
+     *
+     * @return Queue
+     */
+    public static function ingoingQueue()
+    {
+        return self::where('title', 'Ingoing')->first();
+    }
+
+    /**
      * Returns data for dialog view
      *
      * @return array
@@ -40,5 +60,15 @@ class Queue extends AbstractModel implements Dialogable
         });
 
         return $arr;
+    }
+
+    /**
+     * Get related queue items
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function items()
+    {
+        return $this->hasMany(QueueItem::class);
     }
 }

@@ -15,18 +15,27 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'queue', 'namespace' 
         /**
          * Endpoint: /overview
          */
-            Route::get('/waitingroom', 'QueueWaitingRoomController@index');
+        Route::get('/waitingroom', 'QueueWaitingRoomController@index');
 
-            /**
-             * Endpoint: /overview
-             */
+        /**
+         * Endpoint: /overview
+         */
         Route::get('/overview', 'QueueOverviewController@index');
 
-            /**
-             * QueueItem manipulation Routes
-             */
-            Route::get('/create/{eventId}', 'QueueOverviewController@createQueueItem');
-            Route::get('/delete/{queueItemId}', 'QueueOverviewController@deleteQueueItem');
-            Route::get('/move/{queueItemId}/{queueId}', 'QueueOverviewController@moveQueueItem');
+        /**
+         * Endpoint: /login
+         */
+        Route::get('/login', 'QueueSubscriberController@index');
+        Route::get('/meta/{queueId}', 'QueueSubscriberController@getQueueMeta');
+        Route::get('/outgoing/{queueItemId}', 'QueueSubscriberController@moveToOutgoing');
+        Route::get('/ingoing/{queueItemId}', 'QueueSubscriberController@moveToIngoing');
+
+
+        /**
+         * QueueItem manipulation Routes
+         */
+        Route::get('/create/{eventId}', 'QueueOverviewController@createQueueItem');
+        Route::get('/delete/{queueItemId}', 'QueueOverviewController@deleteQueueItem');
+        Route::get('/move/{queueItemId}/{queueId}', 'QueueOverviewController@moveQueueItem');
     }
 );

@@ -103,10 +103,21 @@ class QueueOverviewController extends AbstractController
     public function moveQueueItem($queueItemId, $queueId)
     {
         $queueItemModel = QueueItem::findOrFail($queueItemId);
+        $queueSourceId = $queueItemModel->queue_id;
         $queueModel = Queue::findOrFail($queueId);
+
+        if (!$queueModel->multiple) {
+            if ($queueModel->items()->count() != 0) {
+                return response()->json([
+                    'success' => false,
+                    'error'   => 'Queue is multiple and has allready a item.'
+                ], 420);
+            }
+        }
         $queueItemModel->queue_id = $queueId;
 
         if ($queueItemModel->save()) {
+            $queueItemModel->queue_source_id = $queueSourceId;
             \Event::fire(new QueueItemMoved($queueItemModel));
 
             return response()->json([

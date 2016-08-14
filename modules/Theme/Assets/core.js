@@ -62,7 +62,6 @@ var kekecmed = {
          * @param args
          */
         _genericLogger: function (type, args) {
-            //if (args.length == 1) args = args[0];
             console[type].apply(console, args);
         },
 
@@ -121,7 +120,7 @@ var kekecmed = {
                 }
             },
             _messageHandler: function (arrayData, objectData, detailsObject, callback) {
-                kekecmed.logger.info('New message for topic \'' + detailsObject.topic + '\'', [detailsObject]);
+                kekecmed.logger.info('New message for topic \'' + detailsObject.topic + '\'', arguments);
 
                 // Handle data
                 var data = objectData;
@@ -276,7 +275,10 @@ var kekecmed = {
                 type: 'GET',
                 statusCode: {
                     404: function () {
-                        alert("page not found");
+                        alert('Unable to find Page');
+                    },
+                    420: function () {
+                        kekecmed.logger.error('An ajax specific error occured: ' + arguments[0].responseJSON.error, arguments);
                     }
                 },
                 timeout: 5000
@@ -315,11 +317,13 @@ var kekecmed = {
             kekecmed.query(document).ajaxSend(kekecmed.ajax._globalHandler._send);
         },
         _request: function (url, settings) {
+            if (url.indexOf('http://') === -1) {
+                url = window.location.origin + '/' + url;
+            }
 
             return $.ajax(url, settings);
         },
         request: function (url, settings) {
-            url = window.location.origin + '/' + url;
             return this._request(url, settings);
         },
         post: function (url, settings) {
@@ -329,9 +333,12 @@ var kekecmed = {
             return this._request(url, settings);
         },
         json: function (url, settings) {
-            settings.type = 'GET';
-            settings.method = 'GET';
-            settings.dataType = 'JSON';
+            if (!settings.type && !settings.method) {
+                settings.type = 'GET';
+                settings.method = 'GET';
+            }
+
+            settings.dataType = 'json';
 
             return this._request(url, settings);
         }

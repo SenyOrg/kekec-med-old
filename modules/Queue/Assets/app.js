@@ -147,9 +147,12 @@ kekecmed.vue.component('queue-item', {
             //this.item.queue_id = this.selectedQueue;
             //this.$root.updateItem(this.item);
 
-            kekecmed.ajax.request('queue/move/' + this.item.id + '/' + this.selectedQueue, {
-                success: function () {
-
+            kekecmed.ajax.json('queue/move/' + this.item.id + '/' + this.selectedQueue, {
+                error: function (response) {
+                    var error = response.responseJSON.error;
+                    /**
+                     * @todo: Display some errir message here
+                     */
                 }
             });
         }
