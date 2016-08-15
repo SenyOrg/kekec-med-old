@@ -1,6 +1,6 @@
 <?php namespace KekecMed\Media\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Abstracts\Providers\AbstractFullstackModuleProvider;
 
 /**
  * Class MediaServiceProvider
@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Media\Providers
  */
-class MediaServiceProvider extends ServiceProvider
+class MediaServiceProvider extends AbstractFullstackModuleProvider
 {
 
     /**
@@ -17,69 +17,6 @@ class MediaServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = base_path('resources/lang/modules/media');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'media');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'media');
-        }
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__ . '/../Config/config.php' => config_path('media.php'),
-        ]);
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php', 'media'
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/modules/media');
-
-        $sourcePath = __DIR__ . '/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/media';
-        }, \Config::get('view.paths')), [$sourcePath]), 'media');
-    }
 
     /**
      * Register the service provider.
@@ -101,4 +38,53 @@ class MediaServiceProvider extends ServiceProvider
         return [];
     }
 
+    /**
+     * Get module identifier
+     *
+     * @return string
+     */
+    protected function getModuleIdentifier()
+    {
+        return 'media';
+    }
+
+    /**
+     * Get path to service provider
+     *
+     * @return string
+     */
+    protected function getServiceProviderPath()
+    {
+        return __DIR__;
+    }
+
+    /**
+     * Get commands as array
+     *
+     * @return array
+     */
+    public function getCommands()
+    {
+        return [];
+    }
+
+    /**
+     * Get list of Arrays
+     *
+     * [
+     *      EventClass1::class => function() {
+     *
+     *      },
+     *      EventClass2::class => function() {
+     *
+     *      },
+     *      ...
+     * ]
+     *
+     * @return array
+     */
+    public function getEvents()
+    {
+        return [];
+    }
 }

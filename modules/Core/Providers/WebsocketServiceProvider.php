@@ -1,6 +1,10 @@
 <?php namespace KekecMed\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Abstracts\Providers\AbstractModuleProvider;
+use KekecMed\Core\Abstracts\Providers\Modules\Commandable;
+use KekecMed\Core\Abstracts\Providers\Modules\Configable;
+use KekecMed\Core\Abstracts\Providers\Modules\Eventable;
 use KekecMed\Core\Console\WebsocketCommand;
 use KekecMed\Core\Websocket\Client;
 use KekecMed\Queue\Subscribers\WebsocketSubscriber;
@@ -11,7 +15,7 @@ use KekecMed\Queue\Subscribers\WebsocketSubscriber;
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Core\Providers
  */
-class WebsocketServiceProvider extends ServiceProvider
+class WebsocketServiceProvider extends AbstractModuleProvider implements Configable, Commandable, Eventable
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -19,52 +23,6 @@ class WebsocketServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerConfig();
-        $this->registerCommands();
-        $this->registerEventListeners();
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__ . '/../Config/websocket.config.php' => config_path('websocket.php'),
-        ]);
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/websocket.config.php', 'websocket'
-        );
-    }
-
-    /**
-     * Register commands
-     */
-    public function registerCommands()
-    {
-        $this->commands(WebsocketCommand::class);
-    }
-
-    /**
-     * Register event listeners
-     */
-    public function registerEventListeners()
-    {
-        /**
-         * Register global Subscriber for websocket events
-         */
-        \Event::subscribe(WebsocketSubscriber::class);
-    }
 
     /**
      * Register the service provider.
@@ -89,5 +47,59 @@ class WebsocketServiceProvider extends ServiceProvider
     public function provides()
     {
         return [];
+    }
+
+    /**
+     * Get module identifier
+     *
+     * @return string
+     */
+    protected function getModuleIdentifier()
+    {
+        return 'websocket';
+    }
+
+    /**
+     * Get path to service provider
+     *
+     * @return string
+     */
+    protected function getServiceProviderPath()
+    {
+        return __DIR__;
+    }
+
+    /**
+     * Get commands as array
+     *
+     * @return array
+     */
+    public function getCommands()
+    {
+        return [
+            WebsocketCommand::class  
+        ];
+    }
+
+    /**
+     * Get list of Arrays
+     *
+     * [
+     *      EventClass1::class => function() {
+     *
+     *      },
+     *      EventClass2::class => function() {
+     *
+     *      },
+     *      ...
+     * ]
+     *
+     * @return array
+     */
+    public function getEvents()
+    {
+        return [
+            WebsocketSubscriber::class
+        ];
     }
 }

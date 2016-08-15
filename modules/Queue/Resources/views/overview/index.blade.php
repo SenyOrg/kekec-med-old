@@ -1,9 +1,6 @@
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.5/gridstack.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.5/gridstack-extra.css">
-</head>
-<body>
+@extends('theme::hero')
+
+@section('content')
 <template id="event-queue">
     <div id="event-queue">
         <h1>Event-Queue</h1>
@@ -81,7 +78,9 @@
         </template>
     </template>
 </div>
+@endsection
 
+@section('end-content')
 <script type="text/javascript">
     dataStore = {
         ingoingQueue: {!! \KekecMed\Queue\Entities\Queue::where('title', 'Ingoing')->get()->first()->toJson() !!},
@@ -91,15 +90,5 @@
         items: {!! \KekecMed\Queue\Entities\QueueItem::with('patient')->get()->toJson() !!}
     };
 </script>
-<!-- Scripts and ressources-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script type="text/javascript" src="{{asset('assets/libs.min.js')}}"></script>
-<!-- BootBox -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-<script src="https://autobahn.s3.amazonaws.com/autobahnjs/latest/autobahn.min.jgz"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
-<script type="text/javascript" src="{{asset('modules/theme/core.js')}}"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.5/gridstack.js"></script>
 <script type="text/javascript" src="{{asset('modules/queue/app.js')}}"></script>
-</body>
-</html>
+@endsection

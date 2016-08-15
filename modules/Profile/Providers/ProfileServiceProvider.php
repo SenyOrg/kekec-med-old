@@ -1,8 +1,15 @@
 <?php namespace KekecMed\Profile\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Abstracts\Providers\AbstractFullstackModuleProvider;
 
-class ProfileServiceProvider extends ServiceProvider
+/**
+ * Class ProfileServiceProvider
+ *
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\Profile\Providers
+ */
+class ProfileServiceProvider extends AbstractFullstackModuleProvider
 {
 
     /**
@@ -11,69 +18,6 @@ class ProfileServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = base_path('resources/lang/modules/profile');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'profile');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'profile');
-        }
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__ . '/../Config/config.php' => config_path('profile.php'),
-        ]);
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php', 'profile'
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/modules/profile');
-
-        $sourcePath = __DIR__ . '/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/profile';
-        }, \Config::get('view.paths')), [$sourcePath]), 'profile');
-    }
 
     /**
      * Register the service provider.
@@ -95,4 +39,53 @@ class ProfileServiceProvider extends ServiceProvider
         return [];
     }
 
+    /**
+     * Get module identifier
+     *
+     * @return string
+     */
+    protected function getModuleIdentifier()
+    {
+        return 'profile';
+    }
+
+    /**
+     * Get path to service provider
+     *
+     * @return string
+     */
+    protected function getServiceProviderPath()
+    {
+        return __DIR__;
+    }
+
+    /**
+     * Get commands as array
+     *
+     * @return array
+     */
+    public function getCommands()
+    {
+        return [];
+    }
+
+    /**
+     * Get list of Arrays
+     *
+     * [
+     *      EventClass1::class => function() {
+     *
+     *      },
+     *      EventClass2::class => function() {
+     *
+     *      },
+     *      ...
+     * ]
+     *
+     * @return array
+     */
+    public function getEvents()
+    {
+        return [];
+    }
 }

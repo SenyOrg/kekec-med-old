@@ -12,7 +12,7 @@ use KekecMed\Core\Abstracts\Models\Taskable\TaskableModel;
  * Class AbstractModel
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
- * @package KekecMed\ore\Abstracts\Models
+ * @package KekecMed\Core\Abstracts\Models
  */
 abstract class AbstractModel extends Model
 {

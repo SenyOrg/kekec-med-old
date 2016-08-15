@@ -1,8 +1,14 @@
 <?php namespace KekecMed\User\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Abstracts\Providers\AbstractFullstackModuleProvider;
 
-class UserServiceProvider extends ServiceProvider
+/**
+ * Class UserServiceProvider
+ *
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\User\Providers
+ */
+class UserServiceProvider extends AbstractFullstackModuleProvider
 {
 
     /**
@@ -11,69 +17,6 @@ class UserServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = base_path('resources/lang/modules/user');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'user');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'user');
-        }
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__ . '/../Config/config.php' => config_path('user.php'),
-        ]);
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php', 'user'
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/modules/user');
-
-        $sourcePath = __DIR__ . '/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/user';
-        }, \Config::get('view.paths')), [$sourcePath]), 'user');
-    }
 
     /**
      * Register the service provider.
@@ -95,4 +38,53 @@ class UserServiceProvider extends ServiceProvider
         return [];
     }
 
+    /**
+     * Get module identifier
+     *
+     * @return string
+     */
+    protected function getModuleIdentifier()
+    {
+        return 'user';
+    }
+
+    /**
+     * Get path to service provider
+     *
+     * @return string
+     */
+    protected function getServiceProviderPath()
+    {
+        return __DIR__;
+    }
+
+    /**
+     * Get commands as array
+     *
+     * @return array
+     */
+    public function getCommands()
+    {
+        return [];
+    }
+
+    /**
+     * Get list of Arrays
+     *
+     * [
+     *      EventClass1::class => function() {
+     *
+     *      },
+     *      EventClass2::class => function() {
+     *
+     *      },
+     *      ...
+     * ]
+     *
+     * @return array
+     */
+    public function getEvents()
+    {
+        return [];
+    }
 }

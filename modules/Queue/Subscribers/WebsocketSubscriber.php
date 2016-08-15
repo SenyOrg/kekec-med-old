@@ -1,6 +1,7 @@
 <?php namespace KekecMed\Queue\Subscribers;
 
 use KekecMed\Core\Abstracts\Events\AbstractWebsocketEvent;
+use KekecMed\Core\Abstracts\Subscribers\AbstractSubscriber;
 use KekecMed\Queue\Events\QueueItemChanged;
 use KekecMed\Queue\Events\QueueItemCreated;
 use KekecMed\Queue\Events\QueueItemDeleted;
@@ -12,12 +13,12 @@ use KekecMed\Queue\Events\QueueItemMoved;
  * @author  Selcuk Kekec <senycorp@googlemail.com>
  * @package KekecMed\Queue\Subscribers
  */
-class WebsocketSubscriber
+class WebsocketSubscriber extends AbstractSubscriber
 {
     /**
      * Register the listeners for the subscriber.
      *
-     * @param  Illuminate\Events\Dispatcher $events
+     * @param  \Illuminate\Events\Dispatcher $events
      */
     public function subscribe($events)
     {

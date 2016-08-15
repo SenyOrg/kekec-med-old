@@ -1,12 +1,19 @@
 <?php namespace KekecMed\Core\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Events\Logout;
+use KekecMed\Core\Abstracts\Providers\AbstractFullstackModuleProvider;
 use KekecMed\Core\Console\FilewatcherCommand;
 use KekecMed\Core\Console\ICDImporterCommand;
 use KekecMed\Core\Console\SearchIndexingCommand;
-use KekecMed\Core\Console\TestCommand;
+use KekecMed\Core\Console\WebsocketCommand;
 
-class CoreServiceProvider extends ServiceProvider
+/**
+ * Class CoreServiceProvider
+ *
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\Core\Providers
+ */
+class CoreServiceProvider extends AbstractFullstackModuleProvider
 {
 
     /**
@@ -15,100 +22,6 @@ class CoreServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-        $this->registerCommands();
-        $this->registerEventListeners();
-        
-        /**
-         * Development Mode
-         */
-        if (env('APP_DEBUG')) {
-            //app()->register(\Barryvdh\Debugbar\ServiceProvider::class);
-            app()->register(\Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
-        }
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = base_path('resources/lang/modules/core');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'core');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'core');
-        }
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__ . '/../Config/config.php' => config_path('core.php'),
-        ]);
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php', 'core'
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/modules/core');
-
-        $sourcePath = __DIR__ . '/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/core';
-        }, \Config::get('view.paths')), [$sourcePath]), 'core');
-    }
-
-    /**
-     * Register commands
-     */
-    public function registerCommands()
-    {
-        $this->commands(ICDImporterCommand::class);
-        $this->commands(SearchIndexingCommand::class);
-        $this->commands(FilewatcherCommand::class);
-    }
-
-    /**
-     * Register event listeners
-     */
-    public function registerEventListeners()
-    {
-        $this->app['events']->listen('Illuminate\Auth\Events\Logout', function ($user) {
-            \Session::clear();
-            \Session::forget('locked');
-        });
-    }
 
     /**
      * Register the service provider.
@@ -130,4 +43,62 @@ class CoreServiceProvider extends ServiceProvider
         return [];
     }
 
+    /**
+     * Get module identifier
+     *
+     * @return string
+     */
+    protected function getModuleIdentifier()
+    {
+        return 'core';
+    }
+
+    /**
+     * Get commands as array
+     *
+     * @return array
+     */
+    public function getCommands()
+    {
+        return [
+            ICDImporterCommand::class,
+            SearchIndexingCommand::class,
+            FilewatcherCommand::class
+        ];
+    }
+
+    /**
+     * Get list of Arrays
+     *
+     * [
+     *      EventClass1::class => function() {
+     *
+     *      },
+     *      EventClass2::class => function() {
+     *
+     *      },
+     *      ...
+     * ]
+     *
+     * @return array
+     */
+    public function getEvents()
+    {
+        return [
+            Logout::class => function ($user) {
+                \Session::clear();
+                \Session::forget('locked');
+            }
+        ];
+    }
+
+    /**
+     * Get path to service provider
+     *
+     * @return string
+     */
+    protected function getServiceProviderPath()
+    {
+        return __DIR__;
+    }
 }

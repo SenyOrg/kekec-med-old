@@ -1,8 +1,14 @@
 <?php namespace KekecMed\Notice\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Abstracts\Providers\AbstractFullstackModuleProvider;
 
-class NoticeServiceProvider extends ServiceProvider
+/**
+ * Class NoticeServiceProvider
+ *
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package KekecMed\Notice\Providers
+ */
+class NoticeServiceProvider extends AbstractFullstackModuleProvider
 {
 
     /**
@@ -11,69 +17,6 @@ class NoticeServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = base_path('resources/lang/modules/notice');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'notice');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'notice');
-        }
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__ . '/../Config/config.php' => config_path('notice.php'),
-        ]);
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php', 'notice'
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/modules/notice');
-
-        $sourcePath = __DIR__ . '/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/notice';
-        }, \Config::get('view.paths')), [$sourcePath]), 'notice');
-    }
 
     /**
      * Register the service provider.
@@ -95,4 +38,53 @@ class NoticeServiceProvider extends ServiceProvider
         return [];
     }
 
+    /**
+     * Get module identifier
+     *
+     * @return string
+     */
+    protected function getModuleIdentifier()
+    {
+        return 'notice';
+    }
+
+    /**
+     * Get path to service provider
+     *
+     * @return string
+     */
+    protected function getServiceProviderPath()
+    {
+        return __DIR__;
+    }
+
+    /**
+     * Get commands as array
+     *
+     * @return array
+     */
+    public function getCommands()
+    {
+        return [];
+    }
+
+    /**
+     * Get list of Arrays
+     *
+     * [
+     *      EventClass1::class => function() {
+     *
+     *      },
+     *      EventClass2::class => function() {
+     *
+     *      },
+     *      ...
+     * ]
+     *
+     * @return array
+     */
+    public function getEvents()
+    {
+        return [];
+    }
 }

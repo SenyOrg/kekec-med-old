@@ -11,7 +11,7 @@ use Pingpong\Modules\Routing\Controller;
 /**
  * Class AbstractController
  *
- * @package KekecMed\ore\Abstracts\Controllers
+ * @package KekecMed\Core\Abstracts\Controllers
  */
 abstract class AbstractController extends Controller
 {

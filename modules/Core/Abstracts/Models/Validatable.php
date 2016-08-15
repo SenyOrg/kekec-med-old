@@ -5,7 +5,7 @@
  * Interface Validatable
  *
  * @author  Selcuk Kekec <senycorp@googlemail.com>
- * @package KekecMed\ore\Abstracts\Models
+ * @package KekecMed\Core\Abstracts\Models
  */
 interface Validatable
 {

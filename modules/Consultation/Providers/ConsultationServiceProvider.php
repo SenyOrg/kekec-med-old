@@ -1,9 +1,9 @@
 <?php namespace KekecMed\Consultation\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use KekecMed\Core\Abstracts\Providers\AbstractFullstackModuleProvider;
 use KekecMed\Theme\Component\ViewComponent;
 
-class ConsultationServiceProvider extends ServiceProvider
+class ConsultationServiceProvider extends AbstractFullstackModuleProvider
 {
 
     /**
@@ -20,9 +20,7 @@ class ConsultationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
+        parent::boot();
 
         ViewComponent::getInstance()->modifySidebar(function ($menu) {
             $menu->route(
@@ -34,57 +32,6 @@ class ConsultationServiceProvider extends ServiceProvider
                 ] // attributes
             );
         });
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = base_path('resources/lang/modules/consultation');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'consultation');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'consultation');
-        }
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__ . '/../Config/config.php' => config_path('consultation.php'),
-        ]);
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php', 'consultation'
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/modules/consultation');
-
-        $sourcePath = __DIR__ . '/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/consultation';
-        }, \Config::get('view.paths')), [$sourcePath]), 'consultation');
     }
 
     /**
@@ -107,4 +54,53 @@ class ConsultationServiceProvider extends ServiceProvider
         return [];
     }
 
+    /**
+     * Get module identifier
+     *
+     * @return string
+     */
+    protected function getModuleIdentifier()
+    {
+        return 'consultation';
+    }
+
+    /**
+     * Get path to service provider
+     *
+     * @return string
+     */
+    protected function getServiceProviderPath()
+    {
+        return __DIR__;
+    }
+
+    /**
+     * Get commands as array
+     *
+     * @return array
+     */
+    public function getCommands()
+    {
+        return [];
+    }
+
+    /**
+     * Get list of Arrays
+     *
+     * [
+     *      EventClass1::class => function() {
+     *
+     *      },
+     *      EventClass2::class => function() {
+     *
+     *      },
+     *      ...
+     * ]
+     *
+     * @return array
+     */
+    public function getEvents()
+    {
+        return [];
+    }
 }
