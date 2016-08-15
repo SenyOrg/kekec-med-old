@@ -1,1 +1,16 @@
 /* Create your global css rules here */
+
+/* Pace related styles */
+.pace .pace-progress {
+    background: #3c8dbc !important;
+    height: 5px !important;
+}
+
+.pace .pace-progress-inner {
+    box-shadow: 0 0 10px #3c8dbc !important, 0 0 5px #3c8dbc !important;
+}
+
+.pace .pace-activity {
+    border-top-color: #3c8dbc !important;
+    border-left-color: #3c8dbc !important;
+}
