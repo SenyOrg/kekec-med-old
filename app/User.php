@@ -3,8 +3,8 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use KekecMed\Core\Abstracts\Models\Presentable;
-use KekecMed\Core\Abstracts\Models\PresentableModel;
+use KekecMed\Core\Abstracts\Models\Presentable\Presentable;
+use KekecMed\Core\Abstracts\Models\Presentable\PresentableModel;
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Core\Entities\ImageableModel;

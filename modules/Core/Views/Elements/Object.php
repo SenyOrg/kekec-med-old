@@ -3,7 +3,7 @@
 namespace KekecMed\Core\Views\Elements;
 
 use KekecMed\Consultation\Entities\Consultation;
-use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\Presentable\Presentable;
 use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Event\Entities\Event;

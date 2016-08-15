@@ -1,4 +1,4 @@
-<?php namespace KekecMed\Core\Abstracts\Models;
+<?php namespace KekecMed\Core\Abstracts\Models\Fileable;
 
 
 /**

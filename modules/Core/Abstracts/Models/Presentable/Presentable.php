@@ -1,4 +1,4 @@
-<?php namespace KekecMed\Core\Abstracts\Models;
+<?php namespace KekecMed\Core\Abstracts\Models\Presentable;
 
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 

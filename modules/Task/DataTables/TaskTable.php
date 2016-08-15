@@ -3,7 +3,7 @@
 namespace KekecMed\Task\DataTables;
 
 use Illuminate\Database\Eloquent\Builder;
-use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\Presentable\Presentable;
 use KekecMed\Core\DataTables\AbstractCoreDataTable;
 use KekecMed\Task\Entities\Task;
 

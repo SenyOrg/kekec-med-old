@@ -5,7 +5,7 @@ namespace KekecMed\Core\Views\Elements;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\Presentable\Presentable;
 use KekecMed\Core\Abstracts\Views\Elements\AbstractGenericInputParameters;
 use KekecMed\Core\Entities\Dialogable;
 

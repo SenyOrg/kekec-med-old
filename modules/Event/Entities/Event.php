@@ -4,7 +4,7 @@ use App\User;
 use KekecMed\Calendar\Entities\Calendar;
 use KekecMed\Consultation\Entities\Consultation;
 use KekecMed\Core\Abstracts\Models\AbstractModel;
-use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\Presentable\Presentable;
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Abstracts\Models\Relational;
 use KekecMed\Core\Abstracts\Models\RelationalMeta;

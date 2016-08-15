@@ -5,7 +5,7 @@ namespace KekecMed\Core\Exceptions;
 use KekecMed\Core\Abstracts\Exceptions\AbstractGenericModelException;
 use KekecMed\Core\Abstracts\Exceptions\FixCoded;
 use KekecMed\Core\Abstracts\Exceptions\FixMessaged;
-use KekecMed\Core\Abstracts\Models\ValidatableModel;
+use KekecMed\Core\Abstracts\Models\Validatable\ValidatableModel;
 
 /**
  * Class ModelValidationException

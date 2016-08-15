@@ -3,7 +3,7 @@
 namespace KekecMed\Core\Abstracts\Models\Presenter;
 
 use Illuminate\Database\Eloquent\Model;
-use KekecMed\Core\Abstracts\Models\Presentable;
+use KekecMed\Core\Abstracts\Models\Presentable\Presentable;
 
 /**
  * Class AbstractPresenter

@@ -3,8 +3,8 @@
 use App\User;
 use KekecMed\Core\Abstracts\Models\AbstractModel;
 use KekecMed\Core\Abstracts\Models\ObjectableModel;
-use KekecMed\Core\Abstracts\Models\Presentable;
-use KekecMed\Core\Abstracts\Models\PresentableModel;
+use KekecMed\Core\Abstracts\Models\Presentable\Presentable;
+use KekecMed\Core\Abstracts\Models\Presentable\PresentableModel;
 use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Notice\Entities\Presenters\NoticePresenter;
