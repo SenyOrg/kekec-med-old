@@ -406,11 +406,12 @@ var kekecmed = {
 
     dialog: {
         _config: {
+            alert: 'modal-dialog',
             primary: 'modal-primary',
             info: 'modal-info',
-            error: 'modal-danger',
             warning: 'modal-warning',
             success: 'modal-success',
+            error: 'modal-danger',
 
             settings: {
                 /**
@@ -426,7 +427,7 @@ var kekecmed = {
                  * @default: true
                  * whether the dialog should be shown immediately
                  */
-                show: false,
+                show: true,
 
                 /**
                  * @optional Boolean
@@ -466,10 +467,130 @@ var kekecmed = {
          */
         _initialize: function () {
             bootbox.setDefaults(this._config.settings);
+        },
+
+        _info: function(title, message, callback, className) {
+            return bootbox.dialog({
+                title: title,
+                message: message,
+                callback: callback,
+                className: className,
+                buttons: {
+
+                    /**
+                     * this usage demonstrates that if no label property is
+                     * supplied in the object, the key is used instead
+                     */
+                    "Okay": {
+                        className: "btn-outline",
+                        callback: callback
+                        }
+                    }
+                }
+            );
+        },
+
+        _confirm: function(title, message, callback, className) {
+            return bootbox.dialog({
+                title: title,
+                message: message,
+                callback: callback,
+                className: className,
+                buttons: {
+
+                    "Cancel": {
+                        className: 'btn-outline',
+                        callback: function() {
+                            callback(false);
+                        }
+                    },
+                    "Okay": {
+                        className: "btn-outline",
+                        callback: function() {
+                            callback(true);
+                        }
+                    }
+                }
+            });
+        },
+
+        infos: {
+            alert: function(title, message, callback) {
+                return kekecmed.dialog._info(title, message, callback, kekecmed.dialog._config.alert);
+            },
+            primary: function(title, message, callback) {
+                return kekecmed.dialog._info(title, message, callback, kekecmed.dialog._config.primary);
+            },
+            info: function(title, message, callback) {
+                return kekecmed.dialog._info(title, message, callback, kekecmed.dialog._config.info);
+            },
+            warning: function(title, message, callback) {
+                return kekecmed.dialog._info(title, message, callback, kekecmed.dialog._config.warning);
+            },
+            success: function(title, message, callback) {
+                return kekecmed.dialog._info(title, message, callback, kekecmed.dialog._config.success);
+            },
+            error: function(title, message, callback) {
+                return kekecmed.dialog._info(title, message, callback, kekecmed.dialog._config.error);
+            }
+        },
+
+        confirmations: {
+            alert: function(title, message, callback) {
+                return kekecmed.dialog._confirm(title, message, callback, kekecmed.dialog._config.alert);
+            },
+            primary: function(title, message, callback) {
+                return kekecmed.dialog._confirm(title, message, callback, kekecmed.dialog._config.primary);
+            },
+            info: function(title, message, callback) {
+                return kekecmed.dialog._confirm(title, message, callback, kekecmed.dialog._config.info);
+            },
+            warning: function(title, message, callback) {
+                return kekecmed.dialog._confirm(title, message, callback, kekecmed.dialog._config.warning);
+            },
+            success: function(title, message, callback) {
+                return kekecmed.dialog._confirm(title, message, callback, kekecmed.dialog._config.success);
+            },
+            error: function(title, message, callback) {
+                return kekecmed.dialog._confirm(title, message, callback, kekecmed.dialog._config.error);
+            }
+        },
+
+        _dismissable: function(title, message, callback, className, delay) {
+            var dialogInstance = bootbox.dialog({
+                    title: title,
+                    message: message,
+                    callback: callback,
+                    className: className
+                }
+            );
+
+            setTimeout(function() {
+                dialogInstance.modal('hide');
+            }, delay);
+        },
+
+        dismissables: {
+            alert: function(title, message, delay, callback) {
+                return kekecmed.dialog._dismissable(title, message, callback, kekecmed.dialog._config.alert, delay);
+            },
+            primary: function(title, message, delay, callback) {
+                return kekecmed.dialog._dismissable(title, message, callback, kekecmed.dialog._config.primary, delay);
+            },
+            info: function(title, message, delay, callback) {
+                return kekecmed.dialog._dismissable(title, message, callback, kekecmed.dialog._config.info, delay);
+            },
+            warning: function(title, message, delay, callback) {
+                return kekecmed.dialog._dismissable(title, message, callback, kekecmed.dialog._config.warning, delay);
+            },
+            success: function(title, message, delay, callback) {
+                return kekecmed.dialog._dismissable(title, message, callback, kekecmed.dialog._config.success, delay);
+            },
+            error: function(title, message, delay, callback) {
+                return kekecmed.dialog._dismissable(title, message, callback, kekecmed.dialog._config.error, delay);
+            }
         }
-        /**
-         * @todo
-         */
+
     },
 
     /**
@@ -479,6 +600,7 @@ var kekecmed = {
     initialize: function () {
         this.ajax._initialize();
         this.vue._initialize();
+        this.dialog._initialize();
         //this.websocket._initialize();
     }
 };

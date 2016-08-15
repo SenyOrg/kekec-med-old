@@ -1,34 +1,85 @@
 var basePath = '../../../modules/Theme/Resources/views/admin-lte/';
 
+/**
+ * Admin-LTE: Configuration 
+ */
 module.exports = {
+    /**
+     * Title
+     */
     title: 'Admin-LTE',
+
+    /**
+     * Description
+     */
     description: 'This theme is the default one for KekecMed.',
+
+    /**
+     * Author
+     */
     author: 'Selcuk Kekec',
+
+    /**
+     * Version
+     */
     version: '0.1',
+
+    /**
+     * CopyJobs
+     */
     copyJobs: [
+        /**
+         * Font-Awesome
+         */
         {
             source: 'modules/Theme/Resources/views/admin-lte/assets/plugins/font-awesome-4.6.3/fonts',
             destination: 'public/vendor/fonts/'
         },
+
+        /**
+         * Ionicon
+         */
         {
             source: 'modules/Theme/Resources/views/admin-lte/assets/plugins/ionicons-2.0.1/fonts',
             destination: 'public/vendor/fonts/'
         },
+
+        /**
+         * Glyph Icons
+         */
         {
             source: 'modules/Theme/Resources/views/admin-lte/assets/bootstrap/fonts',
             destination: 'public/vendor/fonts/'
         },
+
+        /**
+         * Image Assets
+         */
         {
             source: 'modules/Theme/Resources/views/admin-lte/assets/dist/img',
             destination: 'public/vendor/admin-lte/img'
         },
+
+        /**
+         * ICheck PNG
+         */
         {
             source: 'modules/Theme/Resources/views/admin-lte/assets/plugins/iCheck/square/blue*.png',
             destination: 'public/vendor/admin-lte/'
         }
     ],
+
+    /**
+     * Compress Jobs
+     */
     compress: {
+        /**
+         * Scripts
+         */
         scripts: {
+            /**
+             * Files to Compress
+             */
             files: [
                 basePath + 'assets/plugins/jQuery/jQuery-2.2.0.min.js',
                 basePath + 'assets/bootstrap/js/bootstrap.min.js',
@@ -51,16 +102,26 @@ module.exports = {
                 basePath + 'assets/plugins/bootstrap-calendar-master/components/jstimezonedetect/jstz.min.js',
                 basePath + 'assets/plugins/bootstrap-calendar-master/js/calendar.js',
                 basePath + 'assets/plugins/bootstrap-calendar-master/js/language/de-DE.js',
+                basePath + 'assets/plugins/bootbox/bootbox.js',
                 basePath + 'assets/plugins/pace/pace.min.js',
                 basePath + 'assets/dist/js/app.min.js',
-                //basePath + 'assets/dist/js/pages/dashboard.js',
                 basePath + 'assets/dist/js/demo.js',
                 basePath + 'assets/plugins/input-mask/jquery.inputmask.bundle.js',
                 basePath + 'assets/app.js'
             ],
+            /**
+             * Output Filename
+             */
             output: 'public/vendor/admin-lte/libs.min.js'
         },
+
+        /**
+         * Styles
+         */
         styles: {
+            /**
+             * Stylesheets to compress
+             */
             files: [
                 basePath + 'assets/bootstrap/css/bootstrap.min.css',
                 basePath + 'assets/plugins/select2/select2.min.css',
@@ -81,6 +142,10 @@ module.exports = {
                 basePath + 'assets/plugins/ionicons-2.0.1/css/ionicons.css',
                 basePath + 'assets/app.css'
             ],
+
+            /**
+             * Output filename
+             */
             output: 'public/vendor/admin-lte/styles.min.css'
         }
     }
