@@ -16,25 +16,14 @@
  */
 Route::get('/', function () {
     if (Auth::check()) {
-        return view('welcome');
+        return redirect()->route('dashboard.index');
     } else {
         return redirect('login');
     }
-});
+})->name('homeroute');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::resource('profile', 'ProfileController');
-
-    /**Route::group(['prefix' => 'user'], function () {
-        Route::get('profile', 'UserController@showProfile')->name('user.profile');
-    });
-
-    Route::get('user/profile', function () {
-        // Uses Auth Middleware
-    });**/
+    Route::get('logs', ['as' => 'logViewer', 'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index']);
 });

@@ -159,9 +159,15 @@ return [
         /*
          * Custom Providers
          */
+        Pingpong\Modules\ModulesServiceProvider::class,
+        Pingpong\Widget\WidgetServiceProvider::class,
+        Pingpong\Menus\MenusServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Yangqi\Htmldom\HtmldomServiceProvider::class    ,
-
+        Yangqi\Htmldom\HtmldomServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        TeamTNT\TNTSearch\TNTSearchServiceProvider::class,
     ],
 
     /*
@@ -212,8 +218,15 @@ return [
         /*
          * Custom Aliases
          */
+        'Module' => Pingpong\Modules\Facades\Module::class,
+        'Widget' => Pingpong\Widget\WidgetFacade::class,
+        'Menu' => Pingpong\Menus\MenuFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Htmldom' => Yangqi\Htmldom\Htmldom::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'TNTSearch' => TeamTNT\TNTSearch\Facades\TNTSearch::class,
     ],
 
 ];

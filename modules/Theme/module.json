@@ -1,0 +1,16 @@
+{
+    "name": "Theme",
+    "alias": "theme",
+    "description": "Theme module for KekecMed",
+    "keywords": [],
+    "active": 1,
+    "order": -99,
+    "providers": [
+        "KekecMed\\Theme\\Providers\\ThemeServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php",
+        "widgets.php"
+    ]
+}

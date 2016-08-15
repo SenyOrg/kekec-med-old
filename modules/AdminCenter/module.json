@@ -1,0 +1,15 @@
+{
+    "name": "AdminCenter",
+    "alias": "admincenter",
+    "description": "AdminCenter module for KekecMed",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "KekecMed\\AdminCenter\\Providers\\AdminCenterServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}
