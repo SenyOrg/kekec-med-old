@@ -7,7 +7,7 @@
 }
 
 .pace .pace-progress-inner {
-    box-shadow: 0 0 10px #3c8dbc !important, 0 0 5px #3c8dbc !important;
+    box-shadow: 0 0 10px #3c8dbc, 0 0 5px #3c8dbc !important;
 }
 
 .pace .pace-activity {

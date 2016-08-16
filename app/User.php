@@ -11,6 +11,12 @@ use KekecMed\Core\Entities\ImageableModel;
 use KekecMed\Core\Entities\Presenters\UserPresenter;
 use KekecMed\Task\Entities\Task;
 
+/**
+ * Class User
+ *
+ * @author  Selcuk Kekec <senycorp@googlemail.com>
+ * @package App
+ */
 class User extends Authenticatable implements Dialogable, Presentable
 {
     use ImageableModel, PresentableModel;
