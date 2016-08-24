@@ -66,9 +66,13 @@ class FilewatcherCommand extends Command
 
         // Split relative path into parts
         $pathParts = explode(DIRECTORY_SEPARATOR, $sourceFilePath);
-        $destinationFilePath = $rootDirectory . DIRECTORY_SEPARATOR . strtolower($pathParts[1]) . DIRECTORY_SEPARATOR . explode('Assets/',
+        $destinationPath = $rootDirectory . DIRECTORY_SEPARATOR . strtolower($pathParts[1]) . DIRECTORY_SEPARATOR;
+
+        $destinationFilePath = $destinationPath . explode('Assets/',
                 $sourceFilePath)[1];
 
+        // Create public/modules/{MODULE} directory if needed
+        exec('mkdir -p ' . $destinationPath);
         copy(getcwd() . DIRECTORY_SEPARATOR . $sourceFilePath, $destinationFilePath);
     }
 
