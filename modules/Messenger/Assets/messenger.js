@@ -44,7 +44,7 @@ kekecmed.websocket.subscribe('kekecmed.messenger.chat.message.created', function
            if (item['chat.id'] == data.chat_id) {
                item.unread_messages++;
                kekecmed.sounds.actions.messageArrived();
-               
+
            }
         });
     }
@@ -89,6 +89,10 @@ kekecmed.vue.component('chat-item', {
                 self.$root.chat = response;
                 self.item.unread_messages = 0;
                 self.$root.chats.$set(self.index, self.item);
+
+                setTimeout(function () {
+                    kekecmed.query('.direct-chat-messages').scrollTop(1E10)
+                }, 200);
             });
         }
     },
