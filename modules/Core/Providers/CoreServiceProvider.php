@@ -4,8 +4,8 @@ use Illuminate\Auth\Events\Logout;
 use KekecMed\Core\Abstracts\Providers\AbstractFullstackModuleProvider;
 use KekecMed\Core\Console\FilewatcherCommand;
 use KekecMed\Core\Console\ICDImporterCommand;
+use KekecMed\Core\Console\IdeHelperCommand;
 use KekecMed\Core\Console\SearchIndexingCommand;
-use KekecMed\Core\Console\WebsocketCommand;
 
 /**
  * Class CoreServiceProvider
@@ -63,7 +63,8 @@ class CoreServiceProvider extends AbstractFullstackModuleProvider
         return [
             ICDImporterCommand::class,
             SearchIndexingCommand::class,
-            FilewatcherCommand::class
+            FilewatcherCommand::class,
+            IdeHelperCommand::class
         ];
     }
 

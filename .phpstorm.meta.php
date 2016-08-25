@@ -1,15 +1,15 @@
 <?php
 namespace PHPSTORM_META {
 
-    /**
-     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-     * Generated on 2016-06-25.
-     *
-     * @author Barry vd. Heuvel <barryvdh@gmail.com>
-     * @see    https://github.com/barryvdh/laravel-ide-helper
-     */
+   /**
+    * PhpStorm Meta file, to provide autocomplete information for PhpStorm
+    * Generated on 2016-08-25.
+    *
+    * @author Barry vd. Heuvel <barryvdh@gmail.com>
+    * @see https://github.com/barryvdh/laravel-ide-helper
+    */
     $STATIC_METHOD_TYPES = [
-        new \Illuminate\Contracts\Container\Container       => [
+        new \Illuminate\Contracts\Container\Container => [
             '' == '@',
             'events' instanceof \Illuminate\Events\Dispatcher,
             'router' instanceof \Illuminate\Routing\Router,
@@ -52,11 +52,14 @@ namespace PHPSTORM_META {
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
             'datatables' instanceof \Yajra\Datatables\Datatables,
+            'datatables.fractal' instanceof \League\Fractal\Manager,
             'tntsearch' instanceof \TeamTNT\TNTSearch\TNTSearch,
+            'kekecmed.service.websocket.client' instanceof \KekecMed\Core\Websocket\Client,
+            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
+            'kekecmed.service.messenger' instanceof \KekecMed\Messenger\Messenger\Messenger,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
-            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'menus' instanceof \Pingpong\Menus\Menu,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,
@@ -179,11 +182,14 @@ namespace PHPSTORM_META {
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
             'datatables' instanceof \Yajra\Datatables\Datatables,
+            'datatables.fractal' instanceof \League\Fractal\Manager,
             'tntsearch' instanceof \TeamTNT\TNTSearch\TNTSearch,
+            'kekecmed.service.websocket.client' instanceof \KekecMed\Core\Websocket\Client,
+            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
+            'kekecmed.service.messenger' instanceof \KekecMed\Messenger\Messenger\Messenger,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
-            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'menus' instanceof \Pingpong\Menus\Menu,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,
@@ -263,7 +269,7 @@ namespace PHPSTORM_META {
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
         ],
-        \App::make('')                                      => [
+        \App::make('') => [
             '' == '@',
             'events' instanceof \Illuminate\Events\Dispatcher,
             'router' instanceof \Illuminate\Routing\Router,
@@ -306,11 +312,14 @@ namespace PHPSTORM_META {
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
             'datatables' instanceof \Yajra\Datatables\Datatables,
+            'datatables.fractal' instanceof \League\Fractal\Manager,
             'tntsearch' instanceof \TeamTNT\TNTSearch\TNTSearch,
+            'kekecmed.service.websocket.client' instanceof \KekecMed\Core\Websocket\Client,
+            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
+            'kekecmed.service.messenger' instanceof \KekecMed\Messenger\Messenger\Messenger,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
-            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'menus' instanceof \Pingpong\Menus\Menu,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,
@@ -390,7 +399,7 @@ namespace PHPSTORM_META {
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
         ],
-        app('')                                             => [
+        \app('') => [
             '' == '@',
             'events' instanceof \Illuminate\Events\Dispatcher,
             'router' instanceof \Illuminate\Routing\Router,
@@ -433,11 +442,14 @@ namespace PHPSTORM_META {
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
             'datatables' instanceof \Yajra\Datatables\Datatables,
+            'datatables.fractal' instanceof \League\Fractal\Manager,
             'tntsearch' instanceof \TeamTNT\TNTSearch\TNTSearch,
+            'kekecmed.service.websocket.client' instanceof \KekecMed\Core\Websocket\Client,
+            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
+            'kekecmed.service.messenger' instanceof \KekecMed\Messenger\Messenger\Messenger,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
-            'ViewComponent' instanceof \KekecMed\Theme\Component\ViewComponent,
             'menus' instanceof \Pingpong\Menus\Menu,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,
