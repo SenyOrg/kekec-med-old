@@ -23,7 +23,8 @@ themeStore.push(require('./modules/Theme/Resources/views/admin-lte/config.js'));
 gulp.task('global-assets', function () {
     elixir(function (mix) {
         mix.scripts(['../../../modules/Theme/Resources/assets/scripts/*.js'], 'public/vendor/libs.global.min.js')
-            .styles(['../../../modules/Theme/Resources/assets/styles/*.css'], 'public/vendor/styles.global.min.css');
+            .styles(['../../../modules/Theme/Resources/assets/styles/*.css'], 'public/vendor/styles.global.min.css')
+            .copy('modules/Theme/Resources/assets/audios/', 'public/vendor/audios');
     })
 });
 

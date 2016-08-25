@@ -23,7 +23,8 @@ kekecmed.websocket.subscribe('kekecmed.messenger.chat.message.created', function
          * Mark chat as read
          */
         if (data.author.id != kekecmed.user.id) {
-            kekecmed.api.messenger.markAsRead(data.chat_id)
+            kekecmed.api.messenger.markAsRead(data.chat_id);
+            kekecmed.sounds.actions.messageArrived();
         }
 
         chatStore.chat.messages.push({
@@ -42,6 +43,8 @@ kekecmed.websocket.subscribe('kekecmed.messenger.chat.message.created', function
         chatStore.chats.forEach(function(item, index) {
            if (item['chat.id'] == data.chat_id) {
                item.unread_messages++;
+               kekecmed.sounds.actions.messageArrived();
+               
            }
         });
     }
@@ -116,6 +119,7 @@ kekecmed.vue.component('chat', {
                 this.item['chat.id'],
                 this.message, function (response) {
                     self.message = '';
+                    kekecmed.sounds.actions.messageSent();
                 });
         },
         dismiss: function () {

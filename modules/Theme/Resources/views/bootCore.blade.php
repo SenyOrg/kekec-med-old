@@ -20,4 +20,6 @@
         port: '{{config('websocket.port')}}',
         realm: '{{config('websocket.realm')}}'
     };
+
+    kekecmed.initialize();
 </script>

@@ -54,7 +54,7 @@ var kekecmed = {
          */
         getStorageUrl: function(path) {
             return this.storage + path;
-        },
+        }
     },
 
     /**
@@ -630,6 +630,7 @@ var kekecmed = {
         this.ajax._initialize();
         this.vue._initialize();
         this.dialog._initialize();
+        this.sounds._initialize();
         //this.websocket._initialize();
     },
 
@@ -692,7 +693,43 @@ var kekecmed = {
              * @todo: Move AjaxCalls related to queue jobs to this section
              */
         }
+    },
+    sounds: {
+        _soundIdentifier: {
+            
+        },
+        _initialize: function() {
+            createjs.Sound.registerSound(kekecmed.location.getBaseUrl('/vendor/audios/beep.mp3'), 'beep');
+            createjs.Sound.registerSound(kekecmed.location.getBaseUrl('/vendor/audios/just-like-that.mp3'), 'just-like-that');
+            createjs.Sound.registerSound(kekecmed.location.getBaseUrl('/vendor/audios/knob.mp3'), 'knob');
+            createjs.Sound.registerSound(kekecmed.location.getBaseUrl('/vendor/audios/served.mp3'), 'served');
+            createjs.Sound.registerSound(kekecmed.location.getBaseUrl('/vendor/audios/suppressed.mp3'), 'suppressed');
+        },
+        _play: function(identifier) {
+            createjs.Sound.play(identifier);
+        },
+        beep: function() {
+            this._play('beep');
+        },
+        justLikeThat: function() {
+            this._play('just-like-that');
+        },
+        knob: function() {
+            this._play('knob');
+        },
+        served: function() {
+            this._play('served');
+        },
+        suppressed: function() {
+            this._play('suppressed');
+        },
+        actions: {
+            messageSent: function() {
+                kekecmed.sounds.justLikeThat();
+            },
+            messageArrived: function() {
+                kekecmed.sounds.suppressed();
+            }
+        }
     }
 };
-
-kekecmed.initialize();
