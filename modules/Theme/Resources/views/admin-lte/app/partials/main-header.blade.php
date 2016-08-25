@@ -282,6 +282,14 @@
                     <li>
                         <a href="http://kekecmed.app/logout"><i class="fa fa-btn fa-sign-out"></i></a>
                     </li>
+
+                    <!-- Messenger -->
+                    <li>
+                        <a onclick="kekecmed.query('[data-toggle=\'control-sidebar\'], a[href=\'#control-sidebar-messenger-tab\']').trigger('click')"><i class="fa fa-btn fa-comment"></i>
+                            <span class="label label-success" id="unread-messages-indicator"></span>
+                        </a>
+                    </li>
+
                     <!-- Control Sidebar Toggle Button -->
                     <li>
                         <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>

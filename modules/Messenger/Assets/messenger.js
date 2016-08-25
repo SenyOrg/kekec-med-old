@@ -66,7 +66,20 @@ kekecmed.vue.component('chats', {
     data: function () {
         return {};
     },
-    methods: {}
+    methods: {},
+    computed: {
+        unreadMessages: function() {
+            var count = 0;
+
+            this.items.forEach(function(item) {
+                count += item.unread_messages;
+            });
+
+
+            kekecmed.query('#unread-messages-indicator').html(count);
+            return count;
+        }
+    }
 });
 
 /**
@@ -86,6 +99,7 @@ kekecmed.vue.component('chat-item', {
             var self = this;
 
             kekecmed.api.messenger.getChat(this.item['chat.id'], function (response) {
+                response.unread_messages = self.item.unread_messages;
                 self.$root.chat = response;
                 self.item.unread_messages = 0;
                 self.$root.chats.$set(self.index, self.item);

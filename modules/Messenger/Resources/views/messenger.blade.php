@@ -1,7 +1,8 @@
 <!-- Settings tab content -->
 <div class="tab-pane" id="control-sidebar-messenger-tab">
     <template id="chats">
-        <h3 class="control-sidebar-heading"><i class="fa fa-comment"></i>  Messenger</h3>
+        <h3 class="control-sidebar-heading"><i class="fa fa-comment">
+                <span v-if="unreadMessages" class="badge bg-light-blue" style="margin-left: -10px;margin-top: 5px;">!! unreadMessages !!</span></i>  Messenger </h3>
         <ul class="control-sidebar-menu">
             <template v-for="(index,item) in items">
                 <chat-item v-bind:item="item" v-bind:index="index"></chat-item>
@@ -72,17 +73,13 @@
         <template v-if="item">
             <div class="box box-primary direct-chat direct-chat-primary" style="position: fixed; bottom: -19px;;right: 230px;max-width: 320px;">
                 <div class="box-header with-border">
-                    <h3 class="box-title">!! item['participant.firstname'] !! !! item['participant.lastname']
-                        !! </h3>
+                    <h3 class="box-title">!! item['participant.firstname'] !! !! item['participant.lastname'] !!</h3>
 
                     <div class="box-tools pull-right">
-                        <span data-toggle="tooltip" title="3 New Messages" class="badge bg-light-blue">3</span>
+                        <span v-if="item.unread_messages" class="badge bg-light-blue">!! item.unread_messages !!</span>
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                     class="fa fa-minus"></i>
                         </button>
-                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts"
-                                data-widget="chat-pane-toggle">
-                            <i class="fa fa-comments"></i></button>
                         <button type="button" class="btn btn-box-tool" v-on:click="dismiss"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
