@@ -4,6 +4,7 @@
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
         <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
         <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        <li><a href="#control-sidebar-messenger-tab" data-toggle="tab"><i class="fa fa-comment"></i></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -184,6 +185,9 @@
                 <!-- /.form-group -->
             </form>
         </div>
+        <!-- /.tab-pane -->
+        <!-- Messenger tab content -->
+        @include('messenger::messenger')
         <!-- /.tab-pane -->
     </div>
 </aside>

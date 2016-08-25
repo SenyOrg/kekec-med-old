@@ -35,6 +35,26 @@ var kekecmed = {
         /**
          * This will be setted by bootCore.blade.php in Theme Views
          */
+        base: null,
+        storage: null,
+
+        /**
+         * Get base url
+         * 
+         * @param path
+         * @returns {*}
+         */
+        getBaseUrl: function(path) {
+            return this.base + path;
+        },
+        /**
+         * Get Path to storage url
+         * @param path
+         * @returns {*}
+         */
+        getStorageUrl: function(path) {
+            return this.storage + path;
+        },
     },
 
     /**
@@ -360,6 +380,15 @@ var kekecmed = {
             return this._request(url, settings);
         },
         json: function (url, settings) {
+            // Settings is a success callback
+            if (typeof settings === "function") {
+                settings = {
+                    type: 'GET',
+                    method: 'GET',
+                    success: settings
+                };
+            }
+
             if (!settings.type && !settings.method) {
                 settings.type = 'GET';
                 settings.method = 'GET';
@@ -602,6 +631,67 @@ var kekecmed = {
         this.vue._initialize();
         this.dialog._initialize();
         //this.websocket._initialize();
+    },
+
+    /**
+     * APIs
+     */
+    api: {
+
+        /**
+         * Messenger API
+         */
+        messenger: {
+            /**
+             * Get a list of chats
+             *
+             * @param callback
+             */
+            getChats: function (callback) {
+                return kekecmed.ajax.json('messenger/chats', callback);
+            },
+            /**
+             * Get a specific chat
+             *
+             * @param chatId
+             * @param callback
+             */
+            getChat: function(chatId, callback) {
+                return kekecmed.ajax.json('messenger/chat/' + chatId, callback);
+            },
+
+            /**
+             * Send a message to a specific chat
+             * @param chatId
+             * @param message
+             */
+            sendMessage: function (chatId, message, callback) {
+                return kekecmed.ajax.json('messenger/chat/' + chatId + '/message', {
+                    method: 'GET',
+                    type: 'GET',
+                    data: {
+                        message: message  
+                    },
+                    success: callback
+                })
+            },
+
+            /**
+             * Mark chat as read
+             *
+             * @param chatId
+             */
+            markAsRead: function (chatId) {
+                return kekecmed.ajax.json('messenger/chat/' + chatId + '/read', function () {
+
+                });
+            }
+        },
+        queue: {
+            /**
+             * @todo: Move AjaxCalls related to queue jobs to this section
+             */
+        }
     }
 };
 

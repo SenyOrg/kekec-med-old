@@ -36,7 +36,12 @@ class QueueDatabaseSeeder extends Seeder
             'event_types' => '{}'
         ]);
 
-        $this->call(QueueDevelopmentDatabaseSeeder::class);
+        /**
+         * Development Mode
+         */
+        if (debuggingMode()) {
+            $this->call(QueueDevelopmentDatabaseSeeder::class);
+        }
     }
 
 }

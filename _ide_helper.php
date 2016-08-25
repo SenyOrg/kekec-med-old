@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.41 on 2016-08-09.
+ * Generated for Laravel 5.2.41 on 2016-08-25.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -13214,9 +13214,10 @@ namespace {
          *
          * @param $topic
          * @param $data
+         * @param callable $success
+         * @param callable $error
          * @param array $options
-         * @param $success
-         * @param $error
+         * @throws \Exception
          * @static 
          */
         public static function send($topic, $data, $success, $error, $options = array()){
@@ -13643,6 +13644,106 @@ namespace {
         public static function emit($event, $arguments = array()){
             //Method inherited from \Thruway\Peer\Client            
             return \KekecMed\Core\Websocket\Client::emit($event, $arguments);
+        }
+        
+    }
+
+
+    class Messenger extends \KekecMed\Messenger\Facades\MessengerFacade{
+        
+        /**
+         * Get chats of user
+         *
+         * @return array 
+         * @static 
+         */
+        public static function chats(){
+            return \KekecMed\Messenger\Messenger\Messenger::chats();
+        }
+        
+        /**
+         * Get chat information
+         *
+         * @param $id
+         * @static 
+         */
+        public static function chat($id){
+            return \KekecMed\Messenger\Messenger\Messenger::chat($id);
+        }
+        
+        /**
+         * Get messages of chat
+         *
+         * @param $chatId
+         * @return \KekecMed\Messenger\Messenger\Collection 
+         * @static 
+         */
+        public static function chatMessages($chatId){
+            return \KekecMed\Messenger\Messenger\Messenger::chatMessages($chatId);
+        }
+        
+        /**
+         * Get participants of chat
+         *
+         * @param $chatId
+         * @return \KekecMed\Messenger\Messenger\collection 
+         * @static 
+         */
+        public static function chatParticipants($chatId){
+            return \KekecMed\Messenger\Messenger\Messenger::chatParticipants($chatId);
+        }
+        
+        /**
+         * Send message to chat
+         *
+         * @param $chatId
+         * @param $message
+         * @return mixed 
+         * @static 
+         */
+        public static function sendMessage($chatId, $message){
+            return \KekecMed\Messenger\Messenger\Messenger::sendMessage($chatId, $message);
+        }
+        
+        /**
+         * Increment amount of unread Messages for
+         * all users except the current user
+         *
+         * @param $chatId
+         * @static 
+         */
+        public static function updateUnreadMessages($chatId){
+            return \KekecMed\Messenger\Messenger\Messenger::updateUnreadMessages($chatId);
+        }
+        
+        /**
+         * Mark chat as read
+         *
+         * @param $chatId
+         * @static 
+         */
+        public static function markAsRead($chatId){
+            return \KekecMed\Messenger\Messenger\Messenger::markAsRead($chatId);
+        }
+        
+        /**
+         * 
+         *
+         * @return \KekecMed\Messenger\Messenger\User 
+         * @static 
+         */
+        public static function getUser(){
+            return \KekecMed\Messenger\Messenger\Messenger::getUser();
+        }
+        
+        /**
+         * 
+         *
+         * @param \KekecMed\Messenger\Messenger\User $user
+         * @static 
+         */
+        public static function setUser($user){
+            return \KekecMed\Messenger\Messenger\Messenger::setUser($user);
         }
         
     }

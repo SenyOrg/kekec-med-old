@@ -9,6 +9,7 @@ use KekecMed\Core\Abstracts\Models\Presenter\AbstractPresenter;
 use KekecMed\Core\Entities\Dialogable;
 use KekecMed\Core\Entities\ImageableModel;
 use KekecMed\Core\Entities\Presenters\UserPresenter;
+use KekecMed\Messenger\Entities\Chatable\ChatableModel;
 use KekecMed\Task\Entities\Task;
 
 /**
@@ -19,7 +20,7 @@ use KekecMed\Task\Entities\Task;
  */
 class User extends Authenticatable implements Dialogable, Presentable
 {
-    use ImageableModel, PresentableModel;
+    use ImageableModel, PresentableModel, ChatableModel;
     
     /**
      * The attributes that are mass assignable.

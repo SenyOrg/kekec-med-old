@@ -84,7 +84,7 @@ class DevelopmentDatabaseSeeder extends Seeder
          */
         factory(Task::class, self::TASKS_COUNT)->create()->each(function ($u) use ($faker) {
             $u->update([
-                'object_type' => get_class(Patient::class),
+                'object_type' => Patient::class,
                 'object_id'   => $faker->numberBetween(1, self::PATIENTS_COUNT),
                 'creator_id'  => $faker->numberBetween(1, self::USERS_COUNT + 2),
                 'assignee_id' => $faker->numberBetween(1, self::USERS_COUNT + 2),

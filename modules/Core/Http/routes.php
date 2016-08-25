@@ -1,5 +1,7 @@
 <?php
 
+use KekecMed\Core\Http\Controllers\DebugController;
+
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'core', 'namespace' => 'KekecMed\Core\Http\Controllers'],
     function () {
         /**
@@ -21,4 +23,5 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'core', 'namespace' =
                 'result' => ((is_null($password)) ? false : Hash::check($password, \Auth::user()->password))
             ]);
         });
-    });
+    }
+);

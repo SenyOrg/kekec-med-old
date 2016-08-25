@@ -1,0 +1,21 @@
+{
+    "name": "Messenger",
+    "alias": "messenger",
+    "description": "Messenger module for KekecMed.",
+    "keywords": [
+        "Messaging",
+        "Chat",
+        "Communication"
+    ],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "KekecMed\\Messenger\\Providers\\MessengerServiceProvider"
+    ],
+    "aliases":{
+        "Messenger": "KekecMed\\Messenger\\Facades\\MessengerFacade"
+    },
+    "files": [
+        "start.php"
+    ]
+}

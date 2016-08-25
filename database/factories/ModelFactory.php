@@ -22,6 +22,9 @@ use App\User;
 use KekecMed\Calendar\Entities\Calendar;
 use KekecMed\Event\Entities\Event;
 use KekecMed\Event\Entities\EventParticipant;
+use KekecMed\Messenger\Entities\Chat;
+use KekecMed\Messenger\Entities\ChatMessage;
+use KekecMed\Messenger\Entities\ChatParticipant;
 use KekecMed\Patient\Entities\Patient;
 use KekecMed\Queue\Entities\Queue;
 use KekecMed\Task\Entities\Task;
@@ -120,4 +123,24 @@ $factory->define(EventParticipant::class, function (Faker\Generator $faker) {
  */
 $factory->define(Queue::class, function (Faker\Generator $faker) {
     return [];
+});
+
+/**
+ * Chat-Factory
+ */
+$factory->define(Chat::class, function (Faker\Generator $faker) {
+    return [];
+});
+
+$factory->define(ChatParticipant::class, function (Faker\Generator $faker) {
+    return [];
+});
+
+/**
+ * Chat-Factory
+ */
+$factory->define(ChatMessage::class, function (Faker\Generator $faker) {
+    return [
+        'message' => $faker->text(25)
+    ];
 });

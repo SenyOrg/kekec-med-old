@@ -62,3 +62,13 @@ function getImplementingClasses($interfaceName, $classes = null)
         }
     );
 }
+
+/**
+ * Check debugging is enabled or not
+ * 
+ * @author Selcuk Kekec <senycorp@googlemail.com>
+ * @return mixed
+ */
+function debuggingMode() {
+    return env('APP_DEBUG');
+}

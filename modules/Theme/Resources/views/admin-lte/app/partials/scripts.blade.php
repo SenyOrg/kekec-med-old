@@ -4,6 +4,7 @@
 <!-- We have loaded all necessary dependencies. Now we can setup the core! -->
 <script type="text/javascript" src="{{asset('modules/theme/core.js')}}"></script>
 @include('theme::bootCore')
+<script type="text/javascript" src="{{asset('modules/messenger/messenger.js')}}"></script>
 
 <script src="/vendor/datatables/buttons.server-side.js"></script>
 

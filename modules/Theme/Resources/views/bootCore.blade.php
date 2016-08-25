@@ -2,14 +2,15 @@
 
 <script type="text/javascript">
     @if (Auth::getUser())
-            kekecmed.user = {!! Auth::getUser()->toJson() !!};
-    kekecmed.session = {!! json_encode(Auth::getSession()->all()) !!};
+        kekecmed.user = {!! Auth::getUser()->toJson() !!};
+        kekecmed.session = {!! json_encode(Auth::getSession()->all()) !!};
     @endif
 
     /**
      *  Location
      */
     kekecmed.location.base = '{{url('/')}}/';
+    kekecmed.location.storage = '{{url('/')}}/storage/';
 
     /**
      * Configuration: WebSocket
